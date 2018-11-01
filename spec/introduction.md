@@ -1,3 +1,6 @@
+---
+ms.translationtype: MT
+---
 # <a name="introduction"></a>簡介
 
 C# (發音為 "See Sharp") 是簡單、物件導向、型別安全的現代化程式設計語言。 C# 的根源在於 C 系列語言，並會立即感到熟悉 C、 c + + 和 Java 程式設計人員。 C# 由標準化為 ECMA International ***ECMA-334***標準，並由 ISO/IEC 作為***ISO/IEC 23270***標準。 Microsoft 的 C# 編譯器為.NET Framework 是符合這些標準實作。
