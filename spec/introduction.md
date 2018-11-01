@@ -1,3 +1,6 @@
+---
+ms.translationtype: MT
+---
 # <a name="introduction"></a><span data-ttu-id="f582a-101">簡介</span><span class="sxs-lookup"><span data-stu-id="f582a-101">Introduction</span></span>
 
 <span data-ttu-id="f582a-102">C# (發音為 "See Sharp") 是簡單、物件導向、型別安全的現代化程式設計語言。</span><span class="sxs-lookup"><span data-stu-id="f582a-102">C# (pronounced "See Sharp") is a simple, modern, object-oriented, and type-safe programming language.</span></span> <span data-ttu-id="f582a-103">C# 的根源在於 C 系列語言，並會立即感到熟悉 C、 c + + 和 Java 程式設計人員。</span><span class="sxs-lookup"><span data-stu-id="f582a-103">C# has its roots in the C family of languages and will be immediately familiar to C, C++, and Java programmers.</span></span> <span data-ttu-id="f582a-104">C# 由標準化為 ECMA International ***ECMA-334***標準，並由 ISO/IEC 作為***ISO/IEC 23270***標準。</span><span class="sxs-lookup"><span data-stu-id="f582a-104">C# is standardized by ECMA International as the ***ECMA-334*** standard and by ISO/IEC as the ***ISO/IEC 23270*** standard.</span></span> <span data-ttu-id="f582a-105">Microsoft 的 C# 編譯器為.NET Framework 是符合這些標準實作。</span><span class="sxs-lookup"><span data-stu-id="f582a-105">Microsoft's C# compiler for the .NET Framework is a conforming implementation of both of these standards.</span></span>
