@@ -821,7 +821,7 @@ public void Log(
 
 ## <a name="attributes-for-interoperation"></a>交互操作的屬性
 
-注意： 此區段是僅適用於 C# 的 Microsoft.NET 實作。
+注意:本節是僅適用於 Microsoft.NET 實作的C#。
 
 ### <a name="interoperation-with-com-and-win32-components"></a>與 COM 和 Win32 元件的互通性
 

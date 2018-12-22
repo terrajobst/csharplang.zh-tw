@@ -194,6 +194,6 @@ enum Circular
 
 列舉成員具有其包含的列舉型別的型別 (除了其他列舉成員初始設定式內： 請參閱[列舉成員](enums.md#enum-members))。 列舉類型中宣告的列舉成員值`E`相關聯的值`v`是`(E)v`。
 
-下列運算子可用於列舉類型的值： `==`， `!=`， `<`， `>`， `<=`， `>=` ([列舉型別比較運算子](expressions.md#enumeration-comparison-operators))，的二進位檔`+`([加法運算子](expressions.md#addition-operator))、 二進位`-`([減法運算子](expressions.md#subtraction-operator))， `^`， `&`， `|` ([列舉邏輯運算子](expressions.md#enumeration-logical-operators))， `~` ([位元補充運算子](expressions.md#bitwise-complement-operator))，`++`並`--`([後置遞增和遞減運算子](expressions.md#postfix-increment-and-decrement-operators)並[前置遞增和遞減運算子](expressions.md#prefix-increment-and-decrement-operators))。
+下列運算子可用於列舉類型的值： `==`， `!=`， `<`， `>`， `<=`， `>=`  ([列舉型別比較運算子](expressions.md#enumeration-comparison-operators))二進位`+`  ([加法運算子](expressions.md#addition-operator))、 二進位`-`  ([減法運算子](expressions.md#subtraction-operator))， `^`， `&``|`  ([列舉邏輯運算子](expressions.md#enumeration-logical-operators))， `~`  ([位元補充運算子](expressions.md#bitwise-complement-operator))，`++`和`--` ([後置遞增和遞減運算子](expressions.md#postfix-increment-and-decrement-operators)並[前置遞增和遞減運算子](expressions.md#prefix-increment-and-decrement-operators))。
 
 每個列舉型別會自動將衍生自類別`System.Enum`(其中，又，衍生自`System.ValueType`和`object`)。 因此，這個類別的繼承的方法和屬性可用的列舉類型的值。

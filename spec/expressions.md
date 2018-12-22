@@ -20,7 +20,7 @@
 
 運算式的最終結果不命名空間、 類型、 方法群組或事件存取。 相反地，如先前所述，這些類別的運算式都是只允許在特定內容的中繼建構。
 
-屬性存取或索引子存取一律分類為值所執行的引動過程*get 存取子*或*set 存取子*。 特定的存取子由屬性或索引子存取的情境： 存取做為目標的指派，如果*set 存取子*會叫用來指派新值 ([簡單指派](expressions.md#simple-assignment)). 否則，請*get 存取子*會叫用來取得目前的值 ([運算式的值](expressions.md#values-of-expressions))。
+屬性存取或索引子存取一律分類為值所執行的引動過程*get 存取子*或*set 存取子*。 特定的存取子取決於屬性或索引子存取的內容：如果存取指派，目標*set 存取子*會叫用來指派新值 ([簡單指派](expressions.md#simple-assignment))。 否則，請*get 存取子*會叫用來取得目前的值 ([運算式的值](expressions.md#values-of-expressions))。
 
 ### <a name="values-of-expressions"></a>運算式的值
 
@@ -141,7 +141,7 @@ Console.WriteLine(d);  // dynamic binding to Console.WriteLine(int)
 
 ### <a name="operator-overloading"></a>運算子多載
 
-所有的一元和二元運算子有預先定義的實作，會自動出現在任何運算式。 除了預先定義的實作中，使用者定義的實作可以引進加`operator`類別和結構中的宣告 ([運算子](classes.md#operators))。 使用者定義運算子實作，一律優先於預先定義的運算子實作： 僅當沒有適用的使用者定義運算子實作預先定義的運算子會考慮實作，如所述[一元運算子多載解析](expressions.md#unary-operator-overload-resolution)並[二元運算子多載解析](expressions.md#binary-operator-overload-resolution)。
+所有的一元和二元運算子有預先定義的實作，會自動出現在任何運算式。 除了預先定義的實作中，使用者定義的實作可以引進加`operator`類別和結構中的宣告 ([運算子](classes.md#operators))。 使用者定義運算子實作，一律優先於預先定義的運算子實作：只有當沒有適用的使用者定義運算子實作預先定義的運算子會考慮實作，如中所述[一元運算子多載解析](expressions.md#unary-operator-overload-resolution)和[二元運算子多載解析](expressions.md#binary-operator-overload-resolution)。
 
 ***多載的一元運算子***是：
 ```csharp
@@ -304,14 +304,14 @@ decimal AddPercent(decimal x, double percent) {
 
 成員查詢會視為不只有名稱的成員，但成員的型別參數和成員是否可存取的數目。 成員查詢而言泛型方法，而巢狀泛型類型有其各自的宣告所示的型別參數的數目，以及所有其他成員都有零個類型參數。
 
-成員名稱的查閱`N`具有`K`型別參數的型別中`T`處理，如下所示：
+成員名稱的查閱 `N`具有`K` 型別參數的型別中 `T`處理，如下所示：
 
-*  首先，將可存取的成員命名`N`取決於：
-    * 如果`T`是型別參數，則集合是可存取的成員命名集的聯集`N`中每個類型指定為主要的條件約束或次要的條件約束 ([類型參數條件約束](classes.md#type-parameter-constraints)) 的`T`，以及可存取的成員命名集`N`在`object`。
-    * 否則集合，包含所有可存取的 ([成員存取](basic-concepts.md#member-access)) 成員命名`N`中`T`，包括繼承的成員，以及可存取的成員命名`N`在`object`。 如果`T`是建構的型別，取得之成員的集合中所述，以替代型別引數[建構的型別成員](classes.md#members-of-constructed-types)。 其成員包括`override`修飾詞會集中排除。
+*  首先，將可存取的成員命名 `N`取決於：
+    * 如果`T`是型別參數，則集合是可存取的成員命名集的聯集 `N`中每個類型指定為主要的條件約束或次要的條件約束 ([類型參數條件約束](classes.md#type-parameter-constraints)) 的 `T`，以及可存取的成員命名集 `N`在`object`。
+    * 否則集合，包含所有可存取的 ([成員存取](basic-concepts.md#member-access)) 成員命名 `N`中 `T`，包括繼承的成員，以及可存取的成員命名 `N`在`object`。 如果`T`是建構的型別，取得之成員的集合中所述，以替代型別引數[建構的型別成員](classes.md#members-of-constructed-types)。 其成員包括`override`修飾詞會集中排除。
 *  接下來，如果`K`為零，所有巢狀中移除其宣告包含型別參數的型別。 如果`K`不是零，具有不同數目的型別參數會移除所有成員。 請注意，當`K`為零，方法有的類型參數不會移除，因為型別推斷程序 ([型別推斷](expressions.md#type-inference)) 或許能夠推斷類型引數。
 *  下一步，如果成員是*叫用*中，所有非-*invocable*成員會從集合中移除。
-*  接下來，會隱藏其他成員的成員會從集合移除。 每位成員`S.M`集中，其中`S`是在其中的類型成員`M`宣告，會套用下列規則：
+*  接下來，會隱藏其他成員的成員會從集合移除。 每位成員`S.M`集中，其中`S`是在其中的類型成員 `M`宣告，會套用下列規則：
     * 如果`M`是常數、 欄位、 屬性、 事件或列舉成員，則基底類型中宣告的所有成員`S`從集合中移除。
     * 如果`M`是型別宣告，則所有非類型的基底類型中宣告`S`會從集合中移除所有輸入具有相同數目的型別參數宣告`M`基底類型中宣告`S`會移除從集合中。
     * 如果`M`是一種方法，則基底類型中宣告的所有非方法成員`S`從集合中移除。
@@ -556,7 +556,7 @@ Tr M<X1,...,Xn>(T1 x1, ..., Tm xm)
 
 型別推斷會採用階段中的位置。 每個階段會嘗試推斷類型引數的多個類型的變數，根據前一個階段的結果。 第一個階段會讓一些初始推斷的範圍中，而第二個階段可以修正特定類型的型別變數，並推測進一步界限。 第二個階段可能是重複次數。
 
-*注意：* 類型推斷會放置不只呼叫泛型方法時。 所述的方法群組轉換的型別推斷[的方法群組轉換的型別推斷](expressions.md#type-inference-for-conversion-of-method-groups)尋找一組運算式的最常用的型別述[找出一組常見的最佳類型運算式的](expressions.md#finding-the-best-common-type-of-a-set-of-expressions)。
+*注意：* 型別推斷就會發生不只會呼叫泛型方法。 所述的方法群組轉換的型別推斷[的方法群組轉換的型別推斷](expressions.md#type-inference-for-conversion-of-method-groups)尋找一組運算式的最常用的型別述[找出一組常見的最佳類型運算式的](expressions.md#finding-the-best-common-type-of-a-set-of-expressions)。
 
 #### <a name="the-first-phase"></a>第一個階段
 
@@ -675,7 +675,7 @@ A*下限推斷**從*類型`U`*至*類型`V`為止，如下所示：
 *Unfixed*類型變數`Xi`界限的一組會*修正*，如下所示：
 
 *  一組*候選型別*`Uj`界限的集合中的所有類型的集合一開始都`Xi`。
-*  然後，我們檢驗的每個繫結`Xi`依次： 針對每個實際的繫結`U`的`Xi`所有型別`Uj`並不是相同`U`從候選項目集合中移除。 針對每個下限`U`的`Xi`所有型別`Uj`若其中有要*不*的隱含轉換`U`從候選項目集合中移除。 針對每個的上限`U`的`Xi`所有型別`Uj`從它*不*隱含轉換成`U`從候選項目集合中移除。
+*  然後，我們檢驗每個繫結的`Xi`依次：每個實際的繫結`U`的`Xi`所有型別`Uj`並不是等於`U`從候選項目集合中移除。 針對每個下限`U`的`Xi`所有型別`Uj`若其中有要*不*的隱含轉換`U`從候選項目集合中移除。 針對每個的上限`U`的`Xi`所有型別`Uj`從它*不*隱含轉換成`U`從候選項目集合中移除。
 *  如果在剩餘的候選項目類型之間`Uj`沒有唯一的型別`V`包括不的隱含轉換為所有其他的候選項目類型，然後從`Xi`會固定為`V`。
 *  否則，型別推斷會失敗。
 
@@ -740,7 +740,7 @@ static Z F<X,Y,Z>(X value, Func<X,Y> f1, Func<Y,Z> f2) {
 ```csharp
 double seconds = F("1:15:30", s => TimeSpan.Parse(s), t => t.TotalSeconds);
 ```
-程序如下： 第一個引數`"1:15:30"`與相關`value`參數，推斷`X`要`string`。 接著，第一個匿名函式的參數`s`，指定推斷的型別`string`，和運算式`TimeSpan.Parse(s)`相關的傳回型別`f1`、 推斷`Y`要`System.TimeSpan`。 最後，第二個匿名函式的參數`t`，指定推斷的型別`System.TimeSpan`，和運算式`t.TotalSeconds`相關的傳回型別`f2`、 推斷`Z`要`double`。 因此，此引動過程的結果屬於類型`double`。
+繼續進行，如下所示：首先，引數`"1:15:30"`與相關`value`參數，推斷`X`要`string`。 接著，第一個匿名函式的參數`s`，指定推斷的型別`string`，和運算式`TimeSpan.Parse(s)`相關的傳回型別`f1`、 推斷`Y`要`System.TimeSpan`。 最後，第二個匿名函式的參數`t`，指定推斷的型別`System.TimeSpan`，和運算式`t.TotalSeconds`相關的傳回型別`f2`、 推斷`Z`要`double`。 因此，此引動過程的結果屬於類型`double`。
 
 #### <a name="type-inference-for-conversion-of-method-groups"></a>方法群組轉換的型別推斷
 
@@ -820,7 +820,7 @@ Tr M<X>(X x1 ... X xm)
 
 如果執行這項評估時`Mp`或`Mq`是適用於其展開的形式，則`Px`或`Qx`指的是參數清單的展開表單中的參數。
 
-如果參數型別序列`{P1, P2, ..., Pn}`和`{Q1, Q2, ..., Qn}`是相等的 (也就是每個`Pi`具有身分識別轉換至對應`Qi`)，套用下列繫結分行規則，以順序，以判斷好函式成員。
+如果參數型別序列 `{P1, P2, ..., Pn}`和`{Q1, Q2, ..., Qn}`是相等的 (也就是每個`Pi`具有身分識別轉換至對應`Qi`)，套用下列繫結分行規則，以順序，以判斷好函式成員。
 
 *  如果`Mp`是一種非泛型方法和`Mq`是泛型方法，則`Mp`優於`Mq`。
 *  否則，如果`Mp`適用於一般形式及`Mq`已`params`陣列，且只適用於其展開的形式，然後`Mp`優於`Mq`。
@@ -913,8 +913,8 @@ class G2<U,V>
 
 在這些情況下，有限的編譯時間檢查會針對每個候選項目，以查看 是否其中任何可能無法套用在執行階段執行的。這項檢查包含下列步驟：
 
-*  部分型別推斷： 任何類型引數，而不會直接或間接的型別引數`dynamic`使用的規則會推斷[型別推斷](expressions.md#type-inference)。 其餘的型別引數是未知的。
-*  部分的適用性檢查： 根據檢查適用性[適用的函式成員](expressions.md#applicable-function-member)，但忽略其類型是未知的參數。
+*  部分型別推斷：任何類型引數，而不會直接或間接的型別引數`dynamic`使用的規則會推斷[型別推斷](expressions.md#type-inference)。 其餘的型別引數是未知的。
+*  部分的適用性檢查：根據檢查適用性[適用的函式成員](expressions.md#applicable-function-member)，但忽略其類型是未知的參數。
 *  如果沒有候選人通過此測試，就會發生編譯時期錯誤。
 
 ### <a name="function-member-invocation"></a>函式成員引動過程
@@ -1075,26 +1075,26 @@ simple_name
 
 A *simple_name*是其中一種形式`I`，或格式`I<A1,...,Ak>`，其中`I`是以單一識別項和`<A1,...,Ak>`是選擇性*type_argument_list*。 若未*type_argument_list*會指定，請考慮`K`為零。 *Simple_name*評估和分類，如下所示：
 
-*  如果`K`為零， *simple_name*內會出現*區塊*如果*區塊*的 (或為封入*區塊*的) 本機變數宣告空間 ([宣告](basic-concepts.md#declarations)) 包含本機變數、 參數或常數名稱`I`，然後在*simple_name*參考該區域變數參數或常數，而分類為變數或值。
-*  如果`K`為零， *simple_name*出現在泛型方法宣告的主體內，如果宣告包含名稱的型別參數`I`，則*simple_name*指的是該型別參數。
-*  否則，對於每個執行個體型別`T`([執行個體類型](classes.md#the-instance-type))，開始立即封入型別宣告的執行個體類型，並繼續進行的每個封入類別或結構的執行個體類型宣告 （如果有的話）：
-   *  如果`K`是零，宣告`T`包含名稱的型別參數`I`，然後在*simple_name*指的是該型別參數。
-   *  否則，如果成員查閱 ([成員查閱](expressions.md#member-lookup)) 的`I`中`T`使用`K`型別引數會產生相符項目：
+*  如果`K`為零， *simple_name*內會出現*區塊*如果*區塊*的 (或為封入*區塊*的) 本機變數宣告空間 ([宣告](basic-concepts.md#declarations)) 包含本機變數、 參數或常數名稱 `I`，然後在*simple_name*參考該區域變數參數或常數，而分類為變數或值。
+*  如果`K`為零， *simple_name*出現在泛型方法宣告的主體內，如果宣告包含名稱的型別參數 `I`，則*simple_name*指的是該型別參數。
+*  否則，對於每個執行個體型別 `T`([執行個體類型](classes.md#the-instance-type))，開始立即封入型別宣告的執行個體類型，並繼續進行的每個封入類別或結構的執行個體類型宣告 （如果有的話）：
+   *  如果`K`是零，宣告`T`包含名稱的型別參數 `I`，然後在*simple_name*指的是該型別參數。
+   *  否則，如果成員查閱 ([成員查閱](expressions.md#member-lookup)) 的`I`中`T`具有`K` 型別引數會產生相符項目：
       * 如果`T`與其直接封入類別或結構類型的執行個體類型和查閱找出一或多個方法，結果是具有相關聯的執行個體運算式的方法群組`this`。 如果指定型別引數清單，則用來呼叫泛型方法 ([方法引動過程](expressions.md#method-invocations))。
       * 否則，如果`T`是立即封入類別或結構類型的執行個體類型，如果查閱識別執行個體成員，且參考發生的執行個體建構函式、 執行個體方法或執行個體存取子的主體內結果是成員存取相同 ([成員存取](expressions.md#member-access)) 格式的`this.I`。 這只會發生時`K`為零。
       * 否則，結果就是成員存取相同 ([成員存取](expressions.md#member-access)) 的表單`T.I`或`T.I<A1,...,Ak>`。 在此情況下，它會繫結時間錯誤*simple_name*參考執行個體成員。
 
-*  否則，對於每個命名空間`N`，從命名空間，其中*simple_name*發生，請繼續進行與每個封入命名空間 （如果有的話），和全域命名空間中，做為結尾，則下列步驟評估直到找到實體為止：
-   *  如果`K`為零並`I`中的命名空間名稱`N`，然後：
-      * 如果位置所在*simple_name*就會發生加上命名空間宣告`N`且命名空間宣告包含*extern_alias_directive*或*using_alias_directive* ，將名稱產生關聯`I`與命名空間或類型，則*simple_name*模稜兩可，就會發生編譯時期錯誤。
+*  否則，對於每個命名空間 `N`，從命名空間，其中*simple_name*發生，請繼續進行與每個封入命名空間 （如果有的話），和全域命名空間中，做為結尾，則下列步驟評估直到找到實體為止：
+   *  如果`K`為零並`I`中的命名空間名稱 `N`，然後：
+      * 如果位置所在*simple_name*就會發生加上命名空間宣告`N`且命名空間宣告包含*extern_alias_directive*或*using_alias_directive* ，將名稱產生關聯 `I`與命名空間或類型，則*simple_name*模稜兩可，就會發生編譯時期錯誤。
       * 否則，請*simple_name*名為命名空間是指`I`在`N`。
-   *  否則，如果`N`包含可存取的型別具有名稱`I`和`K`型別參數，然後：
-      * 如果`K`是零，位置所在*simple_name*就會發生加上命名空間宣告`N`和命名空間宣告包含*extern_alias_directive*或*using_alias_directive* ，將名稱產生關聯`I`命名空間或類型，則*simple_name*模稜兩可並發生編譯時期錯誤。
+   *  否則，如果`N`包含可存取的型別具有名稱 `I`並`K` 型別參數，然後：
+      * 如果`K`是零，位置所在*simple_name*就會發生加上命名空間宣告`N`和命名空間宣告包含*extern_alias_directive*或*using_alias_directive* ，將名稱產生關聯 `I`命名空間或類型，則*simple_name*模稜兩可並發生編譯時期錯誤。
       * 否則，請*namespace_or_type_name*指的是使用指定的型別引數建構的類型。
-   *  否則，如果位置所在*simple_name*就會發生加上命名空間宣告`N`:
-      * 如果`K`為零，而命名空間宣告包含*extern_alias_directive*或是*using_alias_directive*名稱建立關聯的`I`與匯入的命名空間或型別，則*simple_name*參考到該命名空間或型別。
-      * 否則，如果所匯入的命名空間和類型的宣告*using_namespace_directive*s 並*using_static_directive*的命名空間宣告包含一個可存取的型別或不可擴充的靜態成員具有名稱`I`並`K`型別參數，則*simple_name*參考該類型或成員建構具有指定的型別引數。
-      * 否則，如果匯入的命名空間和類型*using_namespace_directive*的命名空間宣告包含一個以上可存取的型別或非擴充方法的靜態成員具有名稱`I`並`K`型別參數，則*simple_name*模稜兩可並發生錯誤。
+   *  否則，如果位置所在*simple_name*就會發生加上命名空間宣告 `N`:
+      * 如果`K`為零，而命名空間宣告包含*extern_alias_directive*或是*using_alias_directive*名稱建立關聯的 `I`與匯入的命名空間或型別，則*simple_name*參考到該命名空間或型別。
+      * 否則，如果所匯入的命名空間和類型的宣告*using_namespace_directive*s 並*using_static_directive*的命名空間宣告包含一個可存取的型別或不可擴充的靜態成員具有名稱 `I`並`K` 型別參數，則*simple_name*參考該類型或成員建構具有指定的型別引數。
+      * 否則，如果匯入的命名空間和類型*using_namespace_directive*的命名空間宣告包含一個以上可存取的型別或非擴充方法的靜態成員具有名稱 `I`並`K` 型別參數，則*simple_name*模稜兩可並發生錯誤。
 
    請注意，這整個步驟是在處理對應的步驟完全平行*namespace_or_type_name* ([命名空間和型別名稱](basic-concepts.md#namespace-and-type-names))。
 
@@ -1138,37 +1138,37 @@ A *member_access*具有*primary_expression*型別的`dynamic`動態繫結 ([動�
 
 *Member_access*評估和分類，如下所示：
 
-*  如果`K`為零並`E`是命名空間並`E`包含具有名稱的巢狀命名空間`I`，則結果為該命名空間。
-*  否則，如果`E`是命名空間並`E`包含可存取的型別具有名稱`I`和`K`型別參數，則結果為使用指定的型別引數建構的型別。
-*  如果`E`是*predefined_type*或*primary_expression*分類為型別，如果`E`不是類型參數，而且如果成員查閱 ([成員查閱](expressions.md#member-lookup))`I`中`E`具有`K`型別參數會產生相符項目，然後`E.I`評估和分類，如下所示：
+*  如果`K`為零並`E`是命名空間並`E`包含具有名稱的巢狀命名空間 `I`，則結果為該命名空間。
+*  否則，如果`E`是命名空間並`E`包含可存取的型別具有名稱 `I`並`K` 型別參數，則結果為使用指定的型別引數建構的型別。
+*  如果`E`是*predefined_type*或*primary_expression*分類為型別，如果`E`不是類型參數，而且如果成員查閱 ([成員查閱](expressions.md#member-lookup))`I`中`E`具有`K` 型別參數會產生相符項目，然後`E.I`評估和分類，如下所示：
    *  如果`I`識別類型，則結果為使用指定的型別引數建構的型別。
    *  如果`I`識別一或多個方法，則結果為沒有相關聯的執行個體運算式的方法群組。 如果指定型別引數清單，則用來呼叫泛型方法 ([方法引動過程](expressions.md#method-invocations))。
    *  如果`I`識別`static`屬性，則結果是沒有相關聯的執行個體運算式的屬性存取。
    *  如果`I`識別`static`欄位：
-      * 如果欄位是`readonly`和參考，就會發生的類別或結構中宣告的欄位，靜態建構函式之外，則結果為一個值，也就是靜態欄位的值`I`在`E`。
-      * 否則，結果就是一個變數，也就是靜態欄位`I`在`E`。
+      * 如果欄位是`readonly`和參考，就會發生的類別或結構中宣告的欄位，靜態建構函式之外，則結果為一個值，也就是靜態欄位的值 `I`在 `E`。
+      * 否則，結果就是一個變數，也就是靜態欄位 `I`在 `E`。
    *  如果`I`識別`static`事件：
       * 如果參考就會發生在類別或結構中宣告事件，並在宣告事件時未*event_accessor_declarations* ([事件](classes.md#events))，然後`E.I`完全處理如同`I`靜態欄位。
       * 否則，結果就是事件存取沒有相關聯的執行個體的運算式。
    *  如果`I`識別常數，則結果為一個值，也就是該常數的值。
     * 如果`I`識別列舉成員，則結果為一個值，也就是該列舉成員的值。
     * 否則，`E.I`是無效的成員參考，則會發生編譯時期錯誤。
-*  如果`E`是屬性存取、 索引子存取、 變數或值的類型是`T`，和成員查閱 ([成員查閱](expressions.md#member-lookup)) 的`I`中`T`具有`K`型別引數會產生相符項目，然後`E.I`評估和分類，如下所示：
+*  如果`E`是屬性存取、 索引子存取、 變數或值的類型是 `T`，和成員查閱 ([成員查閱](expressions.md#member-lookup)) 的`I`中`T`具有`K`  型別引數會產生相符項目，然後`E.I`評估和分類，如下所示：
    *  首先，如果`E`是屬性或索引子存取，則屬性的值，或取得索引子存取 ([運算式的值](expressions.md#values-of-expressions)) 和`E`分類為值。
    *  如果`I`識別一或多個方法，則結果為方法群組有相關聯的執行個體運算式`E`。 如果指定型別引數清單，則用來呼叫泛型方法 ([方法引動過程](expressions.md#method-invocations))。
    *  如果`I`識別一個執行個體的屬性，
       * 如果`E`已`this`，`I`識別自動實作的屬性 ([自動實作屬性](classes.md#automatically-implemented-properties)) 沒有 setter 和參考，就會發生的執行個體建構函式類別或結構的型別`T`，則結果為變數時，也就是隱藏的支援欄位所指定之自動屬性`I`執行個體中`T`藉由指定`this`。
-      * 否則，結果就是具有相關聯的執行個體運算式的屬性存取`E`。
+      * 否則，結果就是具有相關聯的執行個體運算式的屬性存取 `E`。
    *  如果`T`已*class_type*並`I`識別該執行個體欄位*class_type*:
       * 如果值`E`已`null`，則會顯示`System.NullReferenceException`就會擲回。
-      * 否則，如果欄位是`readonly`和參考，就會發生在宣告的欄位，該類別的執行個體建構函式之外，則結果為一個值，也就是欄位的值`I`中所參考的物件`E`。
-      * 否則，結果就是一個變數，也就是欄位`I`中所參考的物件`E`。
+      * 否則，如果欄位是`readonly`和參考，就會發生在宣告的欄位，該類別的執行個體建構函式之外，則結果為一個值，也就是欄位的值 `I`中所參考的物件 `E`。
+      * 否則，結果就是一個變數，也就是欄位 `I`中所參考的物件 `E`。
    *  如果`T`已*struct_type*並`I`識別該執行個體欄位*struct_type*:
-      * 如果`E`是一個值，或如果欄位是`readonly`和參考，就會發生在宣告的欄位，該結構的執行個體建構函式之外，則結果為一個值，也就是欄位的值`I`中所指定的結構執行個體`E`.
-      * 否則，結果就是一個變數，也就是欄位`I`中所指定的結構執行個體`E`。
+      * 如果`E`是一個值，或如果欄位是`readonly`和參考，就會發生在宣告的欄位，該結構的執行個體建構函式之外，則結果為一個值，也就是欄位的值 `I`中所指定的結構執行個體 `E`.
+      * 否則，結果就是一個變數，也就是欄位 `I`中所指定的結構執行個體 `E`。
    *  如果`I`識別執行個體的事件：
       * 如果參考就會發生在類別或結構中宣告事件，並在宣告事件時未*event_accessor_declarations* ([事件](classes.md#events))，並為不會發生參考左手邊`+=`或是`-=`運算子，然後`E.I`完全處理如同`I`已執行個體欄位。
-      * 否則，結果就是具有相關聯的執行個體運算式的事件存取`E`。
+      * 否則，結果就是具有相關聯的執行個體運算式的事件存取 `E`。
 *  否則，嘗試處理`E.I`作為擴充方法引動過程 ([擴充方法引動過程](expressions.md#extension-method-invocations))。 如果失敗，`E.I`是無效的成員參考，並在繫結階段錯誤發生。
 
 #### <a name="identical-simple-names-and-type-names"></a>相同簡單名稱和類型名稱
@@ -1204,7 +1204,7 @@ class A
 ```
 F(G<A,B>(7));
 ```
-無法解譯為呼叫`F`兩個引數時，`G < A`和`B > (7)`。 或者，它可解譯為呼叫`F`一個引數，也就是泛型方法的呼叫`G`具有兩個類型引數和一個一般引數。
+無法解譯為呼叫`F`兩個引數時，`G < A`和`B > (7)`。 或者，它可解譯為呼叫`F`一個引數，也就是泛型方法的呼叫 `G`具有兩個類型引數和一個一般引數。
 
 如果語彙基元序列中可剖析 （內容） 作為*simple_name* ([簡單名稱](expressions.md#simple-names))， *member_access* ([成員存取](expressions.md#member-access))，或*pointer_member_access* ([指標成員存取](unsafe-code.md#pointer-member-access)) 以結束*type_argument_list* ([型別引數](types.md#type-arguments))，緊接在結尾的語彙基元`>`語彙基元會進行檢查。 如果它是其中一個
 ```csharp
@@ -1271,16 +1271,16 @@ invocation_expression
    *  如果`F`是泛型並`M`包含型別引數清單，`F`是候選時：
       * `F` 在類型引數清單中，提供了有相同數目的方法類型參數與
       * 所有建構型別參數清單中的 F 型別引數會取代對應的方法類型參數，一旦滿足其條件約束 ([滿足條件約束](types.md#satisfying-constraints))，以及參數清單`F`相對於適用於`A`([適用的函式成員](expressions.md#applicable-function-member))。
-*  一組候選項目方法會減少到只包含方法的最具衍生性的類型： 每個方法`C.F`集中，其中`C`是在其中的型別方法`F`宣告，所有的方法基底型別宣告的`C`從集合中移除。 此外，如果`C`而不是類別類型`object`，介面型別中宣告的所有方法會從集合中都移除。 （這個第二個規則只能有影響方法群組時需要有效的基底類別以外的物件和設定的非空白有效的介面的型別參數的成員查閱的結果）。
+*  一組候選項目方法會減少到只包含方法的最具衍生性的類型：每個方法`C.F`集中，其中`C`是在其中的型別方法`F`宣告，基底類型中宣告的所有方法`C`從集合中移除。 此外，如果`C`而不是類別類型`object`，介面型別中宣告的所有方法會從集合中都移除。 （這個第二個規則只能有影響方法群組時需要有效的基底類別以外的物件和設定的非空白有效的介面的型別參數的成員查閱的結果）。
 *  如果候選項目方法的結果集是空的再進一步處理沿著下列步驟會放棄，並改為嘗試處理為擴充方法引動過程的引動過程 ([擴充方法引動過程](expressions.md#extension-method-invocations)). 如果失敗，則不適用的方法存在，並在繫結階段錯誤發生。
 *  一組候選項目方法的最佳方法用的多載解析規則來識別[多載解析](expressions.md#overload-resolution)。 如果找不到單一的最佳方法，方法引動過程模稜兩可，並在繫結階段錯誤發生。 執行多載解析時，泛型方法的參數後，會考慮替代的型別引數 （提供或推斷） 相對應的方法型別參數。
 *  最終驗證所選的最佳方法被執行：
-   * 方法會進行驗證的方法群組內容中： 最好的方法是靜態方法，如果方法群組必須起因*simple_name*或*member_access*透過型別。 最好的方法是執行個體方法，如果方法群組必須起因*simple_name*，則*member_access*透過變數或值，或*base_access*。 如果這些需求都為 true，則繫結階段會發生錯誤。
+   * 方法會進行驗證的方法群組內容中：最好的方法是靜態方法，如果方法群組必須起因*simple_name*或是*member_access*透過型別。 最好的方法是執行個體方法，如果方法群組必須起因*simple_name*，則*member_access*透過變數或值，或*base_access*。 如果這些需求都為 true，則繫結階段會發生錯誤。
    * 最好的方法是泛型方法，如果型別引數 （提供或推斷） 會針對條件約束檢查 ([滿足條件約束](types.md#satisfying-constraints)) 宣告之泛型方法。 如果任何類型引數未滿足型別參數上的對應條件約束，繫結階段會發生錯誤。
 
 當方法有選取，而且繫結時間經過上述步驟時，根據函式成員引動過程中所述的規則處理實際的執行階段引動過程[編譯時期檢查動態的多載解析](expressions.md#compile-time-checking-of-dynamic-overload-resolution).
 
-上面所述的解析規則的直覺式的效果如下所示： 若要尋找特定的方法叫用的方法引動過程，開頭的方法引動過程所表示的類型，並繼續繼承鏈結，直到至少一個適用，找不到可供存取、 非覆寫的方法宣告。 然後執行型別推斷和多載解析將適用、 存取、 非覆寫的方法，該類型中宣告的集合，並叫用選取的方法。 如果找不到任何方法，請嘗試改為處理為擴充方法引動過程的引動過程。
+上面所述的解析規則的直覺式的效果如下所示：若要尋找特定的方法叫用的方法引動過程，開頭的方法引動過程所表示的類型，並繼續繼承鏈結，直到找到至少一個適用、 存取、 非覆寫方法宣告。 然後執行型別推斷和多載解析將適用、 存取、 非覆寫的方法，該類型中宣告的集合，並叫用選取的方法。 如果找不到任何方法，請嘗試改為處理為擴充方法引動過程的引動過程。
 
 #### <a name="extension-method-invocations"></a>擴充方法引動過程
 
@@ -2089,7 +2089,7 @@ comma
     ;
 ```
 
-第一種形式*typeof_expression*組成`typeof`關鍵字後面接著括號括住*類型*。 這種形式的運算式的結果是`System.Type`指定型別的物件。 只有一個`System.Type`任何指定類型的物件。 這表示型別的`T`，`typeof(T) == typeof(T)`一定是 true。 *型別*不能是`dynamic`。
+第一種形式*typeof_expression*組成`typeof`關鍵字後面接著括號括住*類型*。 這種形式的運算式的結果是`System.Type`指定型別的物件。 只有一個`System.Type`任何指定類型的物件。 這表示型別的 `T`，`typeof(T) == typeof(T)`一定是 true。 *型別*不能是`dynamic`。
 
 第二個形式*typeof_expression*組成`typeof`關鍵字後面接著括號括住*unbound_type_name*。 *Unbound_type_name*非常類似於*type_name* ([命名空間和型別名稱](basic-concepts.md#namespace-and-type-names)) 不同之處在於*unbound_type_name*包含*generic_dimension_specifier*s 所在*type_name*包含*type_argument_list*s。 當的運算元*typeof_expression*是一連串的語彙基元滿足兩個文法*unbound_type_name*並*type_name*，也就是當它包含既不*generic_dimension_specifier*也不是*type_argument_list*，語彙基元順序會被視為*type_name*。 意義*unbound_type_name*判斷方式如下：
 
@@ -2511,7 +2511,7 @@ decimal operator +(decimal x);
 bool operator !(bool x);
 ```
 
-此運算子會計算運算元的邏輯否定： 如果運算元`true`，結果是`false`。 如果運算元`false`，結果是`true`。
+這個運算子會計算運算元的邏輯否定：如果運算元`true`，結果是`false`。 如果運算元`false`，結果是`true`。
 
 ### <a name="bitwise-complement-operator"></a>位元補充運算子
 
@@ -2583,7 +2583,7 @@ A *cast_expression*的表單`(T)E`，其中`T`是*型別*並`E`是*unary_express
 
 文法*cast_expression*通往特定語法模稜兩可。 例如，運算式`(x)-y`可能是解譯為*cast_expression* (轉型`-y`鍵入`x`) 或*additive_expression*結合*parenthesized_expression* (它會計算值`x - y)`。
 
-若要解決*cast_expression*模稜兩可，下列規則存在： 一或多個序列*語彙基元*s ([泛空白字元](lexical-structure.md#white-space)) 括在括號會被視為開始*cast_expression*只有當下列其中一項條件成立：
+若要解決*cast_expression*模稜兩可，下列規則存在：一或多個序列*語彙基元*s ([泛空白字元](lexical-structure.md#white-space)) 括在括號會被視為開頭*cast_expression*至少下列其中一項條件成立時，才：
 
 *  語彙基元順序是正確文法*型別*，但並不適合*運算式*。
 *  語彙基元順序是正確文法*型別*，並緊接在右括號的語彙基元是語彙基元"`~`"，語彙基元"`!`"，語彙基元"`(`"、 *識別項*([Unicode 字元的逸出序列](lexical-structure.md#unicode-character-escape-sequences))，則*常值*([常值](lexical-structure.md#literals))，或有任何*關鍵字*([關鍵字](lexical-structure.md#keywords)) 除了`as`和`is`。
@@ -2913,7 +2913,7 @@ additive_expression
    D operator +(D x, D y);
    ```
 
-   二進位`+`這兩個運算元都是相同委派型別時，運算子會執行委派組合`D`。 （如果運算元有不同的委派類型時，繫結階段會發生錯誤。）如果在第一個運算元`null`，此作業的結果是第二個運算元的值 (即使這也是`null`)。 否則，如果第二個運算元是`null`，則作業的結果為第一個運算元的值。 否則，作業的結果就是新的委派執行個體，當叫用時，會叫用第一個運算元而再叫用第二個運算元。 例如委派組合的詳細資訊，請參閱[減法運算子](expressions.md#subtraction-operator)並[委派引動過程](delegates.md#delegate-invocation)。 由於`System.Delegate`不是委派型別`operator``+`未定義它。
+   二進位`+`這兩個運算元都是相同委派型別時，運算子會執行委派組合`D`。 （如果運算元有不同的委派類型時，繫結階段會發生錯誤。）如果在第一個運算元`null`，此作業的結果是第二個運算元的值 (即使這也是`null`)。 否則，如果第二個運算元是`null`，則作業的結果為第一個運算元的值。 否則，作業的結果就是新的委派執行個體，當叫用時，會叫用第一個運算元而再叫用第二個運算元。 例如委派組合的詳細資訊，請參閱[減法運算子](expressions.md#subtraction-operator)並[委派引動過程](delegates.md#delegate-invocation)。 由於`System.Delegate`不是委派型別`operator` `+`未定義它。
 
 ### <a name="subtraction-operator"></a>減法運算子
 
@@ -3212,9 +3212,9 @@ bool operator ==(bool x, bool y);
 bool operator !=(bool x, bool y);
 ```
 
-結果`==`是`true`如果兩個`x`並`y`會`true`或如果兩個`x`並`y`是`false`。 否則，結果就是`false`。
+結果`==`是`true`如果兩個`x`並`y`會`true`或如果兩個`x`並`y`是`false`。 否則，結果為 `false`。
 
-結果`!=`是`false`如果兩個`x`並`y`會`true`或如果兩個`x`並`y`是`false`。 否則，結果就是`true`。 當運算元都是型別`bool`，則`!=`運算子會產生相同結果`^`運算子。
+結果`!=`是`false`如果兩個`x`並`y`會`true`或如果兩個`x`並`y`是`false`。 否則，結果為 `true`。 當運算元都是型別`bool`，則`!=`運算子會產生相同結果`^`運算子。
 
 ### <a name="enumeration-comparison-operators"></a>列舉型別比較運算子
 
@@ -3486,11 +3486,11 @@ bool operator |(bool x, bool y);
 bool operator ^(bool x, bool y);
 ```
 
-結果`x & y`已`true`如果兩個`x`並`y`是`true`。 否則，結果就是`false`。
+若 `x` 及 `y` 皆為 `true`，那麼 `x & y` 的結果會是 `true`。 否則，結果為 `false`。
 
-結果`x | y`已`true`如果`x`或是`y`是`true`。 否則，結果就是`false`。
+結果`x | y`已`true`如果`x`或是`y`是`true`。 否則，結果為 `false`。
 
-結果`x ^ y`是`true`如果`x`是`true`並`y`是`false`，或`x`是`false`並`y`是`true`。 否則，結果就是`false`。 當運算元都是型別`bool`，則`^`運算子會計算為相同的結果`!=`運算子。
+結果`x ^ y`是`true`如果`x`是`true`並`y`是`false`，或`x`是`false`並`y`是`true`。 否則，結果為 `false`。 當運算元都是型別`bool`，則`^`運算子會計算為相同的結果`!=`運算子。
 
 ### <a name="nullable-boolean-logical-operators"></a>可為 null 的布林邏輯運算子
 
@@ -3629,7 +3629,7 @@ conditional_expression
 
 ## <a name="anonymous-function-expressions"></a>匿名函式運算式
 
-***匿名函式***是代表"line"方法定義的運算式。 匿名函式沒有值或型別本身，但轉換成相容的委派或運算式樹狀結構類型。 匿名函式轉換的評估取決於轉換的目標類型： 如果是委派類型，轉換會評估為參考的匿名函式定義的方法委派值。 如果運算式樹狀架構類型，轉換會評估為運算式樹狀架構表示的方法，做為物件結構的結構。
+***匿名函式***是代表"line"方法定義的運算式。 匿名函式沒有值或型別本身，但轉換成相容的委派或運算式樹狀結構類型。 匿名函式轉換的評估取決於轉換的目標類型：如果是委派類型，轉換就會評估委派值參考的匿名函式定義的方法。 如果運算式樹狀架構類型，轉換會評估為運算式樹狀架構表示的方法，做為物件結構的結構。
 
 基於歷史原因有兩種語法匿名函式，也就是*lambda_expression*s 並*anonymous_method_expression*s。 幾乎所有基於*lambda_expression*會更簡潔易懂，比*anonymous_method_expression*s，保留的語言中回溯相容性。
 

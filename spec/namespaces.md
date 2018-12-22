@@ -496,7 +496,7 @@ namespace N2
 
 A *using_static_directive*只會匯入成員和指定的型別，直接宣告的類型沒有成員和型別宣告基底類別中。
 
-TODO： 範例
+待辦事項：範例
 
 多個之間的模稜兩可*using_namespace_directives*並*using_static_directives*討論[Using 命名空間指示詞](namespaces.md#using-namespace-directives)。
 
@@ -561,22 +561,22 @@ A *qualified_alias_member*有兩種形式之一：
 使用這個標記法的意義*qualified_alias_member*判斷方式如下：
 
 *  如果`N`是識別項`global`，然後搜尋全域命名空間`I`:
-   * 如果全域命名空間包含名為命名空間`I`並`K`為零，則*qualified_alias_member*指的是該命名空間。
-   * 否則，如果全域命名空間包含名為非泛型型別`I`並`K`為零，則*qualified_alias_member*參考該型別。
-   * 否則，如果全域命名空間包含名為的型別`I`具有`K`型別參數，則*qualified_alias_member*建構具有指定的型別引數的型別參考。
+   * 如果全域命名空間包含名為命名空間 `I`並`K`為零，則*qualified_alias_member*指的是該命名空間。
+   * 否則，如果全域命名空間包含名為非泛型型別 `I`並`K`為零，則*qualified_alias_member*參考該型別。
+   * 否則，如果全域命名空間包含名為的型別 `I`具有`K` 型別參數，則*qualified_alias_member*建構具有指定的型別引數的型別參考。
    * 否則，請*qualified_alias_member*是未定義，而且會發生編譯時期錯誤。
 
 *  否則，開頭的命名空間宣告 ([命名空間宣告](namespaces.md#namespace-declarations)) 立即包含*qualified_alias_member* （如果有的話），繼續使用每個封入的命名空間宣告（如果有的話），並包含編譯單位以作為結束*qualified_alias_member*，直到找到實體為止，會評估下列步驟：
 
    * 如果包含的命名空間宣告或編譯單位*using_alias_directive*建立關聯的`N`類型，則*qualified_alias_member*是未定義和編譯時間會發生錯誤。
    * 否則，如果命名空間宣告或編譯單位包含*extern_alias_directive*或是*using_alias_directive*建立關聯的`N`與命名空間，然後：
-     * 如果命名空間相關聯`N`包含名為命名空間`I`並`K`為零，則*qualified_alias_member*指的是該命名空間。
-     * 否則，如果命名空間相關聯`N`包含名為非泛型型別`I`並`K`為零，則*qualified_alias_member*參考該型別。
-     * 否則，如果命名空間相關聯`N`包含名為的型別`I`具有`K`型別參數，則*qualified_alias_member*建構具有給定類型的型別是指引數。
+     * 如果命名空間相關聯`N`包含名為命名空間 `I`並`K`為零，則*qualified_alias_member*指的是該命名空間。
+     * 否則，如果命名空間相關聯`N`包含名為非泛型型別 `I`並`K`為零，則*qualified_alias_member*參考該型別。
+     * 否則，如果命名空間相關聯`N`包含名為的型別 `I`具有`K` 型別參數，則*qualified_alias_member*指的是以建構類型指定的型別引數。
      * 否則，請*qualified_alias_member*是未定義，而且會發生編譯時期錯誤。
 *  否則，請*qualified_alias_member*是未定義，而且會發生編譯時期錯誤。
 
-請注意，使用參考類型的別名的命名空間別名限定詞會使編譯時期錯誤。 也請注意，如果識別項`N`已`global`，則即使沒有別名建立關聯的使用中全域命名空間中，執行查閱`global`與型別或命名空間。
+請注意，使用參考類型的別名的命名空間別名限定詞會使編譯時期錯誤。 也請注意，如果識別項 `N`已`global`，則即使沒有別名建立關聯的使用中全域命名空間中，執行查閱`global`與型別或命名空間。
 
 ### <a name="uniqueness-of-aliases"></a>別名的唯一性
 

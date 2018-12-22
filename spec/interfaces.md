@@ -189,7 +189,7 @@ public interface IStringList
     string this[int index] { get; set; }
 }
 ```
-宣告介面，包含其中每個可能的成員種類： 方法、 屬性、 事件和索引子。
+宣告介面，包含其中每個可能的成員種類：方法、 屬性、 事件和索引子。
 
 *Interface_declaration*建立新的宣告空間 ([宣告](basic-concepts.md#declarations))，而*interface_member_declaration*立即包含s*interface_declaration*這個宣告空間中引入新的成員。 下列規則適用於*interface_member_declaration*s:
 
@@ -295,7 +295,7 @@ interface_indexer_declaration
 
 成員存取透過存取介面成員 ([成員存取](expressions.md#member-access)) 和索引子存取 ([索引子存取](expressions.md#indexer-access)) 形式的運算式`I.M`並`I[A]`，其中`I`介面類型時，`M`是方法、 屬性或事件，該介面型別，以及`A`是索引子引數清單。
 
-絕對的介面的單一繼承 （每個介面繼承鏈結中的有剛好零個或一個直接的基底介面）、 成員查詢的影響 ([成員查閱](expressions.md#member-lookup))，方法引動過程 ([方法引動過程](expressions.md#method-invocations))，和索引子存取 ([索引子存取](expressions.md#indexer-access)) 規則並完全與類別和結構相同： 衍生程度較大的成員隱藏較少衍生的成員具有相同的名稱或簽章。 不過，如多重繼承的介面，可能會發生模稜兩可，若有兩個或多個不相關的基底介面宣告具有相同的名稱或簽章的成員。 本節說明幾個範例，這種情況。 在所有情況下，明確轉換 （cast） 可用來解決模稜兩可。
+絕對的介面的單一繼承 （每個介面繼承鏈結中的有剛好零個或一個直接的基底介面）、 成員查詢的影響 ([成員查閱](expressions.md#member-lookup))，方法引動過程 ([方法引動過程](expressions.md#method-invocations))，和索引子存取 ([索引子存取](expressions.md#indexer-access)) 規則並完全與類別和結構相同：更多衍生成員隱藏較少衍生的成員具有相同名稱或簽章。 不過，如多重繼承的介面，可能會發生模稜兩可，若有兩個或多個不相關的基底介面宣告具有相同的名稱或簽章的成員。 本節說明幾個範例，這種情況。 在所有情況下，明確轉換 （cast） 可用來解決模稜兩可。
 
 在範例
 ```csharp
@@ -380,7 +380,7 @@ class A
 ```
 `IBase.F`藉由隱藏成員`ILeft.F`成員。 引動過程`d.F(1)`因此會選取`ILeft.F`，即使`IBase.F`似乎不會逐步引導的存取路徑中隱藏`IRight`。
 
-多重繼承的介面中隱藏的直覺式規則只是這： 如果成員已隱藏任何存取路徑中，它隱藏在所有的存取路徑中。 因為存取路徑，從`IDerived`來`ILeft`要`IBase`隱藏`IBase.F`，從的存取路徑中的成員也在隱藏`IDerived`來`IRight`來`IBase`。
+多重繼承的介面中隱藏的直覺式規則只是這個：如果成員隱藏的任何存取路徑中，它會隱藏所有的存取路徑中。 因為存取路徑，從`IDerived`來`ILeft`要`IBase`隱藏`IBase.F`，從的存取路徑中的成員也在隱藏`IDerived`來`IRight`來`IBase`。
 
 ## <a name="fully-qualified-interface-member-names"></a>完整的介面成員名稱
 

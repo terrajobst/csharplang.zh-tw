@@ -276,7 +276,7 @@ unsafe static int* Find(int* pi, int size, int value) {
 
 ## <a name="fixed-and-moveable-variables"></a>固定和可移動變數
 
-傳址運算子 ([傳址運算子](unsafe-code.md#the-address-of-operator)) 和`fixed`陳述式 ([fixed 陳述式](unsafe-code.md#the-fixed-statement)) 分成兩大類別的變數：***固定變數***並***可移動的變數***。
+傳址運算子 ([傳址運算子](unsafe-code.md#the-address-of-operator)) 和`fixed`陳述式 ([fixed 陳述式](unsafe-code.md#the-fixed-statement)) 分成兩大類別的變數：***已修正變數***並***可移動的變數***。
 
 固定的變數位於儲存體位置，不會受到記憶體回收行程的作業。 （固定變數的範例包括本機變數、 值參數和變數建立為指標取值）。相反地，可移動的變數存在於受限於記憶體回收行程的重新配置或配置的儲存體位置中。 （可移動的變數的範例包括欄位中物件和陣列的元素。）
 

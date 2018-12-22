@@ -418,7 +418,7 @@ public class B
 *  多載的索引子允許類別、 結構或介面宣告多個索引子，前提是它們的簽章中的類別、 結構或介面的唯一的。
 *  多載的運算子允許類別或結構宣告具有相同名稱，並提供它們的簽章的多個運算子都是唯一的類別或結構內。
 
-雖然`out`並`ref`參數修飾詞會視為簽章的一部分，在單一類型中宣告的成員不能單獨由不同簽章中`ref`和`out`。 如果兩個成員會宣告相同的型別會是相同的簽章中使用這兩種方法中的所有參數，就會發生編譯時期錯誤`out`修飾詞變更為`ref`修飾詞。 用於簽章相符的其他用途 （例如隱藏或覆寫），`ref`和`out`視為簽章的一部分，且彼此不相符。 (這項限制是以允許 C# 程式來執行在 Common Language Infrastructure (CLI)，這不會提供方法來定義只會在不同的方法，輕易地轉譯`ref`和`out`。)
+雖然`out`並`ref`參數修飾詞會視為簽章的一部分，在單一類型中宣告的成員不能單獨由不同簽章中`ref`和`out`。 如果兩個成員會宣告相同的型別會是相同的簽章中使用這兩種方法中的所有參數，就會發生編譯時期錯誤`out`修飾詞變更為`ref`修飾詞。 用於簽章相符的其他用途 （例如隱藏或覆寫），`ref`和`out`視為簽章的一部分，且彼此不相符。 (這項限制可讓C#程式來執行在 Common Language Infrastructure (CLI)，這不會提供方法來定義只會在不同的方法，輕易地轉譯`ref`並`out`。)
 
 簽章類型基於`object`和`dynamic`都會視為相同。 單一類型中宣告的成員可以因此是相同的簽章單獨由`object`和`dynamic`。
 
@@ -646,7 +646,7 @@ class MoreDerived: Derived
 
 ## <a name="namespace-and-type-names"></a>命名空間和類型名稱
 
-在 C# 程式中的數種內容需要*namespace_name*或是*type_name*指定。
+中的數種內容C#程式需要*namespace_name*或是*type_name*來指定。
 
 ```antlr
 namespace_name
@@ -680,26 +680,26 @@ A *type_name*是*namespace_or_type_name* ，參考型別。 接下來的解析�
 意義*namespace_or_type_name*判斷方式如下：
 
 *   如果*namespace_or_type_name*的形式`I`，或格式`I<A1, ..., Ak>`:
-    * 如果`K`為零， *namespace_or_type_name*出現在泛型方法宣告中 ([方法](classes.md#methods))，如果宣告包含型別參數 ([類型參數](classes.md#type-parameters)) 名稱`I`，則*namespace_or_type_name*指的是該型別參數。
-    * 否則，如果*namespace_or_type_name*會出現在類型宣告中，然後針對每個執行個體類型`T`([執行個體類型](classes.md#the-instance-type))，從該類型的執行個體類型宣告，並繼續每個封入類別或結構宣告的執行個體類型 （如果有的話）：
-        * 如果`K`是零，宣告`T`包含名稱的型別參數`I`，然後在*namespace_or_type_name*指的是該型別參數。
-        * 否則，如果*namespace_or_type_name*出現在類型宣告的主體內並`T`或其任何基底型別包含具有名稱的巢狀可存取型別`I`和`K`型別參數則*namespace_or_type_name*建構具有指定的型別引數的型別參考。 如果沒有這樣的多個型別，會選取衍生程度較大的型別內宣告的型別。 請注意，非類型成員 （常數、 欄位、 方法、 屬性、 索引子、 運算子、 執行個體建構函式、 解構函式和靜態建構函式） 和具有不同數目的型別參數的型別成員時，會忽略判斷的意義*namespace_or_type_name*。
-    * 如果不成功，然後，每個命名空間的前一個步驟`N`，從命名空間，其中*namespace_or_type_name*發生時，每個封入命名空間 （如果有的話），繼續進行，結尾為全域命名空間，直到找到實體為止，會評估下列步驟：
-        * 如果`K`為零並`I`中的命名空間名稱`N`，然後：
-            * 如果位置所在*namespace_or_type_name*就會發生加上命名空間宣告`N`且命名空間宣告包含*extern_alias_directive*或*using_alias_directive* ，將名稱產生關聯`I`命名空間或類型，則*namespace_or_type_name*模稜兩可並發生編譯時期錯誤。
+    * 如果`K`為零， *namespace_or_type_name*出現在泛型方法宣告中 ([方法](classes.md#methods))，如果宣告包含型別參數 ([類型參數](classes.md#type-parameters)) 名稱 `I`，則*namespace_or_type_name*指的是該型別參數。
+    * 否則，如果*namespace_or_type_name*會出現在類型宣告中，然後針對每個執行個體類型 `T`([執行個體類型](classes.md#the-instance-type))，從該類型的執行個體類型宣告，並繼續每個封入類別或結構宣告的執行個體類型 （如果有的話）：
+        * 如果`K`是零，宣告`T`包含名稱的型別參數 `I`，然後在*namespace_or_type_name*指的是該型別參數。
+        * 否則，如果*namespace_or_type_name*出現在類型宣告的主體內並`T`或其任何基底型別包含具有名稱的巢狀可存取型別 `I`和`K`  型別參數，則*namespace_or_type_name*建構具有指定的型別引數的型別參考。 如果沒有這樣的多個型別，會選取衍生程度較大的型別內宣告的型別。 請注意，非類型成員 （常數、 欄位、 方法、 屬性、 索引子、 運算子、 執行個體建構函式、 解構函式和靜態建構函式） 和具有不同數目的型別參數的型別成員時，會忽略判斷的意義*namespace_or_type_name*。
+    * 如果不成功，然後，每個命名空間的前一個步驟 `N`，從命名空間，其中*namespace_or_type_name*發生時，每個封入命名空間 （如果有的話），繼續進行，結尾為全域命名空間，直到找到實體為止，會評估下列步驟：
+        * 如果`K`為零並`I`中的命名空間名稱 `N`，然後：
+            * 如果位置所在*namespace_or_type_name*就會發生加上命名空間宣告`N`且命名空間宣告包含*extern_alias_directive*或*using_alias_directive* ，將名稱產生關聯 `I`命名空間或類型，則*namespace_or_type_name*模稜兩可並發生編譯時期錯誤。
             * 否則，請*namespace_or_type_name*名為命名空間是指`I`在`N`。
-        * 否則，如果`N`包含可存取的型別具有名稱`I`和`K`型別參數，然後：
-            * 如果`K`是零，位置所在*namespace_or_type_name*就會發生加上命名空間宣告`N`和命名空間宣告包含*extern_alias_directive*或*using_alias_directive* ，將關聯名稱`I`命名空間或類型，則*namespace_or_type_name*是模稜兩可和編譯時間會發生錯誤。
+        * 否則，如果`N`包含可存取的型別具有名稱 `I`並`K` 型別參數，然後：
+            * 如果`K`是零，位置所在*namespace_or_type_name*就會發生加上命名空間宣告`N`和命名空間宣告包含*extern_alias_directive*或*using_alias_directive* ，將關聯名稱 `I`命名空間或類型，則*namespace_or_type_name*是模稜兩可和編譯時間會發生錯誤。
             * 否則，請*namespace_or_type_name*指的是使用指定的型別引數建構的類型。
         * 否則，如果位置所在*namespace_or_type_name*就會發生加上命名空間宣告`N`:
-            * 如果`K`為零，而命名空間宣告包含*extern_alias_directive*或是*using_alias_directive*名稱建立關聯的`I`與匯入的命名空間或型別，則*namespace_or_type_name*參考到該命名空間或型別。
-            * 否則，如果所匯入的命名空間和類型的宣告*using_namespace_directive*s 並*using_alias_directive*的命名空間宣告包含一個可存取的型別具有名稱`I`並`K`型別參數，則*namespace_or_type_name*建構具有指定的型別引數的型別參考。
-            * 否則，如果所匯入的命名空間和類型的宣告*using_namespace_directive*s 並*using_alias_directive*的命名空間宣告包含一個以上的存取類型具有名稱`I`並`K`型別參數，則*namespace_or_type_name*模稜兩可並發生錯誤。
+            * 如果`K`為零，而命名空間宣告包含*extern_alias_directive*或是*using_alias_directive*名稱建立關聯的 `I`與匯入的命名空間或型別，則*namespace_or_type_name*參考到該命名空間或型別。
+            * 否則，如果所匯入的命名空間和類型的宣告*using_namespace_directive*s 並*using_alias_directive*的命名空間宣告包含一個可存取的型別具有名稱 `I`並`K` 型別參數，則*namespace_or_type_name*建構具有指定的型別引數的型別參考。
+            * 否則，如果所匯入的命名空間和類型的宣告*using_namespace_directive*s 並*using_alias_directive*的命名空間宣告包含一個以上的存取類型具有名稱 `I`並`K` 型別參數，則*namespace_or_type_name*模稜兩可並發生錯誤。
     * 否則，請*namespace_or_type_name*是未定義，而且會發生編譯時期錯誤。
 *  否則，請*namespace_or_type_name*的形式`N.I`，或格式`N.I<A1, ..., Ak>`。 `N` 會先解析成*namespace_or_type_name*。 如果解析`N`不成功，就會發生編譯時期錯誤。 否則，請`N.I`或`N.I<A1, ..., Ak>`問題解決之後，如下所示：
     * 如果`K`為零並`N`命名空間是指和`N`包含具有名稱的巢狀命名空間`I`，則*namespace_or_type_name*是指該巢狀命名空間。
-    * 否則，如果`N`所參考的命名空間並`N`包含可存取的型別具有名稱`I`並`K`型別參數，則*namespace_or_type_name*參考該型別使用指定的型別引數的建構。
-    * 否則，如果`N`參考 （可能是建構） 的類別或結構類型和`N`或任何其基底類別包含具有名稱的巢狀可存取類型`I`並`K`型別參數，則*命名空間_or_type_name*建構具有指定的型別引數的型別參考。 如果沒有這樣的多個型別，會選取衍生程度較大的型別內宣告的型別。 請注意，如果的意義`N.I`解析的基底類別規格的一部分會決定`N`然後的直接基底類別`N`會被視為物件 ([基底類別](classes.md#base-classes))。
+    * 否則，如果`N`所參考的命名空間並`N`包含可存取的型別具有名稱 `I`並`K` 型別參數，則*namespace_or_type_name*指的是若要建構使用指定的型別引數的型別。
+    * 否則，如果`N`參考 （可能是建構） 的類別或結構類型和`N`或任何其基底類別包含具有名稱的巢狀可存取類型 `I`並`K` 類型參數，則*namespace_or_type_name*建構具有指定的型別引數的型別參考。 如果沒有這樣的多個型別，會選取衍生程度較大的型別內宣告的型別。 請注意，如果的意義`N.I`解析的基底類別規格的一部分會決定`N`然後的直接基底類別`N`會被視為物件 ([基底類別](classes.md#base-classes))。
     * 否則，請`N.I`是無效*namespace_or_type_name*，並發生編譯時期錯誤。
 
 A *namespace_or_type_name*允許參考靜態類別 ([靜態類別](classes.md#static-classes)) 只有當

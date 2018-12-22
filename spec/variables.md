@@ -14,13 +14,13 @@ C# 定義的變數的七個類別： 靜態變數、 執行個體變數、 陣�
 ```csharp
 class A
 {
-public static int x;
-int y;
+    public static int x;
+    int y;
 
-void F(int[] v, int a, ref int b, out int c) {
-int i = 1;
-c = a + b++;
-}
+    void F(int[] v, int a, ref int b, out int c) {
+        int i = 1;
+        c = a + b++;
+    }
 }
 ```
 `x` 是靜態的變數，`y`是執行個體變數，`v[0]`是陣列項目`a`值的參數`b`是參考參數，`c`是一個 output 參數，和`i`是區域變數。
@@ -272,11 +272,11 @@ for ( for_initializer ; for_condition ; for_iterator ) embedded_statement
 完成所撰寫的陳述式：
 ```csharp
 {
-for_initializer ;
-while ( for_condition ) {
-embedded_statement ;
-for_iterator ;
-}
+    for_initializer ;
+    while ( for_condition ) {
+        embedded_statement ;
+        for_iterator ;
+    }
 }
 ```
 
@@ -358,10 +358,10 @@ finally *finally_block*
 完成陳述式所`try` - `finally`封入陳述式`try` - `catch`陳述式：
 ```csharp
 try {
-try try_block
-catch(...) catch_block_1
-...
-catch(...) catch_block_n
+    try try_block
+    catch(...) catch_block_1
+    ...
+    catch(...) catch_block_n
 }
 finally finally_block
 ```
@@ -370,31 +370,31 @@ finally finally_block
 ```csharp
 class A
 {
-static void F() {
-int i, j;
-try {
-goto LABEL;
-// neither i nor j definitely assigned
-i = 1;
-// i definitely assigned
-}
+    static void F() {
+        int i, j;
+        try {
+            goto LABEL;
+            // neither i nor j definitely assigned
+            i = 1;
+            // i definitely assigned
+        }
 
-catch {
-// neither i nor j definitely assigned
-i = 3;
-// i definitely assigned
-}
+        catch {
+            // neither i nor j definitely assigned
+            i = 3;
+            // i definitely assigned
+        }
 
-finally {
-// neither i nor j definitely assigned
-j = 5;
-// j definitely assigned
-}
-// i and j definitely assigned
-LABEL:;
-// j definitely assigned
+        finally {
+            // neither i nor j definitely assigned
+            j = 5;
+            // j definitely assigned
+            }
+        // i and j definitely assigned
+        LABEL:;
+        // j definitely assigned
 
-}
+    }
 }
 ```
 

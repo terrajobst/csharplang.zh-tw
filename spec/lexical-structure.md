@@ -28,7 +28,7 @@ C#***計劃***包含一個或多個***原始程式檔***，稱為正式***編譯
 
 C# 的語法文法所示的章節和附錄，依循本章內容而定。 語法的文法終端符號是由語彙文法中，定義語彙基元和語法的文法可讓您指定的語彙基元組合表單 C# 程式的方式。
 
-在 C# 程式中的每個原始程式檔必須符合*compilation_unit*生產的語法文法 ([編譯單位](namespaces.md#compilation-units))。
+每個原始程式檔中的C#程式都必須符合*compilation_unit*生產環境的語法文法 ([編譯單位](namespaces.md#compilation-units))。
 
 ## <a name="lexical-analysis"></a>語彙分析
 
@@ -55,7 +55,7 @@ input_element
     ;
 ```
 
-五個基本項目組成 C# 原始程式檔的語彙結構： 行結束字元 ([行結束字元](lexical-structure.md#line-terminators))，泛空白字元 ([泛空白字元](lexical-structure.md#white-space))，註解 ([註解](lexical-structure.md#comments))，權杖 ([語彙基元](lexical-structure.md#tokens))，和前置處理指示詞 ([前置處理指示詞](lexical-structure.md#pre-processing-directives))。 這些基本項目，只有語彙基元是 C# 程式的句法的文法中 ([語法的文法](lexical-structure.md#syntactic-grammar))。
+五個基本項目組成的語彙結構C#原始程式檔：行結束字元 ([行結束字元](lexical-structure.md#line-terminators))，泛空白字元 ([泛空白字元](lexical-structure.md#white-space))，註解 ([註解](lexical-structure.md#comments))，語彙基元 ([權杖](lexical-structure.md#tokens))，以及前置處理指示詞 ([前置處理指示詞](lexical-structure.md#pre-processing-directives))。 這些基本項目，只有語彙基元是 C# 程式的句法的文法中 ([語法的文法](lexical-structure.md#syntactic-grammar))。
 
 C# 原始程式檔語彙處理包含將檔案縮減成一連串的語彙基元會變得語法分析的輸入。 行終端符號、 空白字元和註解，可以當做分隔符號的語彙基元，但前置處理指示詞可能會導致略過，原始程式檔的區段，否則這些語彙項目語法的 C# 程式結構中沒有任何影響。
 
@@ -467,7 +467,7 @@ real_type_suffix
 
 字元常值代表單一字元，而且通常包含的字元以引號括住，如`'a'`。
 
-請注意： ANTLR 文法標記法會讓下列令人混淆 ！ 在 ANTLR，當您撰寫`\'`它代表單引號`'`。 當您撰寫並`\\`它代表單一反斜線`\`。 因此它的開頭的單引號字元，然後單引號字元常值的第一個規則所表示。 和十一個可能的簡單逸出序列`\'`， `\"`， `\\`， `\0`， `\a`， `\b`， `\f`， `\n`， `\r`， `\t`， `\v`.
+注意:ANTLR 文法標記法可讓下列令人混淆 ！ 在 ANTLR，當您撰寫`\'`它代表單引號`'`。 當您撰寫並`\\`它代表單一反斜線`\`。 因此它的開頭的單引號字元，然後單引號字元常值的第一個規則所表示。 和十一個可能的簡單逸出序列`\'`， `\"`， `\\`， `\0`， `\a`， `\b`， `\f`， `\n`， `\r`， `\t`， `\v`.
 
 ```antlr
 character_literal
