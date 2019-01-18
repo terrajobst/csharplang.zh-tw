@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 0a09585f4f885647230354c66a2449abb7ef1f44
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229541"
+---
 # <a name="interfaces"></a>介面
 
 介面定義合約。 類別或結構實作介面必須遵守其合約。 介面可以繼承自多個基底介面，以及類別或結構可以實作多個介面。

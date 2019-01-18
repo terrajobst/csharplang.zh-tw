@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: b7bb7dd575d9e2e6d5dd85bdd3e535411e29fcf4
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229542"
+---
 # <a name="variables"></a>變數
 
 變數代表儲存體位置。 每個變數具有一種類型，判斷哪些值可以儲存在變數中。 C# 是型別安全的語言，以及 C# 編譯器保證變數中儲存的值永遠都適當的型別。 可以變更變數的值，透過指派或透過使用`++`和`--`運算子。
@@ -313,7 +321,7 @@ return ;
 ```
 
 *  如果*v*是一個 output 參數，則必須將它明確地指派：
-    * 之前*陳述式*
+    * before *stmt*
     * 或在結尾`finally`區塊`try` - `finally`或是`try` - `catch` - `finally`圍住`return`陳述式。
 
 #### <a name="try-catch-statements"></a>Try catch 陳述式

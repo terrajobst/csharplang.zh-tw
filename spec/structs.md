@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 72d17175dfb8ef284dce6cf7e5837420fa06f16a
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229539"
+---
 # <a name="structs"></a>結構
 
 結構是類似於類別，在於它們代表可以包含資料成員和函式成員的資料結構。 不過，不同於類別，結構是實值類型，而且不需要堆積配置。 結構類型的變數直接包含資料的結構，而類別類型的變數包含資料，後者稱為物件的參考。

@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 61eeae6173eaa19f9cf6d6e985f3dc107d4c3ac9
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "50245522"
+---
 # <a name="conversions"></a>轉換
 
 A***轉換***可讓運算式被視為特定的型別。 轉換可能會造成指定的型別被視為擁有不同類型的運算式，或可能會導致沒有取得型別之型別的運算式。 轉換十分***隱含***或***明確***，這會決定是否需要明確轉換。 比方說，從類型轉換`int`鍵入`long`是隱含的因此運算式的型別`int`隱含地視為類型`long`。 相反的轉換，從型別`long`輸入`int`，是明確，因此需要明確轉換。

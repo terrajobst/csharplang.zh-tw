@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 155c1beecddfdfcce2e7948bcb8d6b80428fbd7a
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229552"
+---
 # <a name="arrays"></a>陣列
 
 陣列是資料結構，其中包含數個透過計算索引存取的變數。 陣列，也稱為陣列的項目中包含的變數都相同的型別，以及這個型別稱為陣列的項目類型。

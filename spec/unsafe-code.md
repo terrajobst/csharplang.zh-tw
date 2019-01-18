@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 90001cf3d48f216787fc65e59166ec57c5d0ca34
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229543"
+---
 # <a name="unsafe-code"></a>Unsafe 程式碼
 
 Core C# 語言，定義在前述章節中，與不同值得注意的是 C 和 c + + 中的指標其省略，做為資料類型。 相反地，C# 提供參考，並且能夠建立由記憶體回收行程所管理的物件。 這項設計，搭配其他功能，讓 C# 更安全語言比 C 或 c + +。 在 core C# 語言中不只可以有未初始化的變數、 「 懸空 」 的指標或索引的陣列，其界限外的運算式。 錯誤種類頭痛的 C 和 c + + 程式從而消除了。

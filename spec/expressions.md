@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 75454072a5137b3044f78bb896317fd88a29e336
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "49640908"
+---
 # <a name="expressions"></a>運算式
 
 運算式是運算子和運算元的序列。 這一章中定義的語法，順序評估運算元和運算子和運算式的意義。
@@ -2700,9 +2708,9 @@ additive_expression
 
    |      |      |      |     |     |      |      |     |
    |:----:|-----:|:----:|:---:|:---:|:----:|:----:|:----|
-   |      | + y   | -y   | +0  | -0  | +inf | -inf | NaN | 
-   | + x   | + z   | -z   | +0  | -0  | +inf | -inf | NaN | 
-   | -x   | -z   | + z   | -0  | +0  | -inf | +inf | NaN | 
+   |      | +y   | -y   | +0  | -0  | +inf | -inf | NaN | 
+   | +x   | +z   | -z   | +0  | -0  | +inf | -inf | NaN | 
+   | -x   | -z   | +z   | -0  | +0  | -inf | +inf | NaN | 
    | +0   | +0   | -0   | +0  | -0  | NaN  | NaN  | NaN | 
    | -0   | -0   | +0   | -0  | +0  | NaN  | NaN  | NaN | 
    | +inf | +inf | -inf | NaN | NaN | +inf | -inf | NaN | 
@@ -2752,9 +2760,9 @@ additive_expression
 
    |      |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | + y   | -y   | +0   | -0   | +inf | -inf | NaN  | 
-   | + x   | + z   | -z   | +inf | -inf | +0   | -0   | NaN  | 
-   | -x   | -z   | + z   | -inf | +inf | -0   | +0   | NaN  | 
+   |      | +y   | -y   | +0   | -0   | +inf | -inf | NaN  | 
+   | +x   | +z   | -z   | +inf | -inf | +0   | -0   | NaN  | 
+   | -x   | -z   | +z   | -inf | +inf | -0   | +0   | NaN  | 
    | +0   | +0   | -0   | NaN  | NaN  | +0   | -0   | NaN  | 
    | -0   | -0   | +0   | NaN  | NaN  | -0   | +0   | NaN  | 
    | +inf | +inf | -inf | +inf | -inf | NaN  | NaN  | NaN  | 
@@ -2802,8 +2810,8 @@ additive_expression
 
    |      |      |      |      |      |      |      |      |
    |:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
-   |      | + y   | -y   | +0   | -0   | +inf | -inf | NaN  | 
-   | + x   | + z   | + z   | NaN  | NaN  | x    | x    | NaN  | 
+   |      | +y   | -y   | +0   | -0   | +inf | -inf | NaN  | 
+   | +x   | +z   | +z   | NaN  | NaN  | x    | x    | NaN  | 
    | -x   | -z   | -z   | NaN  | NaN  | -x   | -x   | NaN  | 
    | +0   | +0   | +0   | NaN  | NaN  | +0   | +0   | NaN  | 
    | -0   | -0   | -0   | NaN  | NaN  | -0   | -0   | NaN  | 
@@ -3107,7 +3115,7 @@ equality_expression
 預先定義的比較運算子是由下列各節所述。 所有預先定義的比較運算子傳回類型之結果的`bool`下, 表中所述。
 
 
-| __作業__ | __結果__                                                       |
+| __Operation__ | __結果__                                                       |
 |---------------|------------------------------------------------------------------|
 | `x == y`      | `true` 如果`x`等於`y`，`false`否則                 | 
 | `x != y`      | `true` 如果`x`不等於`y`，`false`否則             | 

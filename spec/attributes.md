@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: a8ad8a8b3eda1d00fa745bd92e4371eacc36b79f
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229540"
+---
 # <a name="attributes"></a>屬性
 
 許多 C# 語言可讓程式設計人員指定的程式中定義的實體的宣告式資訊。 比方說，裝飾它與指定類別中方法的存取範圍*method_modifier*s `public`， `protected`， `internal`，和`private`。

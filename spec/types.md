@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: a28397b1ce97dbead6d5014e2b20e108a1018502
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229550"
+---
 # <a name="types"></a>型別
 
 C# 語言的類型可分為兩種主要類別：***實值型別***並***參考型別***。 可能是實值型別和參考型別***泛型型別***，這需要一或多個***型別參數***。 類型參數可以指定這兩個實值型別和參考型別。

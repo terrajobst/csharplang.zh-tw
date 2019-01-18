@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 08c14d9ef2afe30580f456995066c141653ede92
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229553"
+---
 # <a name="delegates"></a>委派
 
 委派可讓案例的其他語言，例如 c + +、 pascal 命名法，以及 Modula-解決與函式指標。 不同於 c + + 函式指標，不過，委派完全是物件導向，而且不同於 c + + 成員函式的指標，委派會封裝物件執行個體和方法。

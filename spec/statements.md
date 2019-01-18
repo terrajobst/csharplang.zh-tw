@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 8f9551b9e7f70379836c23a60f0d37dc02f8e18e
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229582"
+---
 # <a name="statements"></a>陳述式
 
 C# 提供各種不同的陳述式。 大部分的這些陳述式會熟悉的開發人員有程式設計 C 和 c + + 的經驗。

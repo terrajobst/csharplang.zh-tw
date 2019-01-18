@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: af7af574814dc04ee3ece0396b7ae5f86b3ec8eb
+ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47229551"
+---
 # <a name="classes"></a>類別
 
 類別是資料結構，其中可能包含資料成員 （常數和欄位），函式成員 （方法、 屬性、 事件、 索引子、 運算子、 執行個體建構函式、 解構函式和靜態建構函式） 和巢狀型別。 類別類型支援繼承，衍生的類別可以延伸及特製化的基底類別的其中一種機制。
@@ -1827,7 +1835,7 @@ A *fixed_parameter*具有*default_argument*稱為***選擇性參數***，而*fix
 
 A`ref`或是`out`參數不能有*default_argument*。 *運算式*中*default_argument*必須是下列其中之一：
 
-*  *constant_expression*
+*  a *constant_expression*
 *  格式的運算式`new S()`其中`S`是實值類型
 *  格式的運算式`default(S)`其中`S`是實值類型
 
