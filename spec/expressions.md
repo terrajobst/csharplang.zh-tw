@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 75454072a5137b3044f78bb896317fd88a29e336
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "49640908"
----
 # <a name="expressions"></a>運算式
 
 運算式是運算子和運算元的序列。 這一章中定義的語法，順序評估運算元和運算子和運算式的意義。
@@ -92,7 +84,7 @@ Console.WriteLine(d);  // dynamic binding to Console.WriteLine(int)
 
 ### <a name="types-of-constituent-expressions"></a>構成運算式的型別
 
-當作業以靜態方式繫結時，構成的運算式 （例如接收者和引數、 索引或運算元） 的型別一律會視為是編譯時期型別，該運算式。
+當作業以靜態方式繫結時，構成的運算式 （例如，接收端、 引數、 索引或運算元） 的型別一律會視為是編譯時期型別，該運算式。
 
 當動態繫結作業時，構成運算式的類型決定以不同的方式，取決於構成運算式的編譯時間類型：
 

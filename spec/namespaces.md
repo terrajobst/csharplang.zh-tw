@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 9c3863c9a139f5b8309fca6e0c099d0fae7677c3
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
-ms.translationtype: MT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229594"
----
 # <a name="namespaces"></a>命名空間
 
 C# 程式組織方式使用命名空間。 命名空間用作為程式，「 內部 」 的組織系統和 「 外部 」 的組織系統 — 一種呈現會公開至其他程式的程式項目。
@@ -434,7 +426,7 @@ namespace N2
     }
 }
 ```
-`N1` 包含型別成員`A`，並`C`包含靜態方法`A`，而且因為`N2`匯入這兩者，參考`A`做為*simple_name*是模稜兩可和編譯時間發生錯誤。 
+`N1` 包含型別成員`A`，並`C`包含靜態欄位`A`，而且因為`N2`匯入這兩者，參考`A`做為*simple_name*是模稜兩可和編譯時間發生錯誤。 
 
 像是*using_alias_directive*，則*using_namespace_directive*並沒有提供任何新的成員，在基礎的宣告空間的編譯單位或命名空間，但而是只會影響編譯單位或命名空間主體中出現。
 
