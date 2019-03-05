@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 67019511d49a786a5d6edf6fea442f745fc40f3f
+ms.sourcegitcommit: 0a80f26b8e455c4f09843a10e11e29c24d2d922e
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "57347270"
+---
 # <a name="expressions"></a>運算式
 
 運算式是運算子和運算元的序列。 這一章中定義的語法，順序評估運算元和運算子和運算式的意義。
@@ -2943,7 +2951,7 @@ additive_expression
 
    |      |      |      |      |      |      |     |
    |:----:|:----:|:----:|:----:|:----:|:----:|:---:|
-   | NaN  | y    | +0   | -0   | +inf | -inf | NaN | 
+   |      | y    | +0   | -0   | +inf | -inf | NaN | 
    | x    | z    | x    | x    | -inf | +inf | NaN | 
    | +0   | -y   | +0   | +0   | -inf | +inf | NaN | 
    | -0   | -y   | -0   | +0   | -inf | +inf | NaN | 
