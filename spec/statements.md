@@ -1,14 +1,14 @@
 ---
 ms.openlocfilehash: 8f9551b9e7f70379836c23a60f0d37dc02f8e18e
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229582"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488818"
 ---
 # <a name="statements"></a>陳述式
 
-C# 提供各種不同的陳述式。 大部分的這些陳述式會熟悉的開發人員有程式設計 C 和 c + + 的經驗。
+C# 提供各種不同的陳述式。 大部分的這些陳述式會很熟悉的開發人員必須撰寫的 C 和C++。
 
 ```antlr
 statement
@@ -474,7 +474,7 @@ default:
     break;
 }
 ```
-因為沒有 switch 區段具有可聯繫的端點，則會有效。 不同於 C 和 c + + 中，執行的 switch 區段不允許 「 繼續 」 至下一步 的 參數 區段中，與範例
+因為沒有 switch 區段具有可聯繫的端點，則會有效。 不同於 C 和C++，執行的 switch 區段不允許 「 繼續 」 至下一步 的 參數 區段中，與範例
 ```csharp
 switch (i) {
 case 0:
@@ -517,7 +517,7 @@ default:
 ```
 是有效的。 範例沒有違反 「 不落入 」 規則，因為標籤`case 2:`並`default:`都屬於相同*switch_section*。
 
-「 不落入 」 規則會防止發生在 C 和 c + + 中的 bug 的一般類別時`break`不小心省略陳述式。 此外，因為這項規則的參數區段`switch`陳述式可以任意重新排列而不會影響陳述式的行為。 例如，區段`switch`可以反轉上述陳述式，而不會影響陳述式的行為：
+「 不落入 」 規則會防止錯誤發生在 C 中的通用類別和C++時`break`不小心省略陳述式。 此外，因為這項規則的參數區段`switch`陳述式可以任意重新排列而不會影響陳述式的行為。 例如，區段`switch`可以反轉上述陳述式，而不會影響陳述式的行為：
 ```csharp
 switch (i) {
 default:
@@ -1239,7 +1239,7 @@ finally {
 
 持有的互斥鎖定時，在相同的執行緒中執行的程式碼亦可取得再釋放鎖定。 不過，其他執行緒中執行的程式碼會封鎖取得鎖定，直到釋放鎖定為止。
 
-鎖定`System.Type`不建議您若要同步處理靜態資料的存取權的物件。 其他程式碼可能會鎖定在相同的型別，可能會導致死結。 更好的方法是藉由鎖定私用靜態物件同步處理靜態資料的存取。 例如: 
+鎖定`System.Type`不建議您若要同步處理靜態資料的存取權的物件。 其他程式碼可能會鎖定在相同的型別，可能會導致死結。 更好的方法是藉由鎖定私用靜態物件同步處理靜態資料的存取。 例如：
 ```csharp
 class Cache
 {

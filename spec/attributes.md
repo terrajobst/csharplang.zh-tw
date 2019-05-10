@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: a8ad8a8b3eda1d00fa745bd92e4371eacc36b79f
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229540"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488832"
 ---
 # <a name="attributes"></a>屬性
 
@@ -645,7 +645,7 @@ class Class3
 
 #### <a name="conditional-attribute-classes"></a>Conditional 屬性類別
 
-屬性類別 ([屬性類別](attributes.md#attribute-classes)) 以一個或多個裝飾`Conditional`屬性是***conditional 屬性類別***。 Conditional 屬性類別有因此關聯中所宣告的條件式編譯符號其`Conditional`屬性。 此範例中：
+屬性類別 ([屬性類別](attributes.md#attribute-classes)) 以一個或多個裝飾`Conditional`屬性是***conditional 屬性類別***。 Conditional 屬性類別有因此關聯中所宣告的條件式編譯符號其`Conditional`屬性。 此範例：
 
 ```csharp
 using System;
@@ -758,7 +758,7 @@ class Test
 
 當呼叫端資訊屬性的其中一個註解的選擇性參數時，則省略對應的引數的呼叫中，不會不一定會造成用來取代預設參數值。 相反地，如果指定的資訊呼叫內容的相關功能，該資訊會傳遞做為引數的值。
 
-例如: 
+例如：
 
 ```csharp
 using System.Runtime.CompilerServices

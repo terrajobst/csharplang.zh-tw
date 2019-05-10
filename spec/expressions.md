@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 67019511d49a786a5d6edf6fea442f745fc40f3f
-ms.sourcegitcommit: 0a80f26b8e455c4f09843a10e11e29c24d2d922e
+ms.openlocfilehash: 066c300d4c2baa8749e132730ecd48275e2957f7
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "57347270"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64489005"
 ---
 # <a name="expressions"></a>運算式
 
@@ -1333,7 +1333,7 @@ C . identifier < typeargs > ( expr , args )
 
 使用`C`做為目標，方法呼叫接著會處理當做靜態方法的引動過程 ([編譯時期檢查動態的多載解析](expressions.md#compile-time-checking-of-dynamic-overload-resolution))。
 
-上述規則表示，執行個體方法優先於延伸方法、，內部命名空間宣告所提供的延伸模組方法優先於外部命名空間宣告和該延伸模組中可用的擴充方法直接在命名空間中宣告方法的優先順序高於匯入到該相同的命名空間中使用的擴充方法的命名空間指示詞。 例如: 
+上述規則表示，執行個體方法優先於延伸方法、，內部命名空間宣告所提供的延伸模組方法優先於外部命名空間宣告和該延伸模組中可用的擴充方法直接在命名空間中宣告方法的優先順序高於匯入到該相同的命名空間中使用的擴充方法的命名空間指示詞。 例如：
 ```csharp
 public static class E
 {
@@ -2159,7 +2159,7 @@ X`1[T]
 
 也請注意，結果`typeof(X<>)`不相依於型別引數，但結果`typeof(X<T>)`沒有。
 
-### <a name="the-checked-and-unchecked-operators"></a>Checked 與 unchecked 運算子
+### <a name="the-checked-and-unchecked-operators"></a>checked 和 unchecked 運算子
 
 `checked`並`unchecked`運算子可用來控制***溢位檢查內容***整數型別算術運算和轉換。
 
@@ -2512,7 +2512,7 @@ decimal operator +(decimal x);
 
    結果計算減去`x`從零。 十進位否定是相當於使用一元減號運算子型別的`System.Decimal`。
 
-### <a name="logical-negation-operator"></a>邏輯負運算子
+### <a name="logical-negation-operator"></a>邏輯否定運算子
 
 作業的表單`!x`，一元運算子多載解析 ([一元運算子多載解析](expressions.md#unary-operator-overload-resolution)) 套用至選取的特定運算子實作。 一個運算元轉換成所選的運算子的參數類型和結果的類型是運算子的傳回型別。 只能有一個預先定義的邏輯負運算子存在：
 ```csharp
@@ -3485,7 +3485,7 @@ E operator ^(E x, E y);
 
 評估的結果`x op y`，其中`x`並`y`是列舉型別的運算式`E`基礎型別`U`，和`op`是其中一個邏輯運算子，是完全相同評估`(E)((U)x op (U)y)`。 換句話說，列舉型別邏輯運算子只會執行之基礎類型的兩個運算元的邏輯作業。
 
-### <a name="boolean-logical-operators"></a>布林值的邏輯運算子
+### <a name="boolean-logical-operators"></a>布林值邏輯運算子
 
 預先定義的布林邏輯運算子包括︰
 ```csharp
@@ -3523,7 +3523,7 @@ bool? operator |(bool? x, bool? y);
 | `null`  | `false` | `false` | `null`  | 
 | `null`  | `null`  | `null`  | `null`  | 
 
-## <a name="conditional-logical-operators"></a>條件式邏輯運算子
+## <a name="conditional-logical-operators"></a>條件邏輯運算子
 
 `&&`和`||`運算子稱為條件邏輯運算子。 它們也稱為 「 最少運算 」 的邏輯運算子。
 

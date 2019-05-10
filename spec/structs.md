@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 72d17175dfb8ef284dce6cf7e5837420fa06f16a
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229539"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488873"
 ---
 # <a name="structs"></a>結構
 
@@ -207,7 +207,7 @@ struct KeyValuePair
 
 因為結構不是參考型別，這些作業的結構類型的實作方式不同。 結構類型的值會轉換成類型`object`或結構實作介面型別，boxing 作業就會發生。 同樣地，當類型的值`object`或介面類型的值會轉換成結構的型別，unboxing 作業會發生。 從相同的作業，在類別類型上的主要差異是，boxing 和 unboxing 結構會將值複製到或已封裝的執行個體。 因此，下列 boxing 或 unboxing 作業時，unboxed 結構所做的變更不會反映在 boxed 結構中。
 
-當結構類型會覆寫虛擬方法繼承自`System.Object`(例如`Equals`， `GetHashCode`，或`ToString`)，透過結構類型的執行個體的虛擬方法的引動過程並不會發生 boxing。 即使當類別可用來做為型別參數，並透過型別參數類型的執行個體的引動過程，也是如此。 例如: 
+當結構類型會覆寫虛擬方法繼承自`System.Object`(例如`Equals`， `GetHashCode`，或`ToString`)，透過結構類型的執行個體的虛擬方法的引動過程並不會發生 boxing。 即使當類別可用來做為型別參數，並透過型別參數類型的執行個體的引動過程，也是如此。 例如：
 ```csharp
 using System;
 

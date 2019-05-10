@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 0a09585f4f885647230354c66a2449abb7ef1f44
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229541"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488768"
 ---
 # <a name="interfaces"></a>介面
 
@@ -442,7 +442,7 @@ class ListEntry: ICloneable, IComparable
 }
 ```
 
-類別或結構，直接也可以直接實作的介面會實作所有介面的基底介面的隱含。 這是 true，即使類別或結構並未明確列出基底類別清單中的所有基底介面。 例如: 
+類別或結構，直接也可以直接實作的介面會實作所有介面的基底介面的隱含。 這是 true，即使類別或結構並未明確列出基底類別清單中的所有基底介面。 例如：
 ```csharp
 interface IControl
 {

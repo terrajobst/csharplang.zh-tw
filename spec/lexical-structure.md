@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: e103f6629a363c6cd76607699ff74d69aa73ed57
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488975"
+---
 # <a name="lexical-structure"></a>語彙結構
 
 ## <a name="programs"></a>Programs
@@ -818,7 +826,7 @@ right_shift_assignment
 
 ## <a name="pre-processing-directives"></a>前置處理指示詞
 
-前置處理指示詞可讓您有條件地略過原始程式檔，以報告錯誤和警告狀況的區段，並區分的來源程式碼的特定區域。 「 前置處理指示詞 」 一詞只適用於 C 和 c + + 程式設計語言與一致性。 在 C# 中，沒有任何個別的前置處理步驟;語彙分析階段期間，會處理前置處理指示詞。
+前置處理指示詞可讓您有條件地略過原始程式檔，以報告錯誤和警告狀況的區段，並區分的來源程式碼的特定區域。 「 前置處理指示詞 」 一詞只適用於 c 的一致性和C++程式設計語言。 在 C# 中，沒有任何個別的前置處理步驟;語彙分析階段期間，會處理前置處理指示詞。
 
 ```antlr
 pp_directive

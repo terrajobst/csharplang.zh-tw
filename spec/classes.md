@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: af7af574814dc04ee3ece0396b7ae5f86b3ec8eb
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229551"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488907"
 ---
 # <a name="classes"></a>類別
 
@@ -1393,7 +1393,7 @@ class A
 
 靜態欄位不是特定的執行個體; 的一部分相反地，它會在封閉類型的所有執行個體間共用 ([開放和封閉類型](types.md#open-and-closed-types))。 不論建立多少個已關閉的類別類型執行個體，沒有相關聯的應用程式定義域的靜態欄位的只有一個複本。
 
-例如: 
+例如：
 ```csharp
 class C<V>
 {
@@ -2834,7 +2834,7 @@ class Counter
 
 「 沒有任何副作用 」 慣例`get`存取子不表示`get`一律應該寫入存取子只會傳回儲存在欄位的值。 事實上，`get`通常存取多個欄位，或叫用方法計算的屬性值的存取子。 不過，設計得當`get`存取子會執行任何動作都可觀察的變更會導致物件的狀態。
 
-屬性可用來延遲初始設定的資源之前先參考它的時刻。 例如: 
+屬性可用來延遲初始設定的資源之前先參考它的時刻。 例如：
 ```csharp
 using System.IO;
 
@@ -3619,7 +3619,7 @@ class Test
 }
 ```
 
-請注意如何運算子方法會傳回值所產生的加 1 的運算元，如同後置遞增和遞減運算子 ([後置遞增和遞減運算子](expressions.md#postfix-increment-and-decrement-operators))，以及前置遞增和遞減運算子 ([前置遞增和遞減運算子](expressions.md#prefix-increment-and-decrement-operators))。 不同於 c + +，這個方法需要其運算元的值直接修改。 事實上，修改的運算元值違反標準後置遞增運算子的語意。
+請注意如何運算子方法會傳回值所產生的加 1 的運算元，如同後置遞增和遞減運算子 ([後置遞增和遞減運算子](expressions.md#postfix-increment-and-decrement-operators))，以及前置遞增和遞減運算子 ([前置遞增和遞減運算子](expressions.md#prefix-increment-and-decrement-operators))。 不同於在C++，這個方法需要直接修改其運算元的值。 事實上，修改的運算元值違反標準後置遞增運算子的語意。
 
 ### <a name="binary-operators"></a>二元運算子
 
@@ -3975,7 +3975,7 @@ class Message
 
 ### <a name="private-constructors"></a>私用建構函式
 
-當類別`T`宣告只有私用執行個體建構函式，它無法進行類別外的程式文字`T`衍生自`T`，或直接建立的執行個體`T`。 因此，如果類別只包含靜態成員，而且不想要具現化，加入空白的私用執行個體建構函式會造成具現化。 例如: 
+當類別`T`宣告只有私用執行個體建構函式，它無法進行類別外的程式文字`T`衍生自`T`，或直接建立的執行個體`T`。 因此，如果類別只包含靜態成員，而且不想要具現化，加入空白的私用執行個體建構函式會造成具現化。 例如：
 ```csharp
 public class Trig
 {

@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 3232163ed91d9d8bb6b0babf94c4282bfd60976c
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488928"
+---
 # <a name="namespaces"></a>命名空間
 
 C# 程式組織方式使用命名空間。 命名空間用作為程式，「 內部 」 的組織系統和 「 外部 」 的組織系統 — 一種呈現會公開至其他程式的程式項目。
@@ -157,7 +165,7 @@ using_alias_directive
     ;
 ```
 
-成員宣告中包含的編譯單位或命名空間主體*using_alias_directive*，所導入的識別項*using_alias_directive*可以用來參考指定命名空間或類型。 例如: 
+成員宣告中包含的編譯單位或命名空間主體*using_alias_directive*，所導入的識別項*using_alias_directive*可以用來參考指定命名空間或類型。 例如：
 ```csharp
 namespace N1.N2
 {
@@ -280,7 +288,7 @@ namespace N3
 ```
 名稱`N1.N2.A`， `R1.N2.A`，並`R2.A`對等項目和所有參考的類別完整的名稱是`N1.N2.A`。
 
-使用別名時，可以封閉式建構類型的名稱，但無法命名為未繫結的泛型型別宣告未提供類型引數。 例如: 
+使用別名時，可以封閉式建構類型的名稱，但無法命名為未繫結的泛型型別宣告未提供類型引數。 例如：
 ```csharp
 namespace N1
 {
@@ -345,7 +353,7 @@ namespace N3
 ```
 *using_namespace_directive*中所包含的型別匯`N1`，但不是命名空間巢狀方式置於`N1`。 因此，若要參考`N2.A`中的宣告`B`導致編譯時期錯誤，因為沒有任何成員命名為`N2`範圍內。
 
-不同於*using_alias_directive*，則*using_namespace_directive*可以匯入識別碼已在封入的編譯單位或命名空間主體中定義的類型。 作用中，名稱匯入*using_namespace_directive*隱藏名稱相似的成員，在封入的編譯單位或命名空間主體中。 例如: 
+不同於*using_alias_directive*，則*using_namespace_directive*可以匯入識別碼已在封入的編譯單位或命名空間主體中定義的類型。 作用中，名稱匯入*using_namespace_directive*隱藏名稱相似的成員，在封入的編譯單位或命名空間主體中。 例如：
 ```csharp
 namespace N1.N2
 {

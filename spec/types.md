@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: a28397b1ce97dbead6d5014e2b20e108a1018502
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229550"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488782"
 ---
 # <a name="types"></a>型別
 
@@ -237,7 +237,7 @@ C# 支援兩個浮點數型別：`float`和`double`。 `float`和`double`類型�
 
 標準轉換存在之間`bool`和其他類型。 特別是，`bool`型別是有別，各自獨立的整數類資料類型，和`bool`值不能用來取代一個整數值，反之亦然。
 
-在 C 和 c + + 語言中，零整數或浮點值或 null 指標可以轉換成布林值`false`，而非零整數或浮點值或為非 null 指標可以轉換成布林值`true`。 在 C# 中，藉由明確地比較的整數或浮點數的值為零，或藉由明確地比較的物件參考，會完成這類轉換`null`。
+C 和C++語言、 零整數或浮點值或 null 指標可以轉換為布林值`false`，而非零整數或浮點值或為非 null 指標可以轉換成布林值`true`. 在 C# 中，藉由明確地比較的整數或浮點數的值為零，或藉由明確地比較的物件參考，會完成這類轉換`null`。
 
 ### <a name="enumeration-types"></a>列舉類型
 
@@ -381,7 +381,7 @@ delegate_type
 
 委派是參考一或多個方法的資料結構。 執行個體方法，它也是指其對應的物件執行個體。
 
-最接近對等項目，在 C 或 c + + 中委派的函式指標，但函式指標只能參考靜態函式，而委派可以參考這兩個靜態和執行個體方法。 在後者的情況下，委派會儲存參考至方法的進入點，不僅要叫用方法的物件執行個體的參考。
+在 C 中委派的最接近對等項目或C++是函式指標，但函式指標只能參考靜態函式，而委派可以參考這兩個靜態和執行個體方法。 在後者的情況下，委派會儲存參考至方法的進入點，不僅要叫用方法的物件執行個體的參考。
 
 委派型別所述[委派](delegates.md)。
 

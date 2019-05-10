@@ -1,14 +1,14 @@
 ---
 ms.openlocfilehash: 08c14d9ef2afe30580f456995066c141653ede92
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229553"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488988"
 ---
 # <a name="delegates"></a>委派
 
-委派可讓案例的其他語言，例如 c + +、 pascal 命名法，以及 Modula-解決與函式指標。 不同於 c + + 函式指標，不過，委派完全是物件導向，而且不同於 c + + 成員函式的指標，委派會封裝物件執行個體和方法。
+委派可讓案例的其他語言，例如C++，依照 pascal 命名法和 Modula-解決與函式指標。 不同於C++函式指標，不過，委派完全是物件導向，以及不同的是C++成員函式委派指標封裝物件執行個體和方法。
 
 在 delegate 宣告中定義的類別，衍生自類別`System.Delegate`。 委派執行個體封裝引動過程清單中，這是一或多個方法，每一個都指可呼叫的實體的清單。 執行個體方法，可呼叫的實體包含的執行個體與該執行個體上的方法。 如需靜態方法，可呼叫的實體所組成的一個方法。 叫用委派執行個體使用一組適合的引數會導致每個委派的可呼叫實體，若要使用一組指定的引數叫用。
 
@@ -53,7 +53,7 @@ delegate_modifier
 
 C# 中的委派類型是名稱相等結構上相等。 具體而言，具有相同的參數的兩種不同的委派類型列出，並傳回型別會被視為不同的委派類型。 不過，兩個不同但結構上相等的委派型別的執行個體可能會比較為相等 ([委派等號比較運算子](expressions.md#delegate-equality-operators))。
 
-例如: 
+例如：
 
 ```csharp
 delegate int D1(int i, double d);

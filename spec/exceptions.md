@@ -1,17 +1,17 @@
 ---
 ms.openlocfilehash: 75fcd5b00ea5cac218a9f7809c53b179df97825c
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229555"
+ms.lasthandoff: 04/25/2019
+ms.locfileid: "64488943"
 ---
 # <a name="exceptions"></a>例外狀況
 
-在 C# 中的例外狀況會提供結構化、 統一和型別安全的方式來處理系統層級和應用程式層級錯誤狀況。 在 C# 中的例外狀況機制是相當類似於 c + +，但有一些重要差異：
+在 C# 中的例外狀況會提供結構化、 統一和型別安全的方式來處理系統層級和應用程式層級錯誤狀況。 中的例外狀況機制C#是相當類似於C++，但有一些重要差異：
 
-*  在 C# 中，所有例外狀況必須衍生自的類別類型的執行個體所表示`System.Exception`。 C + + 中的任何類型的任何值可用來表示例外狀況。
-*  在 C# 中，finally 區塊 ([try 陳述式](statements.md#the-try-statement)) 可用來撰寫一般執行和例外狀況中執行的終止程式碼。 這類程式碼很難撰寫 c + + 中，而不複製程式碼。
+*  在 C# 中，所有例外狀況必須衍生自的類別類型的執行個體所表示`System.Exception`。 在C++，任何型別的任何值可用來表示例外狀況。
+*  在 C# 中，finally 區塊 ([try 陳述式](statements.md#the-try-statement)) 可用來撰寫一般執行和例外狀況中執行的終止程式碼。 這類程式碼很難撰寫C++不含重複的程式碼。
 *  在 C# 中，系統層級例外狀況例如溢位、 除數為零和 null 取值也定義了例外狀況類別和應用程式層級錯誤狀況與同等。
 
 ## <a name="causes-of-exceptions"></a>例外狀況的原因
