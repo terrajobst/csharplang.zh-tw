@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: af7af574814dc04ee3ece0396b7ae5f86b3ec8eb
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 917e2f1e196013f85eefbda21fb3d717cc681084
+ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488907"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66193905"
 ---
 # <a name="classes"></a>類別
 
@@ -1500,7 +1500,7 @@ namespace Program2
 這些限制可確保所有的執行緒將會觀察任何其他執行緒執行的 volatile 寫入會按照其執行的順序進行。 合格的實作不是需要提供的單一總排序的變動性寫入所有執行緒的執行中所示。 Volatile 欄位的類型必須是下列其中一項：
 
 *  A *reference_type*。
-*  型別`byte`， `sbyte`， `short`， `ushort`， `int`， `uint`， `char`， `float`， `bool`， `System.IntPtr`，或` System.UIntPtr`。
+*  型別`byte`， `sbyte`， `short`， `ushort`， `int`， `uint`， `char`， `float`， `bool`， `System.IntPtr`，或`System.UIntPtr`。
 *  *Enum_type*的列舉基底型別`byte`， `sbyte`， `short`， `ushort`， `int`，或`uint`。
 
 此範例
@@ -2834,7 +2834,7 @@ class Counter
 
 「 沒有任何副作用 」 慣例`get`存取子不表示`get`一律應該寫入存取子只會傳回儲存在欄位的值。 事實上，`get`通常存取多個欄位，或叫用方法計算的屬性值的存取子。 不過，設計得當`get`存取子會執行任何動作都可觀察的變更會導致物件的狀態。
 
-屬性可用來延遲初始設定的資源之前先參考它的時刻。 例如：
+屬性可用來延遲初始設定的資源之前先參考它的時刻。 例如: 
 ```csharp
 using System.IO;
 
@@ -3062,7 +3062,7 @@ class B: A
 
 這裡的宣告`X`， `Y`，和`Z`會覆寫屬性宣告。 如果每個屬性宣告的存取範圍修飾詞、 類型和對應的繼承屬性的名稱完全符合。 `get`存取子`X`並`set`存取子`Y`使用`base`存取繼承的存取子關鍵字。 宣告`Z`覆寫兩個抽象存取子，因此，會在沒有未處理的抽象函式成員`B`，和`B`允許非抽象類別。
 
-當屬性宣告為`override`，覆寫的任何存取子必須覆寫的程式碼存取。 此外，宣告的屬性或索引子本身的子範圍，必須符合覆寫的成員和存取子。 例如: 
+當屬性宣告為`override`，覆寫的任何存取子必須覆寫的程式碼存取。 此外，宣告的屬性或索引子本身的子範圍，必須符合覆寫的成員和存取子。 例如：
 ```csharp
 public class B
 {
@@ -3975,7 +3975,7 @@ class Message
 
 ### <a name="private-constructors"></a>私用建構函式
 
-當類別`T`宣告只有私用執行個體建構函式，它無法進行類別外的程式文字`T`衍生自`T`，或直接建立的執行個體`T`。 因此，如果類別只包含靜態成員，而且不想要具現化，加入空白的私用執行個體建構函式會造成具現化。 例如：
+當類別`T`宣告只有私用執行個體建構函式，它無法進行類別外的程式文字`T`衍生自`T`，或直接建立的執行個體`T`。 因此，如果類別只包含靜態成員，而且不想要具現化，加入空白的私用執行個體建構函式會造成具現化。 例如: 
 ```csharp
 public class Trig
 {

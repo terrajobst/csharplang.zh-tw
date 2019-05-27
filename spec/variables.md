@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: b7bb7dd575d9e2e6d5dd85bdd3e535411e29fcf4
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: ff285fc202d14c2060c5f005c319c7886458a168
+ms.sourcegitcommit: 8152182f0a477cb3082e625b607262cc459a17f3
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488870"
+ms.lasthandoff: 05/23/2019
+ms.locfileid: "66174246"
 ---
 # <a name="variables"></a>變數
 
@@ -574,7 +574,7 @@ class A
 *  明確指派狀態*v*之前*expr_first*明確指派狀態的相同*v*之前*expr*。
 *  明確指派狀態*v*之前*expr_second*明確指派狀態的相同*v*之後*expr_first*。
 *  明確指派陳述式*v*之後*expr*取決於：
-    * 如果*expr_first*是常數運算式 ([常數運算式](expressions.md#constant-expressions)) 值為 null，則狀態*v*之後*expr*相同隨著*v*之後*expr_second*。
+    * 如果*expr_first*是常數運算式 ([常數運算式](expressions.md#constant-expressions)) 的值會是 null，則狀態*v*之後*expr*相同狀態*v*之後*expr_second*。
 *  否則，狀態*v*之後*expr*明確指派狀態的相同*v*之後*expr_first*。
 
 #### <a name="-conditional-expressions"></a>？: （條件） 運算式

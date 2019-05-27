@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 9a9baf63b83ae4eb8af0e3b8c65ed3256222f12f
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 201db57d243c9d0e22553366bc653d02e183aa4b
+ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488885"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66193868"
 ---
 # <a name="introduction"></a>簡介
 
@@ -648,8 +648,7 @@ Pair<int,string> pair = new Pair<int,string> { First = 1, Second = "two" };
 int i = pair.First;     // TFirst is int
 string s = pair.Second; // TSecond is string
 ```
-泛型型別與型別引數提供，例如`Pair<int,string>
-    `以上版本，稱為建構的型別。
+泛型型別與型別引數提供，例如`Pair<int,string>`以上版本，稱為建構的型別。
 
 ### <a name="base-classes"></a>基底類別
 
@@ -1131,9 +1130,7 @@ C# 同時支援執行個體建構函式和靜態建構函式。 「執行個體�
 
 建構函式的宣告方式與方法類似，但不含傳回型別且名稱會與包含它的類別相同。 如果建構函式宣告包含`static`修飾詞，它會宣告靜態建構函式。 否則，所宣告的會是執行個體建構函式。
 
-執行個體建構函式可以多載。 例如，`List<T>
-` 類別會宣告兩個執行個體建構函式，一個沒有任何參數，另一個會採用 `int` 參數。 叫用執行個體建構函式時，是使用 `new` 運算子來叫用。 下列陳述式會配置兩個`List<string>
-`執行個體使用的建構函式的每個`List`類別。
+執行個體建構函式可以多載。 例如，`List<T>` 類別會宣告兩個執行個體建構函式，一個沒有任何參數，另一個會採用 `int` 參數。 叫用執行個體建構函式時，是使用 `new` 運算子來叫用。 下列陳述式會配置兩個`List<string>`執行個體使用的建構函式的每個`List`類別。
 
 ```csharp
 List<string> list1 = new List<string>();
@@ -1151,8 +1148,7 @@ A`get`存取子對應到無參數的方法具有傳回值的屬性型別。 在�
 
 A`set`存取子對應至方法，與具有單一參數具名`value`且沒有傳回型別。 屬性參考時指派的目標為或的運算元`++`或是`--`，則`set`提供新值的引數叫用存取子。
 
-`List<T>
-` 類別會宣告 `Count` 和 `Capacity` 這兩個屬性，它們分別是唯讀屬性和讀寫屬性。 以下是這些屬性的用法範例。
+`List<T>` 類別會宣告 `Count` 和 `Capacity` 這兩個屬性，它們分別是唯讀屬性和讀寫屬性。 以下是這些屬性的用法範例。
 
 ```csharp
 List<string> names = new List<string>();
@@ -1188,11 +1184,9 @@ for (int i = 0; i < names.Count; i++) {
 
 在宣告事件成員的類別內，事件的行為與委派型別的欄位相同 (前提是該事件不是抽象事件且未宣告存取子)。 欄位會儲存對委派項目的參考，該委派項目代表已新增到事件中的事件處理常式。 如果沒有事件處理常式都存在，則欄位會`null`。
 
-`List<T>
-` 類別會宣告一個名為 `Changed` 的單一事件成員，此成員會指出新項目已新增到清單中。 `Changed`引發事件時`OnChanged`虛擬方法，會先檢查事件是否`null`（亦即沒有處理常式是否都存在）。 引發事件的概念完全等同於叫用該事件所代表的委派項目，因此，就引發事件而言，並沒有任何特殊的語言建構。
+`List<T>` 類別會宣告一個名為 `Changed` 的單一事件成員，此成員會指出新項目已新增到清單中。 `Changed`引發事件時`OnChanged`虛擬方法，會先檢查事件是否`null`（亦即沒有處理常式是否都存在）。 引發事件的概念完全等同於叫用該事件所代表的委派項目，因此，就引發事件而言，並沒有任何特殊的語言建構。
 
-用戶端是透過「事件處理常式」來對事件進行反應。 附加事件處理常式時，是使用 `+=` 運算子，移除時，則是使用 `-=` 運算子。 下列範例會將事件處理常式附加到 `List<string>
-` 的 `Changed` 事件。
+用戶端是透過「事件處理常式」來對事件進行反應。 附加事件處理常式時，是使用 `+=` 運算子，移除時，則是使用 `-=` 運算子。 下列範例會將事件處理常式附加到 `List<string>` 的 `Changed` 事件。
 
 ```csharp
 using System;
@@ -1221,10 +1215,7 @@ class Test
 
 「運算子」是定義將特定運算式運算子套用到類別執行個體之意義的成員。 可定義的運算子有三種：一元運算子、二元運算子及轉換運算子。 所有運算子都必須宣告為 `public` 和 `static`。
 
-`List<T>
-` 類別會宣告 `operator==` 和 `operator!=` 這兩個運算子，藉此賦予將這些運算子套用到 `List` 執行個體的運算式新意義。 具體而言，運算子會定義兩個相等`List<T>
-`做為比較所包含的物件使用的每個執行個體其`Equals`方法。 下列範例會使用 `==` 運算子來比較兩個 `List<int>
-` 執行個體。
+`List<T>` 類別會宣告 `operator==` 和 `operator!=` 這兩個運算子，藉此賦予將這些運算子套用到 `List` 執行個體的運算式新意義。 具體而言，運算子會定義兩個相等`List<T>`做為比較所包含的物件使用的每個執行個體其`Equals`方法。 下列範例會使用 `==` 運算子來比較兩個 `List<int>` 執行個體。
 
 ```csharp
 using System;
@@ -1245,9 +1236,7 @@ class Test
 }
 ```
 
-第一個 `Console.WriteLine` 會輸出 `True`，因為兩個清單所包含物件的數目相同、值相同且順序相同。 如果 `List<T>
-` 並未定義 `operator==`，則第一個 `Console.WriteLine` 所輸出的會是 `False`，因為 `a` 和 `b` 參考不同的 `List<int>
-` 執行個體。
+第一個 `Console.WriteLine` 會輸出 `True`，因為兩個清單所包含物件的數目相同、值相同且順序相同。 如果 `List<T>` 並未定義 `operator==`，則第一個 `Console.WriteLine` 所輸出的會是 `False`，因為 `a` 和 `b` 參考不同的 `List<int>` 執行個體。
 
 #### <a name="destructors"></a>解構函式
 

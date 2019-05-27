@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 08c14d9ef2afe30580f456995066c141653ede92
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 994b22f5375d57cfc4c7537c64345a27ddf3e416
+ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488988"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66193876"
 ---
 # <a name="delegates"></a>委派
 
@@ -73,7 +73,7 @@ class B
 }
 ```
 
-方法`A.M1`並`B.M1 `這兩個委派類型是否相容`D1`和`D2`，因為它們有相同的傳回型別和參數的清單; 不過，這些委派型別是兩個不同的類型，因此它們不是可互換的。 方法`B.M2`， `B.M3`，並`B.M4`與委派類型不相容`D1`和`D2`，因為它們有不同的傳回型別或參數清單。
+方法`A.M1`並`B.M1`這兩個委派類型是否相容`D1`和`D2`，因為它們有相同的傳回型別和參數的清單; 不過，這些委派型別是兩個不同的類型，因此它們不是可互換的。 方法`B.M2`， `B.M3`，並`B.M4`與委派類型不相容`D1`和`D2`，因為它們有不同的傳回型別或參數清單。
 
 其他泛型類型宣告，例如型別引數必須有建立建構的委派型別。 參數型別和傳回型別建構的委派型別會建立在委派宣告中，每個類型參數的替代建構的委派類型的對應的型別引數。 產生的傳回型別和參數類型會用於決定哪些方法與建構的委派型別相容。 例如: 
 
