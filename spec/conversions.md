@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 61eeae6173eaa19f9cf6d6e985f3dc107d4c3ac9
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: d082393a00496b948ad4e3ff9e135d94e89d2448
+ms.sourcegitcommit: 1a46441156b13db6c845f4bbb886284387d73023
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488950"
+ms.lasthandoff: 06/13/2019
+ms.locfileid: "67047031"
 ---
 # <a name="conversions"></a>轉換
 
@@ -47,7 +47,7 @@ int c = (int) b;    // explicit conversion from long to int
 
 身分識別轉換將從任何類型轉換成相同的型別。 這項轉換存在，可說是實體已經有必要的型別可轉換成該類型。
 
-*  因為物件及動態都視為相等，所以沒有身分識別轉換之間`object`及`dynamic`，並取代所有出現時，都是相同的建構型別之間`dynamic`與`object`。
+*  因為`object`和`dynamic`會被視為對等項目之間的身分識別轉換`object`並`dynamic`，並取代所有出現時，都是相同的建構型別之間`dynamic`與`object`.
 
 ### <a name="implicit-numeric-conversions"></a>隱含數值轉換
 
