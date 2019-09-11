@@ -1,17 +1,17 @@
 ---
-ms.openlocfilehash: 4e1534fc5523223042df468c4443a6722910543b
-ms.sourcegitcommit: 3fc033b6e98ed7ecdf46a85c79b00a3a3ddcf963
+ms.openlocfilehash: e56caa7b2fabb4b5ade242ec43f4592689e8ba3d
+ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47229538"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876830"
 ---
 <a name="c-language-specification"></a>C# 語言規格
 ===========================
 
-__第 6 版__
+__第6版__
 
-這是非正式的草稿，這裡張貼，為了方便起見。 當我們提交 C# 6.0 規格的建議。 這裡 ECMA （對象目前正在為 C# 5.0 Standard） 時，它將會在此共用。
+這是為了方便起見，在此公佈的非官方草稿。 當我們提交C# 6.0 規格提案給 ECMA 時，將會在此共用。
 
 <!--
 (This document is also available for download: [csharp.pdf](CSharp%20Language%20Specification.pdf?raw=true) and [csharp.docx](CSharp%20Language%20Specification.docx?raw=true))
@@ -42,7 +42,7 @@ __第 6 版__
     * [自動記憶體管理](basic-concepts.md#automatic-memory-management)
     * [執行順序](basic-concepts.md#execution-order)
 * [型別](types.md)
-    * [實值型別](types.md#value-types)
+    * [值類型](types.md#value-types)
     * [參考型別](types.md#reference-types)
     * [Boxing 和 Unboxing](types.md#boxing-and-unboxing)
     * [建構類型](types.md#constructed-types)
@@ -121,7 +121,7 @@ __第 6 版__
     * [靜態建構函式](classes.md#static-constructors)
     * [解構函式](classes.md#destructors)
     * [迭代器](classes.md#iterators)
-    * [非同步函式](classes.md#async-functions)
+    * [Async 函式](classes.md#async-functions)
 * [結構](structs.md)
     * [結構宣告](structs.md#struct-declarations)
     * [結構成員](structs.md#struct-members)
