@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: adf81842e3c763c7bbdd3f10bb884dc1207b9099
-ms.sourcegitcommit: 0489cb64b7dfb328813d757f4d447a15b85a5851
+ms.openlocfilehash: 2026fc1bf9d3576b967cbc2e9a670aa44b7eab3a
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/11/2019
-ms.locfileid: "70912428"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704013"
 ---
 # <a name="documentation-comments"></a>文件註解
 
@@ -16,7 +16,7 @@ C#提供一種機制，讓程式設計人員使用包含 XML 文字的特殊批�
 
 具有特殊形式的批註，可以用來指示工具從這些批註產生 XML，並將它們放在前面的原始程式碼元素。 這類批註是以三個斜線（`///`）開頭的單行批註，或是以斜線和二顆星（`/**`）開頭的分隔批註。 它們必須緊接在使用者定義型別（例如類別、委派或介面）或其標注的成員（例如欄位、事件、屬性或方法）前面。 屬性區段（[屬性規格](attributes.md#attribute-specification)）會視為宣告的一部分，因此檔批註必須在套用至類型或成員的屬性之前。
 
-__語法：__
+__語法__
 
 ```antlr
 single_line_doc_comment
@@ -28,7 +28,7 @@ delimited_doc_comment
     ;
 ```
 
-在*single_line_doc_comment*中，如果在與目前*single_line_doc_comment*相鄰之每`///`個*single_line_doc_comment*的字元後面*有一個空白字元*，則該*空白字元不*會包含在 XML 輸出中。
+在*single_line_doc_comment*中，如果在與目前*single_line_doc_comment*相鄰之每個*single_line_doc_comment*上的 `///` 個字元後面*有空白字元，* 則該*空格*字元不會包含在 XML 輸出中。
 
 在分隔的-doc 批註中，如果第二行的第一個非空白字元是星號，而選擇性空白字元的模式相同，則會在分隔-doc 批註的每一行開頭重複一個星號字元，然後，重複模式的字元不會包含在 XML 輸出中。 此模式可能會在星號字元後面加上空白字元。
 
@@ -86,7 +86,7 @@ public class Point
 
 這個標記會提供一個機制，指出描述中的文字片段應設定為特殊字型，例如用於程式碼區塊的。 針對實際程式碼的行， `<code>`請[`<code>`](documentation-comments.md#code)使用（）。
 
-__語法：__
+__語法__
 
 ```xml
 <c>text</c>
@@ -108,7 +108,7 @@ public class Point
 
 此標記用來以某種特殊字型設定一或多行原始程式碼或程式輸出。 若是敘述中的小型程式碼片段， `<c>`請[`<c>`](documentation-comments.md#c)使用（）。
 
-__語法：__
+__語法__
 
 ```xml
 <code>source code or program output</code>
@@ -138,7 +138,7 @@ public void Translate(int xor, int yor) {
 
 此標記允許批註中的範例程式碼，以指定方法或其他程式庫成員的使用方式。 一般來說，這也會牽涉到使用標記`<code>` （[`<code>`](documentation-comments.md#code)）。
 
-__語法：__
+__語法__
 
 ```xml
 <example>description</example>
@@ -152,7 +152,7 @@ __範例:__
 
 此標記提供一種方式來記載方法可以擲回的例外狀況。
 
-__語法：__
+__語法__
 
 ```xml
 <exception cref="member">description</exception>
@@ -184,9 +184,9 @@ public class DataBaseOperations
 
 此標籤可讓您從原始程式碼檔外部的 XML 檔中包含資訊。 外部檔案必須是格式正確的 XML 檔，而且會套用 XPath 運算式來指定要包含在該檔中的 XML。 然後會使用外部檔中選取的 XML 來取代標記。`<include>`
 
-__語法：__
+__語法__
 
-```
+```xml
 <include file="filename" path="xpath" />
 ```
 
@@ -237,7 +237,7 @@ public class IntList { ... }
 
 清單中的每個專案都是以`<item>`區塊來指定。 建立定義清單時，必須同時`term`指定`description`和。 不過，如果是資料表、項目符號清單或編號清單，則`description`只需要指定。
 
-__語法：__
+__語法__
 
 ```xml
 <list type="bullet" | "number" | "table">
@@ -287,7 +287,7 @@ public class MyClass
 
 此標記可用於其他標記（ `<summary>`例如（[`<remarks>`](documentation-comments.md#remarks)）或`<returns>` （[`<returns>`](documentation-comments.md#returns)）），並允許將結構新增至文字。
 
-__語法：__
+__語法__
 
 ```xml
 <para>content</para>
@@ -311,7 +311,7 @@ public static void Main() {
 
 這個標記是用來描述方法、函數或索引子的參數。
 
-__語法：__
+__語法__
 
 ```xml
 <param name="name">description</param>
@@ -339,7 +339,7 @@ public void Move(int xor, int yor) {
 
 此標記用來表示單字是參數。 您可以處理檔檔案，以某種不同的方式來格式化此參數。
 
-__語法：__
+__語法__
 
 ```xml
 <paramref name="name"/>
@@ -365,7 +365,7 @@ public Point(int xor, int yor) {
 
 此標記允許記錄成員的安全性存取範圍。
 
-__語法：__
+__語法__
 
 ```xml
 <permission cref="member">description</permission>
@@ -391,7 +391,7 @@ public static void Test() {
 
 此標記用來指定類型的額外資訊。 （使用`<summary>` （[`<summary>`](documentation-comments.md#summary)）來描述類型本身和類型的成員）。
 
-__語法：__
+__語法__
 
 ```xml
 <remarks>description</remarks>
@@ -415,7 +415,7 @@ public class Point
 
 這個標記是用來描述方法的傳回值。
 
-__語法：__
+__語法__
 
 ```xml
 <returns>description</returns>
@@ -438,7 +438,7 @@ public override string ToString() {
 
 此標記允許在文字內指定連結。 使用`<seealso>` （[`<seealso>`](documentation-comments.md#seealso)）來表示要出現在 [另請參閱] 區段中的文字。
 
-__語法：__
+__語法__
 
 ```xml
 <see cref="member"/>
@@ -471,7 +471,7 @@ public void Translate(int xor, int yor) {
 
 此標記允許針對 [另請參閱] 區段產生專案。 使用`<see>` [（`<see>`](documentation-comments.md#see)）可指定文字內的連結。
 
-__語法：__
+__語法__
 
 ```xml
 <seealso cref="member"/>
@@ -495,7 +495,7 @@ public override bool Equals(object o) {
 
 這個標記可以用來描述類型或類型的成員。 使用`<remarks>` [（`<remarks>`](documentation-comments.md#remarks)）來描述類型本身。
 
-__語法：__
+__語法__
 
 ```xml
 <summary>description</summary>
@@ -515,7 +515,7 @@ public Point() : this(0,0) {
 
 此標記可讓您描述屬性。
 
-__語法：__
+__語法__
 
 ```xml
 <value>property description</value>
@@ -538,7 +538,7 @@ public int X
 
 這個標記是用來描述類別、結構、介面、委派或方法的泛型型別參數。
 
-__語法：__
+__語法__
 
 ```xml
 <typeparam name="name">description</typeparam>
@@ -560,7 +560,7 @@ public class MyList<T> {
 
 這個標記是用來表示單字是類型參數。 您可以處理檔檔案，以某種不同的方式來格式化此類型參數。
 
-__語法：__
+__語法__
 
 ```xml
 <typeparamref name="name"/>

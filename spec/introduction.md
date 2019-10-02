@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 8bc4bf6310fb8a8457beee167f18d30aaca10a8e
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: 300d5fc2a2fadd98472d73c122226146605b01dd
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876887"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703988"
 ---
 # <a name="introduction"></a>簡介
 
@@ -36,11 +36,11 @@ class Hello
 ```
 
 C# 原始程式檔的副檔名通常是 `.cs`。 假設 "Hello，World" 程式儲存在檔案中`hello.cs`，則可以使用命令列以 Microsoft C#編譯器來編譯器
-```
+```console
 csc hello.cs
 ```
 這會產生名為`hello.exe`的可執行元件。 此應用程式執行時所產生的輸出為
-```
+```console
 Hello, World
 ```
 
@@ -91,7 +91,7 @@ namespace Acme.Collections
 ```
 在名`Stack` `Acme.Collections`為的命名空間中宣告名為的類別。 此類別的完整名稱是 `Acme.Collections.Stack`。 該類別包含數個成員︰一個名為 `top` 的欄位、兩個名為 `Push` 和 `Pop` 的方法以及名為 `Entry` 的巢狀類別。 `Entry` 類別更包含三個成員︰一個名為 `next` 的欄位、一個名為 `data` 的欄位以及建構函式。 假設此範例的原始程式碼儲存在檔案 `acme.cs`，命令列
 
-```
+```console
 csc /t:library acme.cs
 ```
 會將範例編譯為程式庫 (不需要 `Main` 進入點的程式碼)，並產生名為 `acme.dll` 的組件。
@@ -119,12 +119,12 @@ class Test
 ```
 如果程式儲存`test.cs`在檔案中，則在編譯時`test.cs` ， `acme.dll`可以使用編譯器的`/r`選項來參考元件：
 
-```
+```console
 csc /r:acme.dll test.cs
 ```
 這樣會建立名為 `test.exe` 可執行檔組件，執行時會產生以下輸出︰
 
-```
+```console
 100
 10
 1
@@ -1304,7 +1304,7 @@ Console.WriteLine(b.x);
 
 ***陣列***是一種資料結構，其中包含一些可透過計算索引存取的變數。 陣列中包含的變數 (也稱為陣列的***元素***) 屬於相同的型別，這種型別稱為陣列的***元素型別***。
 
-陣列型別是參考型別，而陣列變數的宣告只是預留空間給陣列執行個體的參考。 實際的陣列實例會使用`new`運算子，在執行時間以動態方式建立。 作業會指定新陣列實例的長度，然後在實例的存留期內修正此問題。  `new` 陣列元素的索引範圍在 `0` 到 `Length - 1` 之間。 `new` 運算子會自動將陣列的元素初始化為其預設值，例如，針對所有數值型別，此值為零，而針對所有參考型別，此值為 `null`。
+陣列型別是參考型別，而陣列變數的宣告只是預留空間給陣列執行個體的參考。 實際的陣列實例會使用`new`運算子，在執行時間以動態方式建立。 作業會指定新陣列實例的長度，然後在實例的存留期內修正此問題。 `new` 陣列元素的索引範圍在 `0` 到 `Length - 1` 之間。 `new` 運算子會自動將陣列的元素初始化為其預設值，例如，針對所有數值型別，此值為零，而針對所有參考型別，此值為 `null`。
 
 下列範例會建立 `int` 元素的陣列、初始化陣列，並印出陣列的內容。
 

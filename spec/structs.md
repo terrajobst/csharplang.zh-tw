@@ -1,22 +1,22 @@
 ---
-ms.openlocfilehash: 72d17175dfb8ef284dce6cf7e5837420fa06f16a
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 6dd1dde67597b2125de9a1aa2fab9144128d533f
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "64488873"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704034"
 ---
 # <a name="structs"></a>結構
 
-結構是類似於類別，在於它們代表可以包含資料成員和函式成員的資料結構。 不過，不同於類別，結構是實值類型，而且不需要堆積配置。 結構類型的變數直接包含資料的結構，而類別類型的變數包含資料，後者稱為物件的參考。
+結構類似于類別，它們代表可包含資料成員和函式成員的資料結構。 不過，不同于類別，結構是實數值型別，不需要堆積配置。 結構型別的變數直接包含結構的資料，而類別型別的變數則包含資料的參考，後者稱為物件。
 
-結構特別適用於含有實值語意的小型資料結構。 複數、座標系統中的點或字典中的索引鍵/值組都是結構的良好範例。 這些資料結構的索引鍵是他們擁有較少的資料成員，它們不需要使用繼承或參考的身分識別，以及他們可以透過設定複製而非參考值的實值語意來輕鬆實作。
+結構特別適用於含有實值語意的小型資料結構。 複數、座標系統中的點或字典中的索引鍵/值組都是結構的良好範例。 這些資料結構的關鍵在於它們有幾個資料成員，不需要使用繼承或參考身分識別，而且可以使用值語義輕鬆地實作為，其中指派會複製值，而不是參考。
 
-中所述[簡單型別](types.md#simple-types)，例如 C# 中，所提供的簡單類型`int`， `double`，和`bool`，事實上是所有結構類型。 就如同這些預先定義的型別為結構，它也可使用結構和 C# 語言中實作新的 「 基本 」 型別多載的運算子。 此章節的結尾會提供這些類型的兩個範例 ([結構範例](structs.md#struct-examples))。
+如[簡單](types.md#simple-types)型別中所述，所提供的C#簡單類型（例如 `int`、`double` 和 `bool`）實際上是所有結構類型。 就像這些預先定義的類型是結構一樣，也可以使用結構和運算子多載，以語言來執行新的C# 「基本」類型。 這類類型的兩個範例會在本章結尾處提供（[結構範例](structs.md#struct-examples)）。
 
 ## <a name="struct-declarations"></a>結構宣告
 
-A *struct_declaration*是*type_declaration* ([型別宣告](namespaces.md#type-declarations)) 宣告新的結構：
+*Struct_declaration*是宣告新結構的*type_declaration* （[型](namespaces.md#type-declarations)別宣告）：
 
 ```antlr
 struct_declaration
@@ -25,11 +25,11 @@ struct_declaration
     ;
 ```
 
-A *struct_declaration*組成的一組選擇性*屬性*([屬性](attributes.md))，後面接著一組選擇性的*struct_modifier*s ([結構修飾詞](structs.md#struct-modifiers))，後面接著選擇性`partial`修飾詞，後面接著關鍵字`struct`並*識別碼*可命名結構，後面接著選擇性*type_parameter_list*規格 ([型別參數](classes.md#type-parameters))，後面接著選擇性*struct_interfaces*規格 ([Partial 修飾詞](structs.md#partial-modifier)))，後面接著選擇性*type_parameter_constraints_clause*s 規格 ([類型參數條件約束](classes.md#type-parameter-constraints))，後面接著*struct_body* ([結構主體](structs.md#struct-body))，或者後面接著一個分號。
+*Struct_declaration*是由一組選擇性的*屬性*（[屬性](attributes.md)）所組成，後面接著一組選擇性的*struct_modifier*s （[結構](structs.md#struct-modifiers)修飾詞），後面接著選擇性的 `partial` 修飾詞，後面接著關鍵字 `struct` 和命名結構的*識別碼*，後面接著選擇性的*Type_parameter_list*規格（[類型參數](classes.md#type-parameters)），後面接著選擇性的*struct_interfaces*規格（[部分修飾](structs.md#partial-modifier)詞），後面接著選擇性的*type_parameter_constraints_clause*s 規格（[類型參數條件約束](classes.md#type-parameter-constraints)），後面接著*struct_body* （[結構主體](structs.md#struct-body)），並選擇性地加上分號。
 
 ### <a name="struct-modifiers"></a>結構修飾詞
 
-A *struct_declaration*可以選擇性地包含一連串的結構修飾詞：
+*Struct_declaration*可以選擇性地包含一連串的結構修飾詞：
 
 ```antlr
 struct_modifier
@@ -42,17 +42,17 @@ struct_modifier
     ;
 ```
 
-它是在結構宣告中出現多次相同的修飾詞的編譯時期錯誤。
+在結構宣告中多次出現相同的修飾詞時，就會發生編譯時期錯誤。
 
-結構宣告的修飾詞具有相同的意義的類別宣告 ([類別宣告](classes.md#class-declarations))。
+結構宣告的修飾詞與類別宣告的修飾詞（[類別](classes.md#class-declarations)宣告）具有相同的意義。
 
 ### <a name="partial-modifier"></a>Partial 修飾詞
 
-`partial`修飾詞表示這*struct_declaration*是部分的型別宣告。 多個具有相同的名稱，在封入的命名空間或類型宣告中的部分結構宣告結合以形成一個結構宣告，下列規則中指定[部分型別](classes.md#partial-types)。
+@No__t-0 修飾詞表示這個*struct_declaration*是部分類型宣告。 在封入命名空間或類型宣告中，具有相同名稱的多個部分結構宣告會結合成一個結構宣告，遵循[部分類型](classes.md#partial-types)中指定的規則。
 
-### <a name="struct-interfaces"></a>結構的介面
+### <a name="struct-interfaces"></a>結構介面
 
-結構宣告可能包含*struct_interfaces*規格，稱為直接實作特定的介面型別案例結構。
+結構宣告可能包括*struct_interfaces*規格，在此情況下，會將結構視為直接實作為指定的介面類別型。
 
 ```antlr
 struct_interfaces
@@ -60,11 +60,11 @@ struct_interfaces
     ;
 ```
 
-介面實作討論中進一步[介面實作](interfaces.md#interface-implementations)。
+介面的執行會在[介面實現](interfaces.md#interface-implementations)中進一步討論。
 
 ### <a name="struct-body"></a>結構主體
 
-*Struct_body*結構會定義結構的成員。
+結構的*struct_body*會定義結構的成員。
 
 ```antlr
 struct_body
@@ -74,7 +74,7 @@ struct_body
 
 ## <a name="struct-members"></a>結構成員
 
-結構的成員包含所引入的成員及其*struct_member_declaration*s 和成員繼承自型別`System.ValueType`。
+結構的成員是由其*struct_member_declaration*所引進的成員，以及繼承自類型 `System.ValueType` 的成員所組成。
 
 ```antlr
 struct_member_declaration
@@ -92,27 +92,27 @@ struct_member_declaration
     ;
 ```
 
-除了中所述的差異[類別和結構的差異](structs.md#class-and-struct-differences)中, 提供的類別成員的說明[類別成員](classes.md#class-members)透過[迭代器](classes.md#iterators)套用至結構以及成員。
+除了[類別和結構差異](structs.md#class-and-struct-differences)中所述的差異之外，[類別成員](classes.md#class-members)透過[反覆運算](classes.md#iterators)器所提供的類別成員描述也適用于結構成員。
 
 ## <a name="class-and-struct-differences"></a>類別和結構的差異
 
-與類別的結構是在數個重要方面不同：
+結構與類別有幾個重要的差異：
 
-*  結構是實值型別 ([值語意](structs.md#value-semantics))。
-*  所有結構類型都隱含地都繼承自類別`System.ValueType`([繼承](structs.md#inheritance))。
-*  指派給變數的結構類型會建立一份所指派的值 ([指派](structs.md#assignment))。
-*  結構的預設值是藉由將所有實值型別欄位設定為其預設值和所有參考型別欄位為產生的值`null`([預設值](structs.md#default-values))。
-*  Boxing 和 unboxing 作業可用於結構類型之間轉換以及`object`([Boxing 和 unboxing](structs.md#boxing-and-unboxing))。
-*  意義`this`是不同的結構 ([這項存取](expressions.md#this-access))。
-*  結構的執行個體欄位宣告不得包含變數的初始設定式 ([欄位初始設定式](structs.md#field-initializers))。
-*  結構不允許宣告無參數的執行個體建構函式 ([建構函式](structs.md#constructors))。
-*  結構不允許宣告解構函式 ([解構函式](structs.md#destructors))。
+*  結構是實數值型別（[值語義](structs.md#value-semantics)）。
+*  所有結構類型都會隱含繼承自類別 `System.ValueType` （[繼承](structs.md#inheritance)）。
+*  指派至結構類型的變數會建立所指派值的複本（[指派](structs.md#assignment)）。
+*  結構的預設值是將所有實值型別字段設定為預設值，並將所有參考型別字段設為 `null` （[預設值](structs.md#default-values)）所產生的值。
+*  使用裝箱和取消裝箱作業，在結構類型和 `object` （[裝箱和取消裝箱](structs.md#boxing-and-unboxing)）之間進行轉換。
+*  結構（[此存取](expressions.md#this-access)）的 `this` 的意義不同。
+*  不允許結構的實例欄位宣告包含變數初始化運算式（[欄位初始化運算式](structs.md#field-initializers)）。
+*  不允許結構宣告無參數實例的函式（[構造](structs.md#constructors)函式）。
+*  不允許結構宣告析構函數（[析構](structs.md#destructors)函式）。
 
-### <a name="value-semantics"></a>實值語意
+### <a name="value-semantics"></a>值的語義
 
-結構是實值型別 ([實值型別](types.md#value-types)) 並被視為具有實值語意。 類別，相反地，是參考型別 ([參考的型別](types.md#reference-types)) 並被視為具有參考語意。
+結構是實值型別（實[值](types.md#value-types)型別），也稱為具有值的語義。 另一方面，類別是參考型別（[參考](types.md#reference-types)型別），也稱為具有參考語義。
 
-結構類型的變數直接包含資料的結構，而類別類型的變數包含資料，後者稱為物件的參考。 當結構`B`包含的型別執行個體欄位`A`和`A`是結構類型時，會產生編譯時期錯誤`A`取決於`B`或從類型建構`B`。 結構`X`***直接相依於***結構`Y`如果`X`包含類型的執行個體欄位`Y`。 如果已指定這個定義，一組完整的結構所依存的結構是可轉移關閉***直接相依於***關聯性。  例如
+結構型別的變數直接包含結構的資料，而類別型別的變數則包含資料的參考，後者稱為物件。 當結構 `B` 包含型別 `A` 的實例欄位，而 `A` 是結構型別時，就會發生編譯時期錯誤，`A` 會相依于 `B` 或從 `B` 所結構化的型別。 如果 `X` 包含 `Y` 類型的實例欄位，則結構 `X` 會***直接相依于***結構 `Y`。 根據這個定義，結構所相依的完整結構集是***直接相依于***關聯性的可轉移關閉。  例如：
 ```csharp
 struct Node
 {
@@ -120,7 +120,7 @@ struct Node
     Node next; // error, Node directly depends on itself
 }
 ```
-會發生錯誤，因為`Node`包含其本身類型的執行個體欄位。  另一個範例
+為錯誤，因為 `Node` 包含其本身類型的實例欄位。  另一個範例
 ```csharp
 struct A { B b; }
 
@@ -128,11 +128,11 @@ struct B { C c; }
 
 struct C { A a; }
 ```
-會發生錯誤，因為每個型別`A`， `B`，和`C`彼此相依。
+是錯誤，因為每個類型 `A`、`B` 和 `C` 相依于彼此。
 
-類別中，很可能兩個變數來參考相同的物件，且因此可能會影響其他變數所參考的物件的一個變數上進行的作業。 使用結構時，每個變數都有自己的資料複本 (的情況除外`ref`和`out`參數變數)，而且不可能會影響其他的其中一個上的作業。 此外，因為結構不是參考型別，它不是結構類型的值可能`null`。
+使用類別時，兩個變數可能會參考相同的物件，因此，對某個變數的作業可能會影響另一個變數所參考的物件。 使用結構時，每個變數都有自己的資料複本（除了 `ref` 和 @no__t 1 參數變數以外），而且不可能對其中一個作業影響另一個。 此外，因為結構不是參考型別，所以結構類型的值不可能 `null`。
 
-指定的宣告
+指定宣告
 ```csharp
 struct Point
 {
@@ -151,39 +151,39 @@ Point b = a;
 a.x = 100;
 System.Console.WriteLine(b.x);
 ```
-輸出值`10`。 指派`a`來`b`會建立一份值，並`b`不會因此受到指派給`a.x`。 有`Point`改為已宣告為類別，則輸出會是`100`因為`a`和`b`會參考相同的物件。
+輸出 `10` 的值。 指派 `a` 給 `b` 會建立值的複本，而 `b` 則不會受到指派至 `a.x` 的影響。 已將 `Point` 改宣告為類別，則輸出會 `100`，因為 `a` 和 `b` 會參考相同的物件。
 
 ### <a name="inheritance"></a>繼承
 
-所有結構類型都隱含地都繼承自類別`System.ValueType`，它會接著繼承自類別`object`。 結構宣告可能會指定一份實作的介面，但它並不適用結構宣告，以指定的基底類別。
+所有結構類型都會隱含繼承自類別 `System.ValueType`，而這又會繼承自類別 `object`。 結構宣告可以指定實作為實介面的清單，但結構宣告不可能指定基類。
 
-結構類型不能為抽象，並一律隱含地密封。 `abstract`和`sealed`結構宣告中也因此不允許修飾詞。
+結構類型絕對不會是抽象的，而且一律會隱含地密封。 因此，在結構宣告中不允許 `abstract` 和 @no__t 1 修飾詞。
 
-因為結構不支援繼承，結構成員的宣告存取範圍不能`protected`或`protected internal`。
+因為結構不支援繼承，所以結構成員的宣告存取範圍不能 `protected` 或 `protected internal`。
 
-在結構中的函式成員不能`abstract`或`virtual`，而`override`修飾詞只允許對覆寫方法繼承自`System.ValueType`。
+結構中的函式成員不能 `abstract` 或 `virtual`，而且只允許 `override` 修飾詞覆寫繼承自 `System.ValueType` 的方法。
 
 ### <a name="assignment"></a>指派
 
-指派給變數的結構類型會建立一份所指派的值。 這不同於指派給變數的類別類型時，它將會複製參考，而不是參考所識別的物件。
+指派至結構類型的變數會建立所指派值的複本。 這與指派給類別類型的變數不同，後者會複製參考，而不是參考所識別的物件。
 
-類似於指派，結構是做為值參數傳遞或傳回為函式成員的結果時，將會建立結構的複本。 可能使用函式成員的參考所傳遞的結構`ref`或`out`參數。
+類似于指派，當結構當做值參數傳遞或當做函數成員的結果傳回時，會建立結構的複本。 您可以使用 `ref` 或 `out` 參數，以傳址方式將結構傳遞給函式成員。
 
-當屬性或索引子的結構指派的目標，執行個體相關聯的運算式屬性或索引子存取必須歸類為變數。 如果執行個體運算式分類為值，就會發生編譯時期錯誤。 這會進一步詳細說明[簡單指派](expressions.md#simple-assignment)。
+當結構的屬性或索引子是指派的目標時，與屬性或索引子存取相關聯的實例運算式必須分類為變數。 如果實例運算式分類為值，就會發生編譯時期錯誤。 這在[簡單指派](expressions.md#simple-assignment)中會進一步詳細說明。
 
 ### <a name="default-values"></a>預設值
 
-中所述[預設值](variables.md#default-values)，有數種變數會自動初始化為其預設值建立時。 類別型別和其他參考型別變數，此預設值是`null`。 不過，因為結構是實值型別，不能`null`，預設值的結構會將所有實值型別欄位設定為其預設值和所有參考型別欄位為所產生的值`null`。
+如[預設值](variables.md#default-values)所述，在建立時，會將數種變數自動初始化為其預設值。 對於類別類型和其他參考型別的變數，此預設值為 `null`。 不過，因為結構是無法 `null` 的實值型別，所以結構的預設值就是將所有實值型別字段設定為預設值，並將所有參考型別字段設為 `null` 所產生的值。
 
-參考`Point`上述的範例中，宣告結構
+參考上面所宣告的 `Point` 結構，範例
 ```csharp
 Point[] a = new Point[100];
 ```
-初始化每個`Point`陣列中要設定所產生的值`x`和`y`欄位設為零。
+將陣列中的每個 `Point` 初始化為將 `x` 和 @no__t 2 欄位設定為零所產生的值。
 
-結構的預設值對應至結構中的預設建構函式所傳回的值 ([預設建構函式](types.md#default-constructors))。 不同於類別中，結構不是允許宣告無參數的執行個體建構函式。 相反地，每個結構會隱含地具有無參數的執行個體建構函式一律會傳回值所產生將所有實值型別欄位設定為其預設值和所有參考型別欄位為`null`。
+結構的預設值會對應至結構的預設函式所傳回的值（[預設](types.md#default-constructors)的函式）。 不同于類別，結構不允許宣告無參數的實例的函式。 相反地，每個結構隱含具有無參數的實例函式，其一律會傳回將所有實值型別字段設定為預設值，以及所有參考型別字段 `null` 所產生的值。
 
-結構應該設計成有效的狀態，請考慮預設的初始化狀態。 在範例
+結構應該設計成將預設的初始化狀態視為有效的狀態。 在範例中
 ```csharp
 using System;
 
@@ -199,15 +199,15 @@ struct KeyValuePair
     }
 }
 ```
-使用者定義的執行個體建構函式可防止只呼叫它的位置明確的 null 值。 萬一其中`KeyValuePair`變數預設值初始化，可能受到`key`和`value`欄位將會是 null，和結構必須準備好處理這個狀態。
+使用者定義的實例的函式只會在明確呼叫它時，保護其是否為 null 值。 如果 @no__t 0 變數受限於預設值初始化，則 `key` 和 @no__t 2 欄位將會是 null，而且必須準備結構來處理此狀態。
 
 ### <a name="boxing-and-unboxing"></a>Boxing 和 Unboxing
 
-類別類型的值可以轉換成輸入`object`或由類別實作，只要參考視為另一種類型在編譯時期為介面類型。 同樣地，類型的值`object`或介面類型的值可以轉換回類別型別，而不需要變更參考 （但當然的執行階段類型檢查需要在此情況下）。
+類別類型的值可以轉換成類型 `object`，或是在編譯時期將參考視為另一個類型，藉此將其實作為介面類別型。 同樣地，`object` 類型的值或介面類別型的值可以轉換回類別類型，而不需要變更參考（但在此情況下，需要執行時間類型檢查）。
 
-因為結構不是參考型別，這些作業的結構類型的實作方式不同。 結構類型的值會轉換成類型`object`或結構實作介面型別，boxing 作業就會發生。 同樣地，當類型的值`object`或介面類型的值會轉換成結構的型別，unboxing 作業會發生。 從相同的作業，在類別類型上的主要差異是，boxing 和 unboxing 結構會將值複製到或已封裝的執行個體。 因此，下列 boxing 或 unboxing 作業時，unboxed 結構所做的變更不會反映在 boxed 結構中。
+因為結構不是參考型別，所以這些作業會針對結構型別以不同的方式執行。 當結構類型的值轉換成類型 `object` 或結構實作為介面類別型時，就會進行一個裝箱作業。 同樣地，當類型的值 `object` 或介面類別型的值轉換回結構類型時，就會進行取消程式作業。 與類別類型上相同作業的主要差異在於，裝箱和取消裝箱會將結構值複製到或傳出已裝箱的實例。 因此，在裝箱或取消封裝作業之後，對取消裝箱結構所做的變更不會反映在已裝箱的結構中。
 
-當結構類型會覆寫虛擬方法繼承自`System.Object`(例如`Equals`， `GetHashCode`，或`ToString`)，透過結構類型的執行個體的虛擬方法的引動過程並不會發生 boxing。 即使當類別可用來做為型別參數，並透過型別參數類型的執行個體的引動過程，也是如此。 例如：
+當結構類型覆寫繼承自 `System.Object` （例如 `Equals`、`GetHashCode` 或 `ToString`）的虛擬方法時，透過結構類型的實例叫用虛擬方法，並不會導致發生裝箱。 即使結構是當做型別參數使用，而且會透過型別參數型別的實例進行調用，也是如此。 例如:
 ```csharp
 using System;
 
@@ -236,16 +236,16 @@ class Program
 }
 ```
 
-程式輸出為：
-```
+程式的輸出為：
+```console
 1
 2
 3
 ```
 
-雖然它是不正確樣式`ToString`有副作用，此範例會示範的三個引動過程，發生任何 boxing `x.ToString()`。
+雖然 `ToString` 的樣式不正確，但有副作用，但此範例會示範 `x.ToString()` 的三個調用中未發生任何裝箱。
 
-同樣地，永遠不會隱含 boxing 發生於存取受條件約束的型別參數上的成員。 例如，假設介面`ICounter`包含的方法`Increment`可用來修改值。 如果`ICounter`做為條件約束 」，這是實作`Increment`方法呼叫變數的參考，`Increment`呼叫永遠不會經過 boxing 處理的複本上。
+同樣地，存取限制型別參數上的成員時，也不會隱含地進行裝箱。 例如，假設介面 `ICounter` 包含可用於修改值的方法 `Increment`。 如果 `ICounter` 當做條件約束使用，則會使用在上呼叫 `Increment` 之變數的參考來呼叫 `Increment` 方法，而不是已封裝的複本。
 
 ```csharp
 using System;
@@ -285,26 +285,26 @@ class Program
 }
 ```
 
-第一次呼叫`Increment`變數中的值會修改`x`。 這並不等於第二次呼叫`Increment`，這會修改 boxed 複本中的值`x`。 因此，程式的輸出為：
-```
+第一次呼叫 `Increment` 時，會將變數中的值修改 `x`。 這不等於第二次呼叫 `Increment`，這會修改 `x` 之已封裝複本中的值。 因此，程式的輸出為：
+```console
 0
 1
 1
 ```
 
-如需 boxing 和 unboxing 的進一步詳細資訊，請參閱 < [Boxing 和 unboxing](types.md#boxing-and-unboxing)。
+如需有關裝箱和取消裝箱的進一步詳細資料，請參閱[裝箱和取消](types.md#boxing-and-unboxing)裝箱。
 
-### <a name="meaning-of-this"></a>這個意義
+### <a name="meaning-of-this"></a>意義
 
-執行個體建構函式或類別的執行個體函式成員內`this`會分類為值。 因此，雖然`this`可用來參考執行個體的函式成員已叫用，就無法將指派給`this`函式成員的類別。
+在類別的實例或實例函式成員內，`this` 會分類為值。 因此，雖然 `this` 可以用來參考叫用函式成員的實例，但無法在類別的函式成員中指派給 `this`。
 
-在結構中，執行個體建構函式內`this`對應至`out`結構型別的和結構的執行個體函式成員內的參數`this`對應至`ref`結構類型的參數。 在這兩種情況下，`this`歸類為變數，您也可以修改整個結構指派給已叫用函式成員`this`或藉由傳遞為`ref`或`out`參數。
+在結構的實例函式中，`this` 對應到結構類型的 @no__t 1 參數，而且在結構的實例函式成員內，`this` 對應到結構類型的 `ref` 參數。 在這兩種情況下，`this` 會分類為變數，而且可以藉由指派給 `this` 或將它傳遞為 `ref` 或 `out` 參數，來修改叫用函式成員的整個結構。
 
-### <a name="field-initializers"></a>欄位初始設定式
+### <a name="field-initializers"></a>欄位初始化運算式
 
-中所述[預設值](structs.md#default-values)，將所有實值型別欄位設定為其預設值和所有參考型別欄位為產生的值包含結構的預設值`null`。 基於這個理由，結構不允許包含變數的初始設定式的執行個體欄位宣告。 這項限制只適用於執行個體欄位。 結構的靜態欄位可以包含變數的初始設定式。
+如[預設值](structs.md#default-values)所述，結構的預設值包含將所有數值型別欄位設定為其預設值，以及所有參考類型欄位為 `null` 所產生的值。 基於這個理由，結構不允許實例欄位宣告包含變數初始化運算式。 這種限制僅適用于實例欄位。 結構的靜態欄位允許包含變數初始化運算式。
 
-此範例
+範例
 ```csharp
 struct Point
 {
@@ -312,11 +312,11 @@ struct Point
     public int y = 1;  // Error, initializer not permitted
 }
 ```
-處於錯誤，因為執行個體欄位宣告包含變數的初始設定式。
+發生錯誤，因為實例欄位宣告包含變數初始化運算式。
 
 ### <a name="constructors"></a>建構函式
 
-不同於類別中，結構不是允許宣告無參數的執行個體建構函式。 相反地，每個結構會隱含地具有無參數的執行個體建構函式一律會傳回所產生將所有實值型別欄位設定為其預設值和所有參考為 null 的型別欄位的值 ([預設建構函式](types.md#default-constructors)). 結構可以宣告具有參數的執行個體建構函式。 例如
+不同于類別，結構不允許宣告無參數的實例的函式。 相反地，每個結構隱含具有無參數實例的函式，其一律會傳回將所有數值型別欄位設定為預設值，以及所有參考類型欄位為 null （[預設](types.md#default-constructors)的函式）所產生的值。 結構可以宣告具有參數的實例構造函式。 例如：
 ```csharp
 struct Point
 {
@@ -329,16 +329,16 @@ struct Point
 }
 ```
 
-指定上述宣告中，陳述式
+假設上述宣告，語句
 ```csharp
 Point p1 = new Point();
 Point p2 = new Point(0, 0);
 ```
-兩者皆可建立`Point`具有`x`和`y`初始化為零。
+兩者都會建立 `Point`，`x`，而 `y` 初始化為零。
 
-結構執行個體建構函式不允許包含表單的建構函式初始設定式`base(...)`。
+結構實例的函式不能包含格式為 `base(...)` 的函數初始化運算式。
 
-如果結構執行個體建構函式未指定的建構函式初始設定式中，`this`變數對應至`out`結構型別的和類似的參數`out`參數，`this`必須明確地指派 （[明確指派](variables.md#definite-assignment)) 在其中建構函式會傳回每個位置。 如果結構執行個體建構函式指定的建構函式初始設定式中，`this`變數對應至`ref`結構型別的和類似的參數`ref`參數，`this`會被視為已明確指派上要建構函式主體的項目。 請考慮以下的執行個體建構函式實作：
+如果結構實例的建立式不會指定函式初始化運算式，則 @no__t 0 變數會對應至結構類型的 @no__t 1 參數，而且類似于 @no__t 2 參數，`this` 必須明確指派（[明確指派](variables.md#definite-assignment)），位於此函式所傳回的每個位置。 如果結構實例的函式指定了一個函式初始化運算式，則 `this` 變數會對應至結構類型的 @no__t 1 參數，而且類似于 @no__t 2 參數，`this` 會視為在對該函數主體的專案上明確指派. 請考慮下列的實例函式執行：
 ```csharp
 struct Point
 {
@@ -359,7 +359,7 @@ struct Point
 }
 ```
 
-任何執行個體成員函式 (包括屬性 set 存取子`X`和`Y`) 可以呼叫，直到明確指派所建構之結構的所有欄位。 唯一的例外狀況包含自動實作的屬性 ([自動實作屬性](classes.md#automatically-implemented-properties))。 明確指派規則 ([簡單的指派運算式](variables.md#simple-assignment-expressions)) 特別排除指派 auto 屬性的結構類型的執行個體建構函式內，該結構類型： 此類指派會被視為明確auto 屬性的隱藏的支援欄位的指派。 因此，以下被允許的：
+您必須先明確指派結構的所有欄位，才能呼叫實例成員函式（包括屬性 `X` 和 `Y` 的 set 存取子）。 唯一的例外狀況包括自動實作為屬性（[自動實作為屬性](classes.md#automatically-implemented-properties)）。 明確指派規則（[簡單指派運算式](variables.md#simple-assignment-expressions)）會特別豁免指派給該結構型別之實例函式中結構型別的自動屬性（property），這種指派會被視為隱藏的明確指派。auto 屬性的支援欄位。 因此，允許下列各項：
 
 ```csharp
 struct Point
@@ -375,24 +375,24 @@ struct Point
 
 ### <a name="destructors"></a>解構函式
 
-結構不是允許宣告解構函式。
+不允許結構宣告析構函式。
 
 ### <a name="static-constructors"></a>靜態建構函式
 
-結構的靜態建構函式會依照大多與類別相同的規則。 結構類型的靜態建構函式的執行是由應用程式定義域中發生下列事件的第一個觸發：
+結構的靜態構造函式會遵循與類別相同的大部分規則。 結構類型的靜態函式執行是由下列事件中的第一個所觸發，以在應用程式域內發生：
 
-*  參考的結構類型的靜態成員。
-*  結構類型的明確宣告建構函式會呼叫。
+*  會參考結構類型的靜態成員。
+*  會呼叫結構類型的明確宣告的函式。
 
-建立的預設值 ([預設值](structs.md#default-values)) 的結構類型不會觸發靜態建構函式。 （這個範例是陣列中元素的初始值）。
+建立結構類型的預設值（[預設值](structs.md#default-values)）並不會觸發靜態的函式。 （其中一個範例是陣列中元素的初始值）。
 
 ## <a name="struct-examples"></a>結構範例
 
-下圖顯示兩個重要的使用範例`struct`型別，以建立可以用來預先定義的型別語言，但具有已修改的語意類似的類型。
+以下顯示兩個使用 @no__t 0 型別來建立類型的重要範例，其使用方式類似于預先定義的語言類型，但具有修改過的語義。
 
-### <a name="database-integer-type"></a>資料庫的整數型別
+### <a name="database-integer-type"></a>資料庫整數類型
 
-`DBInt`結構的實作，可代表一組完整的值的整數類型`int`型別，再加上額外的狀態，指出未知的值。 具有這些特性的型別常用的資料庫。
+下列的 `DBInt` 結構會執行整數類型，可以代表一組完整的 `int` 類型值，再加上表示未知值的其他狀態。 具有這些特性的類型通常用於資料庫中。
 
 ```csharp
 using System;
@@ -508,9 +508,9 @@ public struct DBInt
 }
 ```
 
-### <a name="database-boolean-type"></a>資料庫布林型別
+### <a name="database-boolean-type"></a>資料庫布林值類型
 
-`DBBool`結構實作的三種值的邏輯類型。 可能的值，這個型別的`DBBool.True`， `DBBool.False`，並`DBBool.Null`，其中`Null`成員表示未知的值。 這種三值邏輯的類型通常會用於資料庫。
+下列的 `DBBool` 結構會執行三值的邏輯型別。 此類型的可能值為 `DBBool.True`、`DBBool.False` 和 `DBBool.Null`，其中 `Null` 成員表示未知的值。 這類三值邏輯類型通常用於資料庫中。
 
 ```csharp
 using System;

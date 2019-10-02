@@ -1,22 +1,22 @@
 ---
-ms.openlocfilehash: 994b22f5375d57cfc4c7537c64345a27ddf3e416
-ms.sourcegitcommit: 09e0ddec3bb6aa99b7340158bbac86a5a8243b43
+ms.openlocfilehash: d162d4b6a489032dcdfca9094a39d88fd03d4013
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66193876"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71704091"
 ---
 # <a name="delegates"></a>委派
 
-委派可讓案例的其他語言，例如C++，依照 pascal 命名法和 Modula-解決與函式指標。 不同於C++函式指標，不過，委派完全是物件導向，以及不同的是C++成員函式委派指標封裝物件執行個體和方法。
+委派可讓其他語言（例如C++，Pascal 和 Modula）的案例能夠使用函式指標來解決。 不過C++ ，不同于函式指標，委派是完全面向物件， C++而且與成員函式的指標不同，委派會封裝物件實例和方法。
 
-在 delegate 宣告中定義的類別，衍生自類別`System.Delegate`。 委派執行個體封裝引動過程清單中，這是一或多個方法，每一個都指可呼叫的實體的清單。 執行個體方法，可呼叫的實體包含的執行個體與該執行個體上的方法。 如需靜態方法，可呼叫的實體所組成的一個方法。 叫用委派執行個體使用一組適合的引數會導致每個委派的可呼叫實體，若要使用一組指定的引數叫用。
+委派宣告會定義衍生自類別的類別，`System.Delegate`。 委派實例會封裝一個調用清單，這是一或多個方法的清單，每個方法都稱為可呼叫的實體。 若是實例方法，可呼叫的實體是由實例和該實例上的方法所組成。 若為靜態方法，可呼叫的實體只會包含方法。 使用一組適當的引數來叫用委派實例，會使每一個委派的可呼叫實體以一組指定的引數叫用。
 
-有趣且實用的屬性，委派執行個體的是，它不知道或在意它會封裝; 方法的類別最重要的是，這些方法是相容 ([委派宣告](delegates.md#delegate-declarations)) 與委派的型別。 這可讓委派非常適用於 「 匿名 」 的引動過程。
+委派實例有一個有趣且實用的屬性，就是它不知道或在意它所封裝之方法的類別;重點在於這些方法與委派的型別相容（[委派](delegates.md#delegate-declarations)宣告）。 這使得委派非常適合「匿名」調用。
 
 ## <a name="delegate-declarations"></a>委派宣告
 
-A *delegate_declaration*是*type_declaration* ([型別宣告](namespaces.md#type-declarations)) 宣告新的委派類型。
+*Delegate_declaration*是宣告新委派類型的*type_declaration* （[類型](namespaces.md#type-declarations)宣告）。
 
 ```antlr
 delegate_declaration
@@ -35,25 +35,25 @@ delegate_modifier
     ;
 ```
 
-它是相同的修飾詞在 delegate 宣告中出現多次的編譯時期錯誤。
+在委派宣告中多次出現相同的修飾詞時，就會發生編譯時期錯誤。
 
-`new`修飾詞僅允許委派宣告另一個類型內，在此情況下它會指定這類委派隱藏繼承的成員相同的名稱，如中所述[的新修飾詞](classes.md#the-new-modifier)。
+@No__t-0 修飾詞只允許用於在另一個類型中宣告的委派，在此情況下，它會指定這類委派會隱藏具有相同名稱的繼承成員，如[新修飾](classes.md#the-new-modifier)詞中所述。
 
-`public`， `protected`， `internal`，和`private`修飾詞控制的委派型別存取範圍。 根據和委派宣告發生所在的內容，這些修飾詞的一些可能不允許 ([宣告存取範圍](basic-concepts.md#declared-accessibility))。
+@No__t-0、`protected`、`internal` 和 @no__t 3 修飾詞會控制委派類型的存取範圍。 根據發生委派宣告的內容，可能不允許其中一些修飾詞（宣告的[存取](basic-concepts.md#declared-accessibility)範圍）。
 
-委派的型別名稱是*識別碼*。
+委派的類型名稱為*identifier*。
 
-選擇性*formal_parameter_list*指定之參數的委派，以及*return_type*表示委派的傳回型別。
+選擇性的*formal_parameter_list*會指定委派的參數，而*return_type*則表示委派的傳回型別。
 
-選擇性*variant_type_parameter_list* ([Variant 類型參數清單](interfaces.md#variant-type-parameter-lists)) 指定的委派本身的類型參數。
+選擇性的*variant_type_parameter_list* （[variant 型別參數清單](interfaces.md#variant-type-parameter-lists)）會指定委派本身的型別參數。
 
-委派類型的傳回型別必須是`void`，或輸出安全 ([變異數安全](interfaces.md#variance-safety))。
+委派類型的傳回類型必須是 `void` 或輸出安全（變異數[安全性](interfaces.md#variance-safety)）。
 
-委派型別的所有型式參數類型必須是輸入安全。 此外，任何`out`或`ref`參數類型必須也是輸出安全。 請注意，即使`out`參數必須是輸入安全，因為基礎執行平台的限制。
+委派類型的所有正式參數類型都必須是輸入安全的。 此外，任何 @no__t 0 或 @no__t 1 參數類型也必須為輸出安全。 請注意，即使 `out` 參數是輸入安全的，因為基礎執行平臺的限制。
 
-C# 中的委派類型是名稱相等結構上相等。 具體而言，具有相同的參數的兩種不同的委派類型列出，並傳回型別會被視為不同的委派類型。 不過，兩個不同但結構上相等的委派型別的執行個體可能會比較為相等 ([委派等號比較運算子](expressions.md#delegate-equality-operators))。
+中C#的委派類型為對等的名稱，不是結構上的對等用法。 具體而言，有兩個不同的委派類型具有相同的參數清單和傳回類型，會被視為不同的委派類型。 不過，兩個不同但結構相等之委派類型的實例，可能會比較為相等（[委派相等運算子](expressions.md#delegate-equality-operators)）。
 
-例如：
+例如:
 
 ```csharp
 delegate int D1(int i, double d);
@@ -73,9 +73,9 @@ class B
 }
 ```
 
-方法`A.M1`並`B.M1`這兩個委派類型是否相容`D1`和`D2`，因為它們有相同的傳回型別和參數的清單; 不過，這些委派型別是兩個不同的類型，因此它們不是可互換的。 方法`B.M2`， `B.M3`，並`B.M4`與委派類型不相容`D1`和`D2`，因為它們有不同的傳回型別或參數清單。
+@No__t-0 和 `B.M1` 的方法與委派類型 `D1` 和 `D2` 相容，因為它們具有相同的傳回類型和參數清單;不過，這些委派類型是兩個不同的類型，因此無法互換。 @No__t-0、`B.M3` 和 `B.M4` 的方法與委派類型（`D1` 和 `D2`）不相容，因為它們有不同的傳回類型或參數清單。
 
-其他泛型類型宣告，例如型別引數必須有建立建構的委派型別。 參數型別和傳回型別建構的委派型別會建立在委派宣告中，每個類型參數的替代建構的委派類型的對應的型別引數。 產生的傳回型別和參數類型會用於決定哪些方法與建構的委派型別相容。 例如: 
+如同其他泛型型別宣告，必須提供類型引數，才能建立結構化委派類型。 建立結構化委派類型的參數類型和傳回型別，是藉由以委派宣告中的每個型別參數來取代，這是結構化委派型別的對應型別引數。 產生的傳回型別和參數類型是用來判斷哪些方法與結構化的委派型別相容。 例如:
 
 ```csharp
 delegate bool Predicate<T>(T value);
@@ -87,17 +87,17 @@ class X
 }
 ```
 
-此方法`X.F`相容的委派型別`Predicate<int>`和方法`X.G`與委派型別相容`Predicate<string>`。
+方法 `X.F` 與委派類型 `Predicate<int>` 相容，而方法 `X.G` 與 `Predicate<string>` 的委派類型相容。
 
-宣告委派類型的唯一方式是透過*delegate_declaration*。 委派型別是衍生自的類別類型`System.Delegate`。 委派類型都是隱含`sealed`，因此不允許從委派型別衍生任何型別。 它也不是允許衍生類別的非委派類型，從`System.Delegate`。 請注意，`System.Delegate`是委派類型本身不; 它是從中衍生所有的委派類型的類別類型。
+宣告委派類型的唯一方式是透過*delegate_declaration*。 委派類型是衍生自 `System.Delegate` 的類別類型。 委派類型會隱含 `sealed`，因此不允許從委派類型衍生任何類型。 也不允許從 `System.Delegate` 衍生非委派類別類型。 請注意，`System.Delegate` 本身不是委派類型;它是衍生所有委派類型的類別類型。
 
-C# 提供特殊語法委派具現化和引動過程。 除了在具現化，可以套用至類別或類別執行個體的任何作業也可以套用至委派的類別或執行個體，分別。 特別是，就可以存取的成員`System.Delegate`經由一般成員存取語法類型。
+C#提供委派具現化和調用的特殊語法。 除了具現化以外，可以套用至類別或類別實例的任何作業，也可以分別套用至委派類別或實例。 特別的是，您可以透過一般的成員存取語法來存取 @no__t 0 類型的成員。
 
-一組的委派執行個體所封裝的方法會呼叫的引動過程清單。 建立委派執行個體時 ([委派相容性](delegates.md#delegate-compatibility)) 從單一方法，它會封裝該方法中，且其引動過程清單包含只有一個項目。 不過，當合併兩個非 null 委派執行個體，其引動過程清單串連-左運算元，則右運算元-的順序，以形成新的引動過程清單，其中包含兩個或多個項目。
+委派實例所封裝的方法集合稱為「調用清單」。 從單一方法建立委派實例（[委派相容性](delegates.md#delegate-compatibility)）時，它會封裝該方法，而其調用清單只會包含一個專案。 不過，當結合兩個非 null 委派實例時，會串連其調用清單--在 order left 運算元 then 右運算元--中，以形成新的調用清單，其中包含兩個或多個專案。
 
-委派結合使用二進位`+`([加法運算子](expressions.md#addition-operator)) 及`+=`運算子 ([複合指派](expressions.md#compound-assignment))。 委派可以移除委派，使用二進位檔的組合`-`([減法運算子](expressions.md#subtraction-operator)) 及`-=`運算子 ([複合指派](expressions.md#compound-assignment))。 委派可以進行相等比較 ([委派等號比較運算子](expressions.md#delegate-equality-operators))。
+委派會使用 binary `+` （[加號](expressions.md#addition-operator)）和 @no__t 2 運算子（[複合指派](expressions.md#compound-assignment)）結合。 您可以使用 binary `-` （[減法運算子](expressions.md#subtraction-operator)）和 @no__t 2 運算子（[複合指派](expressions.md#compound-assignment)），從委派的組合中移除委派。 委派可以比較是否相等（[委派相等運算子](expressions.md#delegate-equality-operators)）。
 
-下列範例示範數個委派具現化，其對應的引動過程清單：
+下列範例顯示一些委派的具現化，以及其對應的調用清單：
 
 ```csharp
 delegate void D(int x);
@@ -122,26 +122,26 @@ class Test
 }
 ```
 
-當`cd1`和`cd2`會具現化，它們每個封裝一種方法。 當`cd3`是具現化，它有兩個方法的引動過程清單`M1`和`M2`，依此順序。 `cd4`引動過程清單包含`M1`， `M2`，和`M1`，依此順序。 最後，`cd5`的引動過程清單包含`M1`， `M2`， `M1`， `M1`，和`M2`，依此順序。 結合 （也會有一樣的移除） 委派的詳細範例，請參閱[委派引動過程](delegates.md#delegate-invocation)。
+當 `cd1` 和 `cd2` 具現化時，它們會分別封裝一種方法。 當 `cd3` 具現化時，它會有兩個方法的調用清單，`M1` 和 `M2` （依該順序）。 `cd4` 的調用清單包含 `M1`、`M2` 和 `M1` （依該順序）。 最後，`cd5` 的調用清單包含 `M1`、`M2`、`M1`、`M1` 和 `M2` （依該順序）。 如需結合（以及移除）委派的更多範例，請參閱[委派調用](delegates.md#delegate-invocation)。
 
 ## <a name="delegate-compatibility"></a>委派相容性
 
-方法或委派`M`已***相容***委派`D`符合下列所有項目時：
+如果下列所有條件都成立，則方法或委派 `M` 與委派類型 `D`***相容***：
 
-*  `D` 並`M`有相同數目的參數，並在每個參數`D`具有相同`ref`或`out`中的對應參數的修飾詞`M`。
-*  針對每個值參數 (含參數`ref`或`out`修飾詞)，身分識別轉換 ([識別轉換](conversions.md#identity-conversion)) 或隱含參考轉換 ([隱含參考轉換](conversions.md#implicit-reference-conversions))在參數型別`D`中與對應參數類型`M`。
-*  每個`ref`或是`out`中的參數，參數類型`D`等同於在參數型別`M`。
-*  身分識別或隱含參考轉換存在的傳回型別`M`的傳回型別`D`。
+*  `D` 和 `M` 的參數數目相同，而且 `D` 中的每個參數與 `M` 中的對應參數具有相同的 `ref` 或 `out` 修飾詞。
+*  針對每個值參數（不含 @no__t 的參數或 `out` 修飾詞），識別轉換（[識別轉換](conversions.md#identity-conversion)）或隱含參考轉換（[隱含參考轉換](conversions.md#implicit-reference-conversions)）會從 `D` 中的參數類型到`M` 中的對應參數類型。
+*  針對每個 `ref` 或 @no__t 1 參數，`D` 中的參數類型與 `M` 中的參數類型相同。
+*  識別或隱含參考轉換存在於從 `M` 傳回類型到 `D` 的傳回類型。
 
 ## <a name="delegate-instantiation"></a>委派具現化
 
-委派的執行個體由*delegate_creation_expression* ([委派建立運算式](expressions.md#delegate-creation-expressions)) 或轉換成委派類型。 新建立的委派執行個體則會參考為：
+委派的實例是由*delegate_creation_expression* （[委派建立運算式](expressions.md#delegate-creation-expressions)）或委派類型的轉換所建立。 新建立的委派實例則是指：
 
-*  中所參考的靜態方法*delegate_creation_expression*，或
-*  目標物件 (它不能`null`) 和執行個體中所參考方法*delegate_creation_expression*，或
+*  *Delegate_creation_expression*中所參考的靜態方法，或
+*  *Delegate_creation_expression*中參考的目標物件（不可以是 `null`）和實例方法，或
 *  另一個委派。
 
-例如: 
+例如:
 
 ```csharp
 delegate void D(int x);
@@ -163,19 +163,19 @@ class Test
 }
 ```
 
-一旦具現化，委派執行個體一律會參考相同的目標物件和方法。 請記住，當合併兩個委派，或從另一個，新的委派結果，與它自己的引動過程清單，移除的其中一個結合，或移除的委派引動過程清單維持不變。
+一旦具現化之後，委派實例一律會參考相同的目標物件和方法。 請記住，當兩個委派合併，或其中一個被移除時，新的委派結果會有自己的調用清單;結合或移除委派的調用清單會保持不變。
 
-## <a name="delegate-invocation"></a>委派引動過程
+## <a name="delegate-invocation"></a>委派調用
 
-C# 提供特殊的語法叫用委派。 叫用的非 null 委派執行個體，其引動過程清單包含一個項目時，它會叫用一個具有相同的引數，它提供，並傳回相同的值參考的方法至方法。 (請參閱[委派引動過程](expressions.md#delegate-invocations)的委派引動過程的詳細資訊。)如果這類委派引動過程中發生例外狀況，該例外狀況下，叫用之方法內未攔截到例外狀況 catch 子句的搜尋會繼續在方法呼叫的委派，視為已直接呼叫該方法委派的方法參考。
+C#提供用來叫用委派的特殊語法。 當叫用清單中包含一個專案的非 null 委派實例被叫用時，它會使用指定的相同引數叫用一個方法，並傳回與所參考方法相同的值。 （如需委派調用的詳細資訊，請參閱[委派調用](expressions.md#delegate-invocations)）。如果在這類委派的調用期間發生例外狀況，而且該例外狀況不會在叫用的方法內攔截，則搜尋例外狀況 catch 子句會繼續在呼叫委派的方法中，如同該方法直接呼叫委派所參考的方法。
 
-引動過程委派執行個體，其引動過程清單包含多個項目進行的每個方法引動過程清單中，依順序中以同步方式叫用。 所謂的每個方法會傳遞引數，如未提供以委派執行個體的同一組。 如果這類委派引動過程包含參考參數 ([參考參數](classes.md#reference-parameters))，每個方法引動過程會發生相同的變數的參考，但會變更該變數，方法引動過程清單中的一個方法才會顯示進一步的方法引動過程清單。 如果委派引動過程包含輸出參數或傳回值，其最終的值會來自清單中的最後一個委派的引動過程。
+叫用其調用清單包含多個專案的委派實例，會依照順序以同步方式叫用調用清單中的每個方法繼續進行。 呼叫的每個方法都會傳遞與指定給委派實例相同的引數集。 如果這類委派調用包含參考參數（[參考參數](classes.md#reference-parameters)），則會發生具有相同變數參考的每個方法調用;此變數在調用清單中的方法變更，將會在調用清單中進一步向下顯示。 如果委派調用包含輸出參數或傳回值，其最終值會來自清單中最後一個委派的調用。
 
-如果在處理這類委派的引動過程期間發生的例外狀況，並叫用之方法內未攔截到例外狀況，例外狀況 catch 子句的搜尋會繼續在方法呼叫的委派，並進一步向下的任何方法不會叫用引動過程清單。
+如果在處理這類委派的調用期間發生例外狀況，而且該例外狀況不會在叫用的方法內攔截，則搜尋例外狀況 catch 子句會繼續在呼叫委派的方法中，並于後續的任何方法中執行不會叫用調用清單。
 
-嘗試叫用委派執行個體，其值是 null 類型的例外狀況會導致`System.NullReferenceException`。
+嘗試叫用其值為 null 的委派實例，會導致類型 `System.NullReferenceException` 的例外狀況。
 
-下列範例示範如何具現化、 合併、 移除及叫用委派：
+下列範例示範如何具現化、結合、移除和叫用委派：
 
 ```csharp
 using System;
@@ -238,13 +238,13 @@ class Test
 }
 ```
 
-陳述式中所示`cd3 += cd1;`，委派可以多次出現在引動過程清單中。 在此情況下，它會直接叫用一次每次出現。 在這類引動過程清單，移除該委派時，引動過程清單中的最後一個相符項目是會實際移除。
+如 `cd3 += cd1;` 的語句所示，一個委派可以出現在調用清單中多次。 在此情況下，它只會在每次發生時叫用一次。 在這類調用清單中，移除該委派時，在調用清單中最後一次出現的專案就是實際移除的。
 
-最後一個陳述式中，執行前立即`cd3 -= cd1;`，委派`cd3`指的是空白的引動過程清單。 嘗試從空的清單移除委派 （或非空白清單中移除不存在的委派） 不是錯誤。
+在最後一個語句執行之前，`cd3 -= cd1;`，委派 `cd3` 指的是空的調用清單。 嘗試從空白清單中移除委派（或從非空白清單中移除不存在的委派）並不是錯誤。
 
 產生的輸出為：
 
-```
+```console
 C.M1: -1
 C.M2: -2
 C.M1: 10
