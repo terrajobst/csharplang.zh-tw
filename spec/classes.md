@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 2c87cafb8591b9dff2aa517b65af80ab263c7faa
-ms.sourcegitcommit: 7f7fc6e9e195e51b7ff8229aeaa70aa9fbbb63cb
+ms.openlocfilehash: e0def754174ab8646f9b849abe86d2c375c958b6
+ms.sourcegitcommit: 892af9016b3317a8fae12d195014dc38ba51cf16
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876902"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71703975"
 ---
 # <a name="classes"></a>類別
 
@@ -21,7 +21,7 @@ class_declaration
     ;
 ```
 
-*Class_declaration*是由一組選擇性的*屬性*（[屬性](attributes.md)）所組成，後面接著一組選擇性的*class_modifier*s （[類別](classes.md#class-modifiers)修飾詞），後面接著`partial`選擇性的修飾詞，後面接著關鍵字`class`和*識別碼*，其命名類別，後面接著選擇性的*type_parameter_list* （[型別參數](classes.md#type-parameters)），後面接著選擇性的*class_base*規格（[類別基底規格](classes.md#class-base-specification)），後面接著一組選擇性的*type_parameter_constraints_clause*s （[類型參數條件約束](classes.md#type-parameter-constraints)），後面接著*class_body* （[類別主體](classes.md#class-body)），並選擇性地加上分號。
+*Class_declaration*是由一組選擇性的*屬性*（[屬性](attributes.md)）所組成，後面接著一組選擇性的*class_modifier*s （[類別](classes.md#class-modifiers)修飾詞），後面接著選擇性的 `partial` 修飾詞，後面接著關鍵字`class` 和命名類別的*識別碼*，後面接著選擇性的*type_parameter_list* （[類型參數](classes.md#type-parameters)），後面接著選擇性的*class_base*規格（[類別基底規格](classes.md#class-base-specification)），後面接著一組選擇性的*type_parameter_constraints_clause*s （[類型參數條件約束](classes.md#type-parameter-constraints)），後面接著*class_body* （[類別主體](classes.md#class-body)），並選擇性地後面加上分號。
 
 類別宣告無法提供*type_parameter_constraints_clause*，除非它也提供*type_parameter_list*。
 
@@ -111,7 +111,7 @@ __參考靜態類別類型__
 
 *Namespace_or_type_name* （[命名空間和類型名稱](basic-concepts.md#namespace-and-type-names)）可以參考靜態類別（如果
 
-*  *Namespace_or_type_name*是`T` *namespace_or_type_name* 格式`T.I`的，或
+*  *Namespace_or_type_name*是 `T.I` 格式的*namespace_or_type_name*中的 `T`，或
 *  *Namespace_or_type_name*是表單`T` *typeof_expression* 的（[引數清單](expressions.md#argument-lists)1）中`typeof(T)`的。
 
 若為，則允許*primary_expression* （函式[成員](expressions.md#function-members)）參考靜態類別
@@ -122,7 +122,7 @@ __參考靜態類別類型__
 
 ### <a name="partial-modifier"></a>Partial 修飾詞
 
-修飾詞是用來表示這個 class_declaration 是部分類型宣告。 `partial` 在封入命名空間或類型宣告中，多個具有相同名稱的部分類型宣告會結合成一個類型宣告，遵循[部分類型](classes.md#partial-types)中指定的規則。
+@No__t-0 修飾詞是用來表示這個*class_declaration*是部分類型宣告。 在封入命名空間或類型宣告中，多個具有相同名稱的部分類型宣告會結合成一個類型宣告，遵循[部分類型](classes.md#partial-types)中指定的規則。
 
 如果在不同的內容中產生或維護這些區段，則在程式文字的個別區段上散發的類別宣告會很有用。 例如，類別宣告的其中一個部分可能是電腦產生的，而另一個則是手動撰寫。 這兩者的文字分隔會防止更新與另一個更新衝突。
 
@@ -171,7 +171,7 @@ class Extend<V>: V {}            // Error, type parameter used as base class
 
 #### <a name="base-classes"></a>基底類別
 
-當*class_base*中包含*class_type*時，它會指定所要宣告之類別的直接基底類別。 如果類別宣告沒有*class_base*，或*class_base*只列出介面類別型，則會`object`假設直接基類為。 類別會繼承其直接基類的成員，如[繼承](classes.md#inheritance)中所述。
+當*class_base*中包含*class_type*時，它會指定所要宣告之類別的直接基底類別。 如果類別宣告沒有*class_base*，或*class_base*只列出介面類別型，則會假設直接基底類別為 `object`。 類別會繼承其直接基類的成員，如[繼承](classes.md#inheritance)中所述。
 
 在範例中
 ```csharp
@@ -298,7 +298,7 @@ constructor_constraint
     ;
 ```
 
-每個*type_parameter_constraints_clause*都包含標記`where`，後面接著型別參數的名稱，後面接著冒號和該型別參數的條件約束清單。 每個類型參數最多`where`只能有一個子句， `where`而且可以依任何順序列出子句。 就像`get`屬性`set` 存取`where`子中的和權杖，權杖不是關鍵字。
+每個*type_parameter_constraints_clause*都包含 `where` 的 token，後面接著型別參數的名稱，後面接著冒號和該型別參數的條件約束清單。 每個類型參數最多`where`只能有一個子句， `where`而且可以依任何順序列出子句。 就像`get`屬性`set` 存取`where`子中的和權杖，權杖不是關鍵字。
 
 `where`子句中提供的條件約束清單可以包含下列任何元件（依此順序）：單一主要條件約束、一個或多個次要條件約束，以及一個函式`new()`條件約束。
 
@@ -344,9 +344,9 @@ constructor_constraint
 所有條件約束在相依型別參數之間必須一致。 如果類型參數`S`相依于類型參數`T` ，則：
 
 *  `T`不得具有實數值型別條件約束。 否則， `T`會有效地密封`S` ，因此會強制為與相同的型`T`別，而不需要兩個型別參數。
-*  如果`S`具有實數值型別條件約束`T` ，則不能有*class_type*條件約束。
-*  如果`S`具有*class_type*條件約束`A` ， `T`而且具有*class_type*條件`B`約束，則必須有從`A`到`B`的識別轉換或隱含參考轉換。或從`B`到`A`的隱含參考轉換。
-*  如果`S`也取決於型別`U`參數`U` ，而且具有 class_type `A`條件`T`約束，而且有`B` *class_type*條件約束，則必須有身分識別轉換或隱含參考從轉換`A`為`B` ，或從`B`到`A`的隱含參考轉換。
+*  如果 `S` 具有實數值型別條件約束，則 `T` 不能有*class_type*條件約束。
+*  如果 `S` 具有*class_type*條件約束 `A`，而 `T` 具有 `B` 的*class_type*條件約束，則必須有從 `A` 到 `B` 的識別轉換或隱含參考轉換，或從`B` 到 `A`。
+*  如果 `S` 也相依于類型參數 `U`，而且 `U` 的*class_type*條件約束 @no__t 為-4，而 `T` 有*class_type*條件約束 `B`，則必須從 `A` 進行識別轉換或隱含參考轉換。若要 `B`，或從 0 到 1 的隱含參考轉換。
 
 具有實值型`S`別條件約束，並`T`具有引用型別條件約束，是有效的。 `T`對類型`System.Object`、 `System.ValueType`、和任何介面類別型有效地進行這種限制。`System.Enum`
 
@@ -424,21 +424,21 @@ class StructWithClass<S,T,U>
 
 *  如果`T`沒有主要條件約束或類型參數條件約束，其有效基類為`object`。
 *  如果`T`具有實數值型別條件約束，則其有效基類`System.ValueType`為。
-*  如果`T`具有*class_type*條件約束`C` ，但沒有*type_parameter*條件約束，其有效的`C`基類為。
-*  如果`T`沒有*class_type*條件約束，但有一或多個*type_parameter*條件約束，其有效基類就是其 type_ 的有效基類集中最包含的類型（[提升轉換運算子](conversions.md#lifted-conversion-operators)） *參數*條件約束。 一致性規則可確保這類最包含的類型存在。
-*  如果`T`同時具有*class_type*條件約束和一或多個*type_parameter*條件約束，其有效基類就是包含*class_type*之集合中最包含的類型（[提升轉換運算子](conversions.md#lifted-conversion-operators)）。的`T`條件約束和其*type_parameter*條件約束的有效基類。 一致性規則可確保這類最包含的類型存在。
-*  如果`T`具有參考型別條件約束，但沒有*class_type*條件約束，其有效的`object`基類就是。
+*  如果 `T` 的*class_type*條件約束 `C`，但沒有*type_parameter*條件約束，其有效基類會 `C`。
+*  如果 `T` 沒有*class_type*條件約束，但有一或多個*type_parameter*條件約束，其有效基類就是其 type_ 的有效基類集中最包含的類型（[提升轉換運算子](conversions.md#lifted-conversion-operators)） *參數*條件約束。 一致性規則可確保這類最包含的類型存在。
+*  如果 `T` 同時具有*class_type*條件約束和一或多個*type_parameter*條件約束，其有效基類就是包含*class_type*之集合中最包含的類型（[提升轉換運算子](conversions.md#lifted-conversion-operators)）。`T` 的條件約束和其*type_parameter*條件約束的有效基類。 一致性規則可確保這類最包含的類型存在。
+*  如果 `T` 有參考型別條件約束，但沒有*class_type*條件約束，其有效基類會 `object`。
 
-基於這些規則的目的，如果 T 具有屬於*value_type*的`V`條件約束，請改用*class_type*的最`V`特定基底類型。 這可能永遠不會發生在明確指定的條件約束中，但當覆寫方法宣告或介面方法的明確執行隱含繼承泛型方法的條件約束時，可能會發生這種情況。
+基於這些規則的目的，如果 T 具有*value_type*的條件約束 `V`，則請改用*class_type*@no__t 的最特定基底類型。 這可能永遠不會發生在明確指定的條件約束中，但當覆寫方法宣告或介面方法的明確執行隱含繼承泛型方法的條件約束時，可能會發生這種情況。
 
 這些規則會確保有效的基類一律為*class_type*。
 
 類型參數`T`的***有效介面集***定義如下：
 
-*  如果`T`沒有*secondary_constraints*，其有效的介面集就是空的。
-*  如果`T`具有*interface_type*條件約束，但沒有*type_parameter*條件約束，其有效的介面集就是它的一組*interface_type*條件約束。
-*  如果`T`沒有*interface_type*條件約束，但有*type_parameter*條件約束，其有效的介面集就是其*type_parameter*條件約束的有效介面集的聯集。
-*  如果`T`同時具有*interface_type*條件約束和*type_parameter*條件約束，其有效的介面集就是它的*interface_type*條件約束集合和其 type_parameter 的有效介面集的聯集。條件約束。
+*  如果 `T` 沒有*secondary_constraints*，其有效的介面集就是空的。
+*  如果 `T` 具有*interface_type*條件約束，但沒有*type_parameter*條件約束，其有效的介面集就是它的*interface_type*條件約束集合。
+*  如果 `T` 沒有*interface_type*條件約束，但有*type_parameter*條件約束，其有效介面集就是其*type_parameter*條件約束之有效介面集的聯集。
+*  如果 `T` 同時具有*interface_type*條件約束和*type_parameter*條件約束，其有效的介面集就是它的*interface_type*條件約束集合和其*type_parameter*的有效介面集的聯集。條件.
 
 如果類型參數具有參考型別條件約束，或其有效基類不`object`是或`System.ValueType`，則***已知為參考型別***。
 
@@ -472,7 +472,7 @@ class_body
 
 類型宣告可以分割成多個***部分類型***宣告。 類型宣告會依照本節中的規則從其元件加以結構化，此時在程式的編譯時間和執行時間處理的其餘部分期間，會將它視為單一宣告。
 
-如果*class_declaration*、 *struct_declaration*或*interface_declaration*包含`partial`修飾詞，則代表部分類型宣告。 `partial`不是關鍵字，而且只會做為修飾詞（如果它緊接在`class`其中一個關鍵字之前） `struct`或`interface`在類型宣告中，或在方法宣告中的類型`void`之前。 在其他內容中，它可以用來做為一般識別碼。
+如果*class_declaration*、 *struct_declaration*或*interface_declaration*包含 `partial` 修飾詞，則代表部分類型宣告。 `partial`不是關鍵字，而且只會做為修飾詞（如果它緊接在`class`其中一個關鍵字之前） `struct`或`interface`在類型宣告中，或在方法宣告中的類型`void`之前。 在其他內容中，它可以用來做為一般識別碼。
 
 部分類型宣告的每個部分都必須包含`partial`修飾詞。 它必須具有相同的名稱，而且必須在與其他元件相同的命名空間或類型宣告中宣告。 修飾詞表示類型宣告的其他部分可能存在於其他位置，但這類額外的部分不是必要的; 它適用于具有單一宣告的類型，以`partial`包含修飾詞。 `partial`
 
@@ -824,7 +824,7 @@ public int H(double d) {...}
 
 在實例函式成員中，的`this`類型是包含宣告的實例類型（[實例類型](classes.md#the-instance-type)）。
 
-泛型類別的所有成員都可以直接或做為結構化型別的一部分，使用任何封入類別中的型別參數。 在執行時間使用特定封閉結構類型（[開放式和封閉式類型](types.md#open-and-closed-types)）時，會將類型參數的每個使用，取代為提供給結構化類型的實際類型引數。 例如：
+泛型類別的所有成員都可以直接或做為結構化型別的一部分，使用任何封入類別中的型別參數。 在執行時間使用特定封閉結構類型（[開放式和封閉式類型](types.md#open-and-closed-types)）時，會將類型參數的每個使用，取代為提供給結構化類型的實際類型引數。 例如:
 ```csharp
 class C<V>
 {
@@ -884,7 +884,7 @@ class D<T>: B<T[]>
 
 ### <a name="access-modifiers"></a>存取修飾詞
 
-*Class_member_declaration*可以有五種可能的宣告存取範圍（宣告的[存取](basic-concepts.md#declared-accessibility)範圍）其中之一： `public`、 `protected internal`、 `protected` `internal`、或`private`。 `protected internal`除了組合之外，指定一個以上的存取修飾詞是編譯時期錯誤。 當*class_member_declaration*不包含任何存取修飾詞時， `private`會假設為。
+*Class_member_declaration*可以有五種可能的宣告存取範圍（宣告的[存取](basic-concepts.md#declared-accessibility)範圍）其中之一： `public`、`protected internal`、`protected`、`internal` 或 `private`。 `protected internal`除了組合之外，指定一個以上的存取修飾詞是編譯時期錯誤。 當*class_member_declaration*不包含任何存取修飾詞時，會假設為 `private`。
 
 ### <a name="constituent-types"></a>組成類型
 
@@ -896,13 +896,13 @@ class D<T>: B<T[]>
 
 當欄位、方法、屬性、事件、運算子或函式宣告包含`static`修飾詞時，它會宣告靜態成員。 此外，常數或型別宣告會隱含宣告靜態成員。 靜態成員具有下列特性：
 
-*  在窗`M`體`E` `M` 的`E.M`member_access （[成員存取](expressions.md#member-access)）中參考靜態成員時，必須代表包含的類型。 表示實例的編譯時期錯誤`E` 。
+*  當 `E.M` 格式的*member_access* （[成員存取](expressions.md#member-access)）中參考到靜態成員 `M` 時，`E` 必須代表包含 `M` 的類型。 表示實例的編譯時期錯誤`E` 。
 *  靜態欄位可識別指定之封閉式類別類型的所有實例所要共用的一個儲存位置。 不論指定之封閉式類別類型的多少個實例已建立，只有一個靜態欄位的複本。
 *  靜態函式成員（方法、屬性、事件、運算子或函式）不會在特定的實例上運作，而是`this`在這類函式成員中參考的編譯時期錯誤。
 
 當欄位、方法、屬性、事件、索引子、函數或析構函式宣告不包含`static`修飾詞時，它會宣告實例成員。 （實例成員有時稱為非靜態成員）。實例成員具有下列特性：
 
-*  `M`當實例成員在表單`E.M`的*member_access* （[成員存取](expressions.md#member-access)）中被參考時， `E`必須代表包含`M`之類型的實例。 這是用`E`來表示類型的系結時錯誤。
+*  當實例成員 `M` 在表單 `E.M` 的*member_access* （[成員存取](expressions.md#member-access)）中被參考時，`E` 必須代表包含 `M` 之類型的實例。 這是用`E`來表示類型的系結時錯誤。
 *  類別的每個實例都包含一組個別的類別的實例欄位。
 *  實例函式成員（方法、屬性、索引子、實例處理常式或析構函數）會在指定的類別實例上運作，而且這個實例可以當做`this` （[這項存取](expressions.md#this-access)）存取。
 
@@ -933,7 +933,7 @@ class Test
 }
 ```
 
-方法顯示在實例函式成員中，可以使用 simple_name （[簡單名稱](expressions.md#simple-names)）來存取實例成員和靜態成員。 `F` 方法會顯示在靜態函式成員中，這是編譯時期錯誤，可透過 simple_name 存取實例成員。 `G` 方法會顯示在 member_access （[成員存取](expressions.md#member-access)）中，實例成員必須透過實例存取，而且必須透過類型來存取靜態成員。 `Main`
+@No__t-0 方法顯示，在實例函式成員中，可以使用*simple_name* （[簡單名稱](expressions.md#simple-names)）來存取實例成員和靜態成員。 @No__t-0 方法顯示，在靜態函式成員中，這是編譯時期錯誤，可透過*simple_name*存取實例成員。 @No__t-0 方法顯示在*member_access* （[成員存取](expressions.md#member-access)）中，實例成員必須透過實例存取，而且靜態成員必須透過類型來存取。
 
 ### <a name="nested-types"></a>巢狀型別
 
@@ -1220,7 +1220,7 @@ class Test
 }
 ```
 類別`A`會定義唯讀屬性`P`，因此會保留和`set_P`方法的`get_P`簽章。 類別`B`衍生自`A` ，並隱藏這兩個保留的簽章。 此範例會產生輸出：
-```
+```console
 123
 123
 456
@@ -1279,11 +1279,11 @@ constant_declarator
     ;
 ```
 
-*Constant_declaration*可以包含一組*屬性*（ `new` [屬性](attributes.md)）、修飾詞（[新的修飾](classes.md#the-new-modifier)詞），以及四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合。 屬性和修飾詞適用于*constant_declaration*所宣告的所有成員。 即使常數視為靜態成員， *constant_declaration*也不需要或不允許`static`修飾詞。 在常數宣告中多次出現相同的修飾詞時，就會發生錯誤。
+*Constant_declaration*可以包含一組*屬性*（[attribute）、](attributes.md)一個 @no__t 3 修飾詞（新的[修飾](classes.md#the-new-modifier)詞），以及四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合。 屬性和修飾詞適用于*constant_declaration*所宣告的所有成員。 即使常數視為靜態成員， *constant_declaration*也不需要也不允許 `static` 修飾詞。 在常數宣告中多次出現相同的修飾詞時，就會發生錯誤。
 
-*Constant_declaration*的*類型*會指定宣告引進的成員類型。 類型後面接著*constant_declarator*的清單，其中每個都會引進新的成員。 *Constant_declarator*包含命名成員的*識別碼*，後面接著 "`=`" token，接著是提供成員值的*constant_expression* （[常數運算式](expressions.md#constant-expressions)）。
+*Constant_declaration*的*類型*會指定宣告引進的成員類型。 類型後面接著*constant_declarator*的清單，其中每個都會引進新的成員。 *Constant_declarator*包含命名成員的*識別碼*，後面接著 "`=`" token，後面接著會提供成員值的*constant_expression* （[常數運算式](expressions.md#constant-expressions)）。
 
-在常數宣告中指定的*類型*必須是`sbyte`、 `byte` `long` `uint` `ushort` `short` `int` 、、`float`、、 `ulong`、、 、、、`char` `double`、 、`decimal`、 、`string`enum_type或reference_type。 `bool` 每個*constant_expression*都必須產生目標型別的值，或可以透過隱含轉換（[隱含](conversions.md#implicit-conversions)轉換）轉換成目標型別的類型。
+常數宣告中指定的*類型*必須是 `sbyte`、`byte`、`short`、`ushort`、`int`、`uint`、`long`、1、`char`、0、1、2、3、4、 *enum_type*或*reference_輸入*。 每個*constant_expression*都必須產生目標型別的值，或可以透過隱含轉換（[隱含](conversions.md#implicit-conversions)轉換）轉換成目標型別的類型。
 
 常數的*類型*至少必須與常數本身一樣可以存取（[存取範圍條件約束](basic-concepts.md#accessibility-constraints)）。
 
@@ -1291,9 +1291,9 @@ constant_declarator
 
 常數本身可以參與*constant_expression*。 因此，常數可以用於任何需要*constant_expression*的結構中。 這類結構的範例`case`包括卷`goto case`標、 `enum`語句、成員宣告、屬性和其他常數宣告。
 
-如[常數運算式](expressions.md#constant-expressions)中所述， *constant_expression*是可以在編譯時期完整評估的運算式。 因為建立以外之*reference_type* `string`的非 null 值的唯一方法`new`是套用運算子，而且因為*constant_expression*中不允許`new`運算子，所以的唯一可能值為`null` reference_type`string`的常數不是。
+如[常數運算式](expressions.md#constant-expressions)中所述， *constant_expression*是可以在編譯時期完整評估的運算式。 除了 @no__t- *1 以外，* 建立非 null 值的唯一方法是套用 `new` 運算子，而且因為*constant_expression*中不允許使用 `new` 運算子，所以常數的*唯一可能值為*`string` 以外的 reference_type 是 `null`。
 
-當需要常數值的符號名稱時，但在常數宣告中不允許該值的類型時，或在編譯時期無法由*constant_expression*計算值時， `readonly`欄位（[Readonly 欄位](classes.md#readonly-fields)）可以改用。
+當需要常數值的符號名稱時，但當常數宣告中不允許該值的類型，或在編譯時期無法由*constant_expression*計算值時，@no__t 1 欄位（[Readonly 欄位](classes.md#readonly-fields)）可能會請改為使用。
 
 宣告多個常數的常數宣告相當於多個具有相同屬性、修飾詞和類型之單一常數的宣告。 例如：
 ```csharp
@@ -1362,9 +1362,9 @@ variable_initializer
     ;
 ```
 
-*Field_declaration*可以包含一組*屬性*（ `new` [屬性](attributes.md)）、修飾詞（[新修飾](classes.md#the-new-modifier)詞）、 `static`四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合，以及修飾詞（[靜態和實例欄位](classes.md#static-and-instance-fields)）。 此外， *field_declaration*可能`readonly`包括修飾詞（  `volatile` [Readonly 欄位](classes.md#readonly-fields)）或修飾詞（[Volatile 欄位](classes.md#volatile-fields)），但不能同時包含兩者。 屬性和修飾詞適用于*field_declaration*所宣告的所有成員。 在欄位宣告中多次出現相同的修飾詞是錯誤的。
+*Field_declaration*可以包含一組*屬性*（[attribute）、](attributes.md)一個 @no__t 3 修飾詞（新的[修飾](classes.md#the-new-modifier)詞）、四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合，以及 `static` 修飾詞（[靜態和實例欄位](classes.md#static-and-instance-fields)）。 此外， *field_declaration*可能`readonly`包括修飾詞（  `volatile` [Readonly 欄位](classes.md#readonly-fields)）或修飾詞（[Volatile 欄位](classes.md#volatile-fields)），但不能同時包含兩者。 屬性和修飾詞適用于*field_declaration*所宣告的所有成員。 在欄位宣告中多次出現相同的修飾詞是錯誤的。
 
-*Field_declaration*的*類型*會指定宣告引進的成員類型。 類型後面接著*variable_declarator*的清單，其中每個都會引進新的成員。 *Variable_declarator*是由*識別*該成員的識別碼（選擇性地後面接著 "`=`" token 和*variable_initializer* （[變數初始化運算式](classes.md#variable-initializers)）所組成），以提供該成員的初始值。
+*Field_declaration*的*類型*會指定宣告引進的成員類型。 類型後面接著*variable_declarator*的清單，其中每個都會引進新的成員。 *Variable_declarator*包含命名該成員的*識別碼*，選擇性地後面接著 "@no__t 2" 權杖和*variable_initializer* （[變數初始化運算式](classes.md#variable-initializers)），以提供該成員的初始值。
 
 欄位的*類型*至少必須與欄位本身（[存取範圍條件約束](basic-concepts.md#accessibility-constraints)）一樣可以存取。
 
@@ -1393,7 +1393,7 @@ class A
 
 靜態欄位不是特定實例的一部分;相反地，它會在封閉式類型（[開放式和封閉式類型](types.md#open-and-closed-types)）的所有實例之間共用。 無論已關閉的類別類型有多少個實例，相關聯的應用程式域只會有一個靜態欄位複本。
 
-例如：
+例如:
 ```csharp
 class C<V>
 {
@@ -1425,13 +1425,13 @@ class Application
 
 實例欄位屬於實例。 具體而言，類別的每個實例都包含該類別的一組個別的實例欄位。
 
-在表單`E.M`的*member_access* （[成員存取](expressions.md#member-access)）中參考欄位時，如果`M`是靜態欄位， `E`必須表示包含`M`的類型，而且如果`M`是實例欄位，則 E 必須表示包含`M`之類型的實例。
+在 `E.M` 格式的*member_access* （[成員存取](expressions.md#member-access)）中參考欄位時，如果 `M` 是靜態欄位，`E` 必須代表包含 `M` 的類型，而且如果 `M` 是實例欄位，則 E 必須代表類型的實例，其中包含`M`。
 
 靜態和實例成員之間的差異會在[靜態和實例成員](classes.md#static-and-instance-members)中進一步討論。
 
 ### <a name="readonly-fields"></a>唯讀欄位
 
-當*field_declaration*包含`readonly`修飾詞時，宣告引進的欄位是***唯讀欄位***。 唯讀欄位的直接指派只能做為該宣告的一部分，或在相同類別中的實例的函式或靜態的函數中。 （您可以在這些內容中多次指派 readonly 欄位）。具體而言，只有在下列`readonly`內容中才允許直接指派給欄位：
+當*field_declaration*包含 @no__t 1 修飾詞時，宣告引進的欄位就是***readonly 欄位***。 唯讀欄位的直接指派只能做為該宣告的一部分，或在相同類別中的實例的函式或靜態的函數中。 （您可以在這些內容中多次指派 readonly 欄位）。具體而言，只有在下列`readonly`內容中才允許直接指派給欄位：
 
 *  在引進欄位的*variable_declarator*中（藉由在宣告中包含*variable_initializer* ）。
 *  針對實例欄位，在包含欄位宣告的類別的實例函式中。針對靜態欄位，在包含欄位宣告之類別的靜態函式中。 這些也是唯一有效傳遞`readonly`欄位`out`做為或`ref`參數的內容。
@@ -1490,7 +1490,7 @@ namespace Program2
 
 ### <a name="volatile-fields"></a>變動欄位
 
-當*field_declaration*包含`volatile`修飾詞時，該宣告引進的欄位就是***變動性欄位***。
+當*field_declaration*包含 @no__t 1 修飾詞時，該宣告所引進的欄位就是***變動性欄位***。
 
 對於非變動性欄位，重新排列指令的優化技術可能會導致非預期且無法預期的結果，而不需要同步處理（例如*lock_statement*所提供的）來存取欄位的多執行緒程式[lock 語句](statements.md#the-lock-statement)）。 這些優化可以由編譯器、執行時間系統或硬體執行。 對於變動性欄位，這類重新排列優化會受到限制：
 
@@ -1501,7 +1501,7 @@ namespace Program2
 
 *  *Reference_type*。
 *  `byte`類型、`System.IntPtr`、、 、`short` 、`bool`、、、、或`System.UIntPtr`。 `ushort` `int` `sbyte` `uint` `char` `float`
-*  具有 、 `byte` 、、`ushort`、或之`uint`列舉基底類型的 enum_type。 `sbyte` `short` `int`
+*  具有 `byte`、`sbyte`、`short`、`ushort`、`int` 或 `uint` 之列舉基底類型的*enum_type* 。
 
 範例
 ```csharp
@@ -1536,7 +1536,7 @@ class Test
 }
 ```
 產生下列輸出：
-```
+```console
 result = 143
 ```
 
@@ -1560,7 +1560,7 @@ class Test
 }
 ```
 產生下列輸出
-```
+```console
 b = False, i = 0
 ```
 因為`b` 和`i`都是自動初始化為預設值。
@@ -1586,7 +1586,7 @@ class Test
 }
 ```
 產生下列輸出
-```
+```console
 x = 1.4142135623731, i = 100, s = Hello
 ```
 因為在執行實例`x`欄位初始化運算式時，會發生靜態欄位`i`初始化`s`運算式和指派和時，就會進行指派。
@@ -1608,7 +1608,7 @@ class Test
 }
 ```
 展示此行為。 雖然 a 和 b 的迴圈定義，但程式是有效的。 這會導致輸出
-```
+```console
 a = 1, b = 2
 ```
 在執行其初始化`a`運算式`b`之前，會`0`將靜態欄位和初始化`int`為（的預設值）。 當的初始化運算式`a`執行時，的`b`值為零，因此`a`會初始化為`1`。 當的初始化運算式`b`執行時，的`a`值已經`1`是，因此`b`會初始化為`2`。
@@ -1642,13 +1642,13 @@ class B
 }
 ```
 可能會產生以下輸出：
-```
+```console
 Init A
 Init B
 1 1
 ```
 或輸出：
-```
+```console
 Init B
 Init A
 1 1
@@ -1684,7 +1684,7 @@ class B
 }
 ```
 輸出必須是：
-```
+```console
 Init B
 Init A
 1 1
@@ -1695,7 +1695,7 @@ Init A
 
 類別的實例欄位變數初始化運算式，會對應至該類別的任何一個實例函式（「函式[初始化運算式](classes.md#constructor-initializers)」）進入時立即執行的一系列指派。 變數初始化運算式會以它們出現在類別宣告中的文字順序來執行。 類別實例的建立和初始化程式會在[實例](classes.md#instance-constructors)的函式中進一步說明。
 
-實例欄位的變數初始化運算式無法參考所建立的實例。 因此，在變數初始化運算式中參考`this`編譯時期錯誤，因為變數初始化運算式透過*simple_name*參考任何實例成員時，發生編譯時期錯誤。 在範例中
+實例欄位的變數初始化運算式無法參考所建立的實例。 因此，在變數初始化運算式中參考 `this` 時，就會發生編譯時期錯誤，因為變數初始化運算式會發生編譯時期錯誤，以透過*simple_name*參考任何實例成員。 在範例中
 ```csharp
 class A
 {
@@ -1752,7 +1752,7 @@ method_body
     ;
 ```
 
-*Method_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合、 `new` （[新的修飾](classes.md#the-new-modifier)詞）、 `static` （[靜態和實例方法](classes.md#static-and-instance-methods)）、 `virtual` （[虛擬方法](classes.md#virtual-methods)）、 `override` （覆`abstract` [寫方法](classes.md#override-methods)） `sealed` 、（[密封方法](classes.md#sealed-methods)）、（[抽象方法](classes.md#abstract-methods)）和`extern`（[外部方法](classes.md#external-methods)）修飾詞。
+*Method_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合，`new` （[新的修飾](classes.md#the-new-modifier)詞），`static` （[靜態和實例）方法](classes.md#static-and-instance-methods)）、`virtual` （[虛擬方法](classes.md#virtual-methods)）、0 （覆[寫方法](classes.md#override-methods)）、2 （[密封的方法](classes.md#sealed-methods)）、4 （[抽象方法](classes.md#abstract-methods)），以及 6 （[外部方法](classes.md#external-methods)）修飾詞。
 
 如果下列所有條件都成立，宣告就會有有效的修飾片語合：
 
@@ -1767,23 +1767,23 @@ method_body
 
 具有`async`修飾詞的方法是非同步函式，並遵循[非同步函數](classes.md#async-functions)中所述的規則。
 
-方法宣告的*return_type*會指定方法所計算和傳回的數值型別。 如果方法不`void`會傳回值，則 return_type 為。 如果宣告包含`partial`修飾詞，則傳回類型必須是`void`。
+方法宣告的*return_type*會指定方法所計算和傳回的數值型別。 如果方法不會傳回值，則*return_type*會 `void`。 如果宣告包含`partial`修飾詞，則傳回類型必須是`void`。
 
 *Member_name*會指定方法的名稱。 除非方法是明確介面成員執行（[明確介面成員](interfaces.md#explicit-interface-member-implementations)的實作為），否則*member_name*只是一個*識別碼*。 若為明確介面成員的執行， *member_name*包含*interface_type* ，後面接著 "`.`" 和*識別碼*。
 
-選擇性的*type_parameter_list*會指定方法的型別參數（[型別參數](classes.md#type-parameters)）。 如果指定了*type_parameter_list* ，則方法是***泛型方法***。 如果方法有`extern`修飾詞，則不能指定*type_parameter_list* 。
+選擇性的*type_parameter_list*會指定方法的型別參數（[型別參數](classes.md#type-parameters)）。 如果指定了*type_parameter_list* ，則方法是***泛型方法***。 如果方法具有 `extern` 修飾詞，則不能指定*type_parameter_list* 。
 
 選擇性的*formal_parameter_list*會指定方法的參數（[方法參數](classes.md#method-parameters)）。
 
-選擇性的*type_parameter_constraints_clause*會指定個別型別參數的條件約束（[型別參數條件約束](classes.md#type-parameter-constraints)），而且只有在同時提供*type_parameter_list*時才會指定，而且方法不會有`override`修飾詞。
+選擇性的*type_parameter_constraints_clause*會指定個別型別參數的條件約束（[型別參數條件約束](classes.md#type-parameter-constraints)），而且只有在同時提供*type_parameter_list*時才會指定，而且方法不會有`override` 修飾詞。
 
 *Return_type*和方法的*formal_parameter_list*中所參考的每個類型，必須至少與方法本身（[存取範圍條件約束](basic-concepts.md#accessibility-constraints)）相同。
 
 *Method_body*可以是分號、***語句主體***或***運算式主體***。 語句主體是由*區塊*所組成，它會指定叫用方法時要執行的語句。 運算式主體由`=>`後面接著*運算式*和分號組成，並代表叫用方法時要執行的單一運算式。 
 
-若是`abstract`和`extern`方法， *method_body*只會包含一個分號。 針對`partial`方法， *method_body*可能包含分號、區塊主體或運算式主體。 對於所有其他方法， *method_body*是區塊主體或運算式主體。
+若為 `abstract` 和 @no__t 1 方法， *method_body*只會包含一個分號。 若為 `partial` 方法， *method_body*可能包含分號、區塊主體或運算式主體。 對於所有其他方法， *method_body*是區塊主體或運算式主體。
 
-如果*method_body*包含分號，則宣告可能不會包含`async`修飾詞。
+如果*method_body*包含分號，則宣告可能不會包含 `async` 修飾詞。
 
 方法的名稱、型別參數清單和正式參數清單會定義方法的簽章（簽章[和](basic-concepts.md#signatures-and-overloading)多載）。 具體而言，方法的簽章包含其名稱、型別參數的數目，以及其正式參數的數目、修飾詞和類型。 基於這些目的，在型式參數類型中發生之方法的任何型別參數，都不是以其名稱來識別，而是依其在方法的型別引數清單中的序數位置。傳回型別不是方法簽章的一部分，也不是型別參數或正式參數的名稱。
 
@@ -1829,11 +1829,11 @@ parameter_array
 
 型式參數清單是由一或多個以逗號分隔的參數所組成，其中只有最後一個可能是*parameter_array*。
 
-*Fixed_parameter*是由一組選擇性的*屬性*（[屬性](attributes.md)） `ref`、選擇性的、 `out`或`this`修飾詞、*類型*、*識別碼*和選擇性的*default_ 所組成。引數*。 每個*fixed_parameter*都會宣告具有指定名稱之給定類型的參數。 `this`修飾詞將方法指定為擴充方法，而且只允許用於靜態方法的第一個參數。 擴充方法會進一步說明擴充[方法。](classes.md#extension-methods)
+*Fixed_parameter*是由一組選擇性的*屬性*（[屬性](attributes.md)）、選擇性的 `ref`、`out` 或 `this` 修飾詞、*類型*、*識別碼*和選擇性*default_argument*所組成。 每個*fixed_parameter*都會宣告具有指定名稱之給定類型的參數。 `this`修飾詞將方法指定為擴充方法，而且只允許用於靜態方法的第一個參數。 擴充方法會進一步說明擴充[方法。](classes.md#extension-methods)
 
 具有*default_argument*的*fixed_parameter*稱為***選擇性參數***，而沒有*default_argument*的*fixed_parameter*則是***必要參數***。 必要參數可能不會出現在*formal_parameter_list*中的選擇性參數之後。
 
-或參數不能有*default_argument。* `ref` `out` *Default_argument*中的*運算式*必須是下列其中一項：
+@No__t-0 或 @no__t 1 參數不能有*default_argument*。 *Default_argument*中的*運算式*必須是下列其中一項：
 
 *  *constant_expression*
 *  形式`new S()`的運算式，其中`S`是實數值型別
@@ -1843,7 +1843,7 @@ parameter_array
 
 如果在執行部分方法宣告（[部分方法](classes.md#partial-methods)）中發生選擇性參數，則為明確介面成員實作為（[明確介面成員](interfaces.md#explicit-interface-member-implementations)執行），或在單一參數索引子宣告中（[索引子](classes.md#indexers)）：編譯器應該會發出警告，因為這些成員絕對無法以允許省略引數的方式叫用。
 
-*Parameter_array*是由一組選擇性的*屬性* `params` （[屬性](attributes.md)）、修飾詞、 *array_type*和*識別碼*所組成。 參數陣列會宣告具有指定名稱之指定陣列類型的單一參數。 參數陣列的*array_type*必須是一維陣列類型（[陣列類型](arrays.md#array-types)）。 在方法調用中，參數陣列允許指定給定陣列類型的單一引數，或允許指定陣列元素類型的零個或多個引數。 參數陣列中會進一步描述參數[陣列。](classes.md#parameter-arrays)
+*Parameter_array*是由一組選擇性的*屬性*（[屬性](attributes.md)）、一個 @no__t 3 修飾詞、一個*array_type*和一個*識別碼*所組成。 參數陣列會宣告具有指定名稱之指定陣列類型的單一參數。 參數陣列的*array_type*必須是一維陣列類型（[陣列類型](arrays.md#array-types)）。 在方法調用中，參數陣列允許指定給定陣列類型的單一引數，或允許指定陣列元素類型的零個或多個引數。 參數陣列中會進一步描述參數[陣列。](classes.md#parameter-arrays)
 
 *Parameter_array*可能會在選擇性參數之後發生，但不能有預設值--省略*parameter_array*的引數會改為建立空陣列。
 
@@ -1861,7 +1861,7 @@ public void M(
 ) { }
 ```
 
-在的*formal_parameter_list* `M`中， `i`是必要的 ref 參數， `d`是必要的值參數、 `b` `s` `o` 、和`t`是選擇性的值參數和`a`是參數陣列。
+在 `M` 的*formal_parameter_list*中，`i` 是必要的 ref 參數，`d` 是必要的值參數，`b`，`s`，`o`，而 `t` 是選擇性的值參數，而 `a` 是參數陣列。
 
 方法宣告會為參數、型別參數和區域變數建立個別的宣告空間。 名稱會由方法的類型參數清單和方法的型式參數清單和方法的*區塊*中的區域變數宣告，引進此宣告空間中。 方法宣告空間的兩個成員都有相同的名稱，這是一項錯誤。 方法宣告空間和嵌套宣告空間的區域變數宣告空間，包含具有相同名稱的專案，這是一項錯誤。
 
@@ -1888,7 +1888,7 @@ public void M(
 
 使用`ref`修飾詞宣告的參數是參考參數。 與值參數不同的是，參考參數不會建立新的儲存位置。 相反地，參考參數代表的儲存位置與指定為方法調用中引數的變數相同。
 
-當型式參數是參考參數時，方法調用中的對應引數必須包含關鍵字`ref` ，後面接著*variable_reference* （[判斷明確指派的精確規則](variables.md#precise-rules-for-determining-definite-assignment)）輸入做為正式參數。 必須先明確指派變數，才可以將它當做參考參數傳遞。
+當型式參數是參考參數時，方法調用中的對應引數必須包含關鍵字 `ref`，後面接著*variable_reference* （[判斷明確指派的精確規則](variables.md#precise-rules-for-determining-definite-assignment)）與型式參數。 必須先明確指派變數，才可以將它當做參考參數傳遞。
 
 在方法內，一律會將參考參數視為明確指派。
 
@@ -1914,7 +1914,7 @@ class Test
 }
 ```
 產生下列輸出
-```
+```console
 i = 2, j = 1
 ```
 
@@ -1943,7 +1943,7 @@ class A
 
 使用`out`修飾詞宣告的參數是 output 參數。 類似于參考參數，輸出參數不會建立新的儲存位置。 相反地，output 參數代表的儲存位置與指定為方法調用中引數的變數相同。
 
-當型式參數是輸出參數時，方法調用中的對應引數必須包含關鍵字`out` ，後面接著*variable_reference* （[判斷明確指派的精確規則](variables.md#precise-rules-for-determining-definite-assignment)）輸入做為正式參數。 變數不一定要先被指派，才可以做為輸出參數來傳遞，但在將變數當做輸出參數傳遞的叫用之後，會將變數視為明確指派。
+當型式參數是輸出參數時，方法調用中的對應引數必須包含關鍵字 `out`，後面接著*variable_reference* （[判斷明確指派的精確規則](variables.md#precise-rules-for-determining-definite-assignment)）與型式參數。 變數不一定要先被指派，才可以做為輸出參數來傳遞，但在將變數當做輸出參數傳遞的叫用之後，會將變數視為明確指派。
 
 在方法內，如同本機變數，輸出參數一開始會被視為未指派，而且必須在使用其值之前明確指派。
 
@@ -1951,7 +1951,7 @@ class A
 
 宣告為部分方法（[部分方法](classes.md#partial-methods)）或 Iterator （[反覆運算](classes.md#iterators)器）的方法不能有輸出參數。
 
-輸出參數通常用於產生多個傳回值的方法。 例如：
+輸出參數通常用於產生多個傳回值的方法。 例如:
 ```csharp
 using System;
 
@@ -1978,7 +1978,7 @@ class Test
 ```
 
 此範例會產生輸出：
-```
+```console
 c:\Windows\System\
 hello.txt
 ```
@@ -2018,7 +2018,7 @@ class Test
 }
 ```
 產生下列輸出
-```
+```console
 Array contains 3 elements: 1 2 3
 Array contains 4 elements: 10 20 30 40
 Array contains 0 elements:
@@ -2060,7 +2060,7 @@ class Test
 }
 ```
 產生下列輸出
-```
+```console
 F();
 F(object[]);
 F(object,object);
@@ -2097,7 +2097,7 @@ class Test
 }
 ```
 產生下列輸出
-```
+```console
 System.Int32 System.String System.Double
 System.Object[]
 System.Object[]
@@ -2114,7 +2114,7 @@ System.Int32 System.String System.Double
 
 實例方法會在類別的指定實例上運作，而且該實例可以當做`this` （這項[存取](expressions.md#this-access)）存取。
 
-當方法在表單`E.M`的*member_access* （[成員存取](expressions.md#member-access)）中被參考時，如果`M`是靜態方法， `E`則必須表示包含`M`的類型，如果`M`是實例方法，則為。必須代表包含`M`之類型的實例。 `E`
+在 `E.M` 格式的*member_access* （[成員存取](expressions.md#member-access)）中參考方法時，如果 `M` 是靜態方法，`E` 必須代表包含 `M` 的類型，而且如果 `M` 是實例方法，則 `E` 必須代表類型的實例。包含 `M`。
 
 靜態和實例成員之間的差異會在[靜態和實例成員](classes.md#static-and-instance-members)中進一步討論。
 
@@ -2168,7 +2168,7 @@ class Test
 ```
 
 在此範例中`A` ，會引進非虛擬方法`F`和虛擬方法`G`。 類別`B`引進了新的非虛擬方法`F`，因此會隱藏繼承`F`的，而且也會覆寫繼承`G`的方法。 此範例會產生輸出：
-```
+```console
 A.F
 B.F
 B.G
@@ -2216,7 +2216,7 @@ class Test
 }
 ```
 `C` 和`D`類別包含兩個具有相同簽章的虛擬方法：所導入`C`的和所引進的一個。`A` 引進`C`的方法會隱藏繼承自`A`的方法。 因此，中的 override 宣告`D`會覆寫所導`C`入的方法，而不可能`D`覆寫所引進`A`的方法。 此範例會產生輸出：
-```
+```console
 B.F
 B.F
 D.F
@@ -2522,7 +2522,7 @@ static class Program
 
 當方法具有`void`結果型別和區塊主體時， `return`區塊中的語句（[return 語句](statements.md#the-return-statement)）不允許指定運算式。 如果 void 方法的區塊執行正常（也就是，控制在方法主體結尾的流程），該方法只會回到其目前的呼叫端。
     
-當方法`void`具有結果和運算式主體時， `E`運算式必須是*statement_expression*，且主體與表單`{ E; }`的區塊主體完全相等。
+當方法具有 @no__t 0 的結果和運算式主體時，`E` 的運算式必須是*statement_expression*，而主體則完全等同于格式 `{ E; }` 的區塊主體。
     
 當方法具有非 void 的結果型別和區塊主體時，區塊中`return`的每個語句都必須指定可隱含轉換成結果型別的運算式。 值傳回方法之區塊主體的端點不得為可連線。 換句話說，在具有區塊主體的值傳回方法中，不允許控制項在方法主體的結尾流動。
     
@@ -2592,15 +2592,15 @@ property_initializer
     ;
 ```
 
-*Property_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合、 `new` （[新的修飾](classes.md#the-new-modifier)詞）、 `static` （[靜態和實例方法](classes.md#static-and-instance-methods)）、 `virtual` （[虛擬方法](classes.md#virtual-methods)）、 `override` （覆`abstract` [寫方法](classes.md#override-methods)） `sealed` 、（[密封方法](classes.md#sealed-methods)）、（[抽象方法](classes.md#abstract-methods)）和`extern`（[外部方法](classes.md#external-methods)）修飾詞。
+*Property_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合，`new` （[新的修飾](classes.md#the-new-modifier)詞），`static` （[靜態和實例）方法](classes.md#static-and-instance-methods)）、`virtual` （[虛擬方法](classes.md#virtual-methods)）、0 （覆[寫方法](classes.md#override-methods)）、2 （[密封的方法](classes.md#sealed-methods)）、4 （[抽象方法](classes.md#abstract-methods)），以及 6 （[外部方法](classes.md#external-methods)）修飾詞。
 
 屬性宣告受限於與方法宣告（[方法](classes.md#methods)）相同的規則，但與修飾詞的有效組合有關。
 
-屬性宣告的*型*別會指定宣告所引進的屬性型別，而*member_name*會指定屬性的名稱。 除非屬性是明確的介面成員執行，否則*member_name*只是一個*識別碼*。 若為明確介面成員執行（[明確介面成員](interfaces.md#explicit-interface-member-implementations)的實作為），則*member_name*包含*interface_type* ，後面接著 "`.`" 和*識別碼*。
+屬性宣告的*型*別會指定宣告所引進的屬性型別，而*member_name*會指定屬性的名稱。 除非屬性是明確的介面成員執行，否則*member_name*只是一個*識別碼*。 若為明確介面成員（[明確介面成員](interfaces.md#explicit-interface-member-implementations)的執行），則*member_name*包含*interface_type* ，後面接著 "`.`" 和*識別碼*。
 
 屬性的*類型*至少必須與屬性本身（[存取範圍條件約束](basic-concepts.md#accessibility-constraints)）一樣可以存取。
 
-*Property_body*可能是由***存取子主體***或***運算式主體***所組成。 在存取子主體中， *accessor_declarations*（必須括在 "`{`" 和 "`}`" 標記）中，宣告屬性的存取子（[存取](classes.md#accessors)子）。 存取子會指定與讀取和寫入屬性相關聯的可執行語句。
+*Property_body*可能是由***存取子主體***或***運算式主體***所組成。 在存取子主體中， *accessor_declarations*必須以 "`{`" 和 "`}`" 權杖括住，並宣告屬性的存取子（[存取](classes.md#accessors)子）。 存取子會指定與讀取和寫入屬性相關聯的可執行語句。
 
 由後面接著*運算式* `E`和`=>`分號組成的運算式主體，與語句主體`{ get { return E; } }`完全相等，因此只能用來指定僅限 getter 的屬性，其中的結果為getter 是由單一運算式所指定。
 
@@ -2618,7 +2618,7 @@ property_initializer
 
 實例屬性與類別的指定實例相關聯，而且該實例可以在該屬性的存取子`this`中當做（[此存取權](expressions.md#this-access)）存取。
 
-當屬性在表單`E.M`的*member_access* （[成員存取](expressions.md#member-access)）中被參考時，如果`M`是靜態屬性， `E`則必須代表包含`M`的類型，而且如果`M`是實例，則為。屬性，E 必須代表包含`M`之類型的實例。
+當屬性在 `E.M` 格式的*member_access* （[成員存取](expressions.md#member-access)）中參考時，如果 `M` 是靜態屬性，`E` 必須代表包含 `M` 的類型，而且如果 `M` 是實例屬性，則 E 必須代表類型的實例。包含 `M`。
 
 靜態和實例成員之間的差異會在[靜態和實例成員](classes.md#static-and-instance-members)中進一步討論。
 
@@ -2654,20 +2654,20 @@ accessor_body
     ;
 ```
 
-存取子宣告包含*get_accessor_declaration*、 *set_accessor_declaration*或兩者。 每個存取子宣告都包含`get`標記`set` ，或後面接著選擇性的*accessor_modifier*和*accessor_body*。
+存取子宣告包含*get_accessor_declaration*、 *set_accessor_declaration*或兩者。 每個存取子宣告都包含 `get` 的 token，或 `set`，後面接著選擇性的*accessor_modifier*和*accessor_body*。
 
 使用*accessor_modifier*會受到下列限制：
 
 *  *Accessor_modifier*不能用在介面或明確介面成員的執行中。
-*  對於沒有`override`修飾詞的屬性或索引子，只有在屬性或索引子同時具有和`set`存取子時， `get`才允許*accessor_modifier* ，而只允許在其中一個存取子上使用。
-*  對於包含`override`修飾詞的屬性或索引子，存取子必須符合所要覆寫之存取子的*accessor_modifier*（如果有的話）。
+*  對於沒有 `override` 修飾詞的屬性或索引子，只有在屬性或索引子同時具備 @no__t 2 和 @no__t 3 存取子，而且只允許在其中一個存取子時，才允許*accessor_modifier* 。
+*  對於包含 `override` 修飾詞的屬性或索引子，存取子必須符合所要覆寫之存取子的*accessor_modifier*（如果有的話）。
 *  *Accessor_modifier*必須宣告比屬性或索引子本身的宣告存取範圍嚴格更嚴格的存取範圍。 精確：
-   * 如果屬性或索引子具有的已宣告存取`public`範圍，*則 accessor_modifier* `protected internal`可能`protected`是、 `internal`、或`private`。
-   * 如果屬性或索引子具有的已宣告存取`protected internal`範圍，則*accessor_modifier*可能是`internal`、 `protected`或。 `private`
-   * 如果屬性或索引子`internal`具有或`protected`的已宣告存取範圍，則*accessor_modifier*必須`private`是。
-   * 如果屬性或索引子具有的已宣告存取`private`範圍，則不會使用任何*accessor_modifier* 。
+   * 如果屬性或索引子具有 `public` 的宣告存取範圍，則*accessor_modifier*可能是 `protected internal`、`internal`、`protected` 或 `private`。
+   * 如果屬性或索引子具有 `protected internal` 的宣告存取範圍，則*accessor_modifier*可能是 `internal`、`protected` 或 `private`。
+   * 如果屬性或索引子具有 `internal` 或 `protected` 的已宣告存取範圍，則*accessor_modifier*必須 `private`。
+   * 如果屬性或索引子具有 `private` 的宣告存取範圍，則不會使用任何*accessor_modifier* 。
 
-對於`abstract` 和`extern`屬性而言，指定的每個存取子的*accessor_body*只是分號。 非抽象的非外部屬性可能會有每個*accessor_body*都是分號，在這種情況下，它是自動實作為***屬性***（[自動實作為](classes.md#automatically-implemented-properties)屬性）。 自動執行的屬性至少必須有 get 存取子。 對於任何其他非抽象的非外部屬性的存取子， *accessor_body*是一個*區塊*，它會指定叫用對應存取子時要執行的語句。
+對於 `abstract` 和 @no__t 1 屬性而言，指定的每個存取子的*accessor_body*只是一個分號。 非抽象的非外部屬性可能會有每個*accessor_body*都是分號，在這種情況下，它是自動實作為***屬性***（[自動實作為](classes.md#automatically-implemented-properties)屬性）。 自動執行的屬性至少必須有 get 存取子。 對於任何其他非抽象的非外部屬性的存取子， *accessor_body*是一個*區塊*，它會指定叫用對應存取子時要執行的語句。
 
 `get`存取子會對應至具有屬性類型傳回值的無參數方法。 除了指派的目標以外，在運算式中參考屬性時，會叫用屬性的`get`存取子來計算屬性的值（[運算式的值](expressions.md#values-of-expressions)）。 存取子`get`的主體必須符合[方法主體](classes.md#method-body)中所述之傳回值方法的規則。 特別是，存取`return`子`get`主體中的所有語句都必須指定可隱含轉換成屬性類型的運算式。 此外，也不得連線到`get`存取子的端點。
 
@@ -2834,7 +2834,7 @@ class Counter
 
 `get`存取子的「無副作用」慣例並不表示應該一律`get`寫入存取子，只傳回儲存在欄位中的值。 實際上， `get`存取子通常會藉由存取多個欄位或叫用方法來計算屬性的值。 不過，適當設計`get`的存取子不會執行任何動作，而造成物件狀態中的可觀察變更。
 
-屬性可以用來延遲資源的初始化，直到第一次參考它為止。 例如：
+屬性可以用來延遲資源的初始化，直到第一次參考它為止。 例如:
 ```csharp
 using System.IO;
 
@@ -3062,7 +3062,7 @@ class B: A
 
 在這裡，、和`X` `Z`的`Y`宣告會覆寫屬性宣告。 每個屬性宣告完全符合協助工具修飾詞、類型和對應繼承屬性的名稱。 `base`的`get`存取子`set`和的存取`Y`子會使用關鍵字來存取繼承的存取子。 `X` 的宣告會`B` `B`覆寫抽象存取子（因此，中沒有任何未處理的抽象函數成員），且允許為非`Z`抽象類別。
 
-當屬性宣告為時，覆`override`寫程式碼必須能夠存取任何已覆寫的存取子。 此外，屬性或索引子本身和存取子的宣告存取範圍，都必須符合覆寫成員和存取子的。 例如：
+當屬性宣告為時，覆`override`寫程式碼必須能夠存取任何已覆寫的存取子。 此外，屬性或索引子本身和存取子的宣告存取範圍，都必須符合覆寫成員和存取子的。 例如:
 ```csharp
 public class B
 {
@@ -3081,7 +3081,7 @@ public class D: B
 }
 ```
 
-## <a name="events"></a>事件
+## <a name="events"></a>Events
 
 「***事件***」（event）是可讓物件或類別提供通知的成員。 用戶端可以藉由提供***事件處理常式***，附加事件的可執行程式碼。
 
@@ -3122,7 +3122,7 @@ remove_accessor_declaration
     ;
 ```
 
-*Event_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合、 `new` （[新的修飾](classes.md#the-new-modifier)詞）、 `static` （[靜態和實例方法](classes.md#static-and-instance-methods)）、 `virtual` （[虛擬方法](classes.md#virtual-methods)）、 `override` （覆`abstract` [寫方法](classes.md#override-methods)） `sealed` 、（[密封方法](classes.md#sealed-methods)）、（[抽象方法](classes.md#abstract-methods)）和`extern`（[外部方法](classes.md#external-methods)）修飾詞。
+*Event_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合，`new` （[新的修飾](classes.md#the-new-modifier)詞），`static` （[靜態和實例）方法](classes.md#static-and-instance-methods)）、`virtual` （[虛擬方法](classes.md#virtual-methods)）、0 （覆[寫方法](classes.md#override-methods)）、2 （[密封的方法](classes.md#sealed-methods)）、4 （[抽象方法](classes.md#abstract-methods)），以及 6 （[外部方法](classes.md#external-methods)）修飾詞。
 
 事件宣告受限於與方法宣告（[方法](classes.md#methods)）相同的規則，如同有效的修飾片語合。
 
@@ -3132,11 +3132,11 @@ remove_accessor_declaration
 
 省略*event_accessor_declarations*的事件宣告會定義一或多個事件（每個*variable_declarator*各一個）。 屬性和修飾詞適用于這類*event_declaration*所宣告的所有成員。
 
-*Event_declaration*會包含修飾詞和以大括弧分隔的`abstract` *event_accessor_declarations*，這是編譯時期錯誤。
+發生編譯時期錯誤，讓*event_declaration*同時包含 @no__t 1 修飾詞和以大括弧分隔的*event_accessor_declarations*。
 
-當事件宣告包含`extern`修飾詞時，事件稱為「***外來事件***」。 因為外來事件宣告不提供實際的實值，所以它會產生修飾詞和*event_accessor_declarations*的`extern`錯誤。
+當事件宣告包含`extern`修飾詞時，事件稱為「***外來事件***」。 因為外來事件宣告不會提供實際的實值，所以它會錯誤地包含 `extern` 修飾詞和*event_accessor_declarations*。
 
-針對具有`abstract`或`external`修飾詞以包含*variable_initializer*的事件宣告*variable_declarator* ，這是編譯時期錯誤。
+如果事件宣告的*variable_declarator*是包含*variable_initializer*的 `abstract` 或 @no__t 2 修飾詞，就會發生編譯時期錯誤。
 
 事件可用來做為`+=`和`-=`運算子（[事件指派](expressions.md#event-assignment)）的左運算元。 這些運算子分別用來將事件處理常式附加至或，以從事件中移除事件處理常式，而事件的存取修飾詞會控制允許這類作業的內容。
 
@@ -3179,7 +3179,7 @@ public class LoginDialog: Form
 
 ### <a name="field-like-events"></a>類似欄位的事件
 
-在包含事件宣告的類別或結構的程式文字內，某些事件可以像欄位一樣使用。 若要以這種方式使用，事件不得為`abstract`或`extern`，而且不得明確包含*event_accessor_declarations*。 這類事件可以在允許欄位的任何內容中使用。 欄位包含委派（[委派](delegates.md)），其參考已加入至事件的事件處理常式清單。 如果尚未加入任何事件處理常式，則欄位會`null`包含。
+在包含事件宣告的類別或結構的程式文字內，某些事件可以像欄位一樣使用。 若要以這種方式使用，事件不得 `abstract` 或 `extern`，而且不得明確包含*event_accessor_declarations*。 這類事件可以在允許欄位的任何內容中使用。 欄位包含委派（[委派](delegates.md)），其參考已加入至事件的事件處理常式清單。 如果尚未加入任何事件處理常式，則欄位會`null`包含。
 
 在範例中
 ```csharp
@@ -3240,13 +3240,13 @@ class X
 
 ### <a name="event-accessors"></a>事件存取子
 
-事件宣告通常會省略*event_accessor_declarations*，如上述`Button`範例所示。 執行此動作的其中一種情況，包括無法接受每個事件的一個欄位的儲存成本。 在這種情況下，類別可以包含*event_accessor_declarations* ，並使用私用機制來儲存事件處理常式的清單。
+事件宣告通常會省略*event_accessor_declarations*，如上面的 `Button` 範例所示。 執行此動作的其中一種情況，包括無法接受每個事件的一個欄位的儲存成本。 在這種情況下，類別可以包含*event_accessor_declarations* ，並使用私用機制來儲存事件處理常式的清單。
 
 事件的*event_accessor_declarations*會指定與加入和移除事件處理常式相關聯的可執行語句。
 
 存取子宣告包含*add_accessor_declaration*和*remove_accessor_declaration*。 每個存取子宣告都是`add`由`remove` token 或後面接著*區塊*所組成。 與*add_accessor_declaration*相關聯的*區塊*會指定在加入事件處理常式時要執行的語句，而與*remove_accessor_declaration*相關聯的*區塊*則會指定要執行的語句。移除事件處理常式時。
 
-每個*add_accessor_declaration*和*remove_accessor_declaration*都會對應至一個方法，其中包含事件`void`類型的單一值參數和傳回型別。 事件存取子的隱含參數名為`value`。 在事件指派中使用事件時，會使用適當的事件存取子。 具體而言，如果指派運算子為`+=` ，則會使用 add 存取子，而且如果指派運算子為`-=` ，則會使用 remove 存取子。 在任一情況下，指派運算子的右手運算元會當做事件存取子的引數使用。 *Add_accessor_declaration*或*remove_accessor_declaration*的區塊必須符合`void` [方法主體](classes.md#method-body)中所述之方法的規則。 特別是， `return`這類區塊中的語句不允許指定運算式。
+每個*add_accessor_declaration*和*remove_accessor_declaration*都會對應至一個方法，其中包含事件種類的單一值參數和一個 @no__t 2 傳回類型。 事件存取子的隱含參數名為`value`。 在事件指派中使用事件時，會使用適當的事件存取子。 具體而言，如果指派運算子為`+=` ，則會使用 add 存取子，而且如果指派運算子為`-=` ，則會使用 remove 存取子。 在任一情況下，指派運算子的右手運算元會當做事件存取子的引數使用。 *Add_accessor_declaration*或*remove_accessor_declaration*的區塊必須符合[方法主體](classes.md#method-body)中所述 @no__t 2 方法的規則。 特別是， `return`這類區塊中的語句不允許指定運算式。
 
 由於事件存取子會隱含地擁有名`value`為的參數，因此在事件存取子中宣告的區域變數或常數必須有該名稱，才會發生編譯時期錯誤。
 
@@ -3298,7 +3298,7 @@ class Control: Component
 
 實例事件與類別的指定實例相關聯，而且可以在該事件的存取子中， `this`以（[此存取](expressions.md#this-access)）的方式存取這個實例。
 
-在表單`E.M`的*member_access* （[成員存取](expressions.md#member-access)）中參考事件時，如果`M`是靜態事件， `E`則必須代表包含`M`的類型，而且如果`M`是實例事件，則 E 必須表示包含`M`之類型的實例。
+當 `E.M` 格式的*member_access* （[成員存取](expressions.md#member-access)）中參考事件時，如果 `M` 是靜態事件，`E` 必須代表包含 `M` 的類型，而且如果 `M` 是實例事件，則 E 必須代表類型的實例，其中包含`M`。
 
 靜態和實例成員之間的差異會在[靜態和實例成員](classes.md#static-and-instance-members)中進一步討論。
 
@@ -3356,19 +3356,19 @@ indexer_body
     ;
 ```
 
-*Indexer_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合、 `new` （[新的修飾](classes.md#the-new-modifier)詞）、（ `virtual` [虛擬方法](classes.md#virtual-methods)）、 `override` （覆[寫方法](classes.md#override-methods)） `sealed` 、（[密封方法](classes.md#sealed-methods)） `abstract` 、（[抽象方法](classes.md#abstract-methods)）和`extern` （[外部方法](classes.md#external-methods)）修飾詞。
+*Indexer_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合，`new` （[新的修飾](classes.md#the-new-modifier)詞），`virtual` （[虛擬方法](classes.md#virtual-methods)）、`override` （覆[寫方法](classes.md#override-methods)）、0 （[密封方法](classes.md#sealed-methods)）、2 （[抽象方法](classes.md#abstract-methods)），以及 4 （[外部方法](classes.md#external-methods)）修飾詞。
 
 索引子宣告受限於與方法宣告（[方法](classes.md#methods)）相同的規則，與修飾詞的有效組合有關，唯一的例外是在索引子宣告上不允許使用 static 修飾詞。
 
 修飾詞`virtual`、 `override`和`abstract`是互斥的，但在一種情況下除外。 `abstract` 和`override`修飾詞可以一起使用，讓抽象的索引子可以覆寫虛擬一個。
 
-索引子宣告的*類型*會指定宣告所引進之索引子的元素類型。 除非索引子是明確介面成員的執行，否則*類型*後面會接著關鍵字`this`。 若為明確介面成員的執行，*類型*後面會接著*interface_type*、"`.`" 和關鍵字。 `this` 不同于其他成員，索引子沒有使用者定義的名稱。
+索引子宣告的*類型*會指定宣告所引進之索引子的元素類型。 除非索引子是明確介面成員的執行，否則*類型*後面會接著關鍵字`this`。 若為明確介面成員的執行，*類型*後面會接著*interface_type*、"`.`" 和關鍵字 `this`。 不同于其他成員，索引子沒有使用者定義的名稱。
 
 *Formal_parameter_list*會指定索引子的參數。 索引子的型式參數清單會對應至方法（[方法參數](classes.md#method-parameters)）的類型，但至少必須指定一個參數，而且`ref`不允許和`out`參數修飾詞。
 
 索引子的*類型*以及*formal_parameter_list*中所參考的每個類型，至少必須與索引子本身（[存取範圍條件約束](basic-concepts.md#accessibility-constraints)）相同。
 
-*Indexer_body*可能是由***存取子主體***或***運算式主體***所組成。 在存取子主體中， *accessor_declarations*（必須括在 "`{`" 和 "`}`" 標記）中，宣告屬性的存取子（[存取](classes.md#accessors)子）。 存取子會指定與讀取和寫入屬性相關聯的可執行語句。
+*Indexer_body*可能是由***存取子主體***或***運算式主體***所組成。 在存取子主體中， *accessor_declarations*必須以 "`{`" 和 "`}`" 權杖括住，並宣告屬性的存取子（[存取](classes.md#accessors)子）。 存取子會指定與讀取和寫入屬性相關聯的可執行語句。
 
 由 "`=>`" 後面接著運算式`E`和分號組成的運算式主體，與語句主體`{ get { return E; } }`完全相等，因此只能用來指定 getter 的索引子，其中 getter 的結果是由單一運算式指定。
 
@@ -3559,7 +3559,7 @@ operator_body
 
 *Operator_body*可以是分號、***語句主體***或***運算式主體***。 語句主體是由*區塊*所組成，它會指定叫用運算子時要執行的語句。 *區塊*必須符合[方法主體](classes.md#method-body)中所述之傳回值方法的規則。 運算式主體由`=>`後面接著運算式和分號組成，並代表叫用運算子時要執行的單一運算式。
 
-針對`extern`運算子， *operator_body*只會包含一個分號。 對於所有其他運算子， *operator_body*是區塊主體或運算式主體。
+若為 `extern` 運算子， *operator_body*只會包含一個分號。 對於所有其他運算子， *operator_body*是區塊主體或運算式主體。
 
 下列規則適用于所有的運算子宣告：
 
@@ -3650,7 +3650,7 @@ class Test
 
 *  `S0`和`T0`是不同的類型。
 *  `S0` 或`T0`是發生運算子宣告的類別或結構類型。
-*  和都不是*interface_type。* `S0` `T0`
+*  @No__t-0 或 `T0` 都不是*interface_type*。
 *  排除使用者定義的轉換，轉換不會`S`從到`T`或從`T`到`S`。
 
 基於這些規則的目的，與`S`或`T`相關聯的任何類型參數都會被視為與其他類型沒有繼承關係的唯一類型，而且會忽略這些類型參數上的任何條件約束。
@@ -3691,7 +3691,7 @@ struct Convertible<T>
 
 否則，使用者定義從`S`到`T`的隱含轉換仍會被視為。
 
-針對所有類型`object`，上述`Convertible<T>`類型所宣告的運算子不會與預先定義的轉換衝突。 例如：
+針對所有類型`object`，上述`Convertible<T>`類型所宣告的運算子不會與預先定義的轉換衝突。 例如:
 ```csharp
 void F(int i, Convertible<int> n) {
     i = n;                          // Error
@@ -3775,7 +3775,7 @@ constructor_body
     ;
 ```
 
-*Constructor_declaration*可以包含一組*屬性*（[屬性](attributes.md)）、四個存取修飾詞（ `extern` [存取](classes.md#access-modifiers)修飾詞）的有效組合，以及（[外部方法](classes.md#external-methods)）修飾詞。 不允許將相同的修飾詞多次包含在函式宣告中。
+*Constructor_declaration*可以包含一組*屬性*（[屬性](attributes.md)）、四個存取修飾詞（[存取](classes.md#access-modifiers)修飾詞）的有效組合，以及 @no__t 4 （[外部方法](classes.md#external-methods)）修飾詞。 不允許將相同的修飾詞多次包含在函式宣告中。
 
 *Constructor_declarator*的*識別碼*必須命名用來宣告實例函式的類別。 如果指定了任何其他名稱，就會發生編譯時期錯誤。
 
@@ -3793,7 +3793,7 @@ constructor_body
 
 ### <a name="constructor-initializers"></a>建構函式初始設定式
 
-所有實例的函式（除了類別`object`以外）都會以隱含的方式，在*constructor_body*之前直接包含另一個實例的函式呼叫。 隱含叫用的函式是由*constructor_initializer*所決定：
+所有實例的函式（類別 `object` 的除外）會隱含地在*constructor_body*之前，直接包含另一個實例的程式調用。 隱含叫用的函式是由*constructor_initializer*所決定：
 
 *  表單`base(argument_list)`的實例函式初始化運算式`base()` ，或會導致叫用直接基類的實例（class）。 該函式會使用*argument_list* （如果有的話）和多載[解析的](expressions.md#overload-resolution)多載解析規則來選取。 候選實例的集合是由直接基類中包含的所有可存取的實例函式所組成，如果在直接基類中未宣告任何實例的函式，則是預設的函式（[預設](classes.md#default-constructors)的函數）。 如果這個集合是空的，或者無法識別單一最佳實例的函式，就會發生編譯時期錯誤。
 *  形式`this(argument-list)`的實例函式初始化運算式， `this()`或會導致叫用類別本身的實例函式。 使用*argument_list* （如果有的話）和多載[解析](expressions.md#overload-resolution)的多載解析規則來選取此函式。 候選實例的集合是由類別本身所宣告的所有可存取的實例函式所組成。 如果這個集合是空的，或者無法識別單一最佳實例的函式，就會發生編譯時期錯誤。 如果實例的「函式宣告」包含會叫用此函式本身的「函數初始化運算式」，就會發生編譯時期錯誤。
@@ -3807,7 +3807,7 @@ C(...) {...}
 C(...): base() {...}
 ```
 
-由實例的「函式宣告」（instance） *formal_parameter_list*所指定的參數範圍包含該宣告的「函式初始化運算式」。 因此，允許使用函式初始化運算式來存取此函式的參數。 例如：
+由實例的「函式宣告」（instance） *formal_parameter_list*所指定的參數範圍包含該宣告的「函式初始化運算式」。 因此，允許使用函式初始化運算式來存取此函式的參數。 例如:
 ```csharp
 class A
 {
@@ -3820,11 +3820,11 @@ class B: A
 }
 ```
 
-實例的「函式初始化運算式」無法存取所建立的實例。 因此，在函式初始化運算式的引數`this`運算式中參考編譯時期錯誤，這是引數運算式透過*simple_name*參考任何實例成員的編譯時期錯誤。
+實例的「函式初始化運算式」無法存取所建立的實例。 因此，在函式初始化運算式的引數運算式中參考 `this` 的編譯時期錯誤，這是引數運算式透過*simple_name*參考任何實例成員的編譯時期錯誤。
 
 ### <a name="instance-variable-initializers"></a>執行個體變數初始化運算式
 
-當實例的函式沒有任何的函式初始化運算式，或其具有表單`base(...)`的「方法」初始化運算式時，該此函數會隱含地執行實例欄位之*variable_initializer*所指定的初始化。在其類別中宣告。 這會對應到在進入函式時，以及在直接基類的隱含調用之前，立即執行的一系列指派。 變數初始化運算式會以它們出現在類別宣告中的文字順序來執行。
+當實例的函式沒有任何函式初始化運算式，或它的格式器初始化運算式為 `base(...)` 時，該函數會隱含地執行由中宣告之實例欄位的*variable_initializer*所指定的初始化其類別。 這會對應到在進入函式時，以及在直接基類的隱含調用之前，立即執行的一系列指派。 變數初始化運算式會以它們出現在類別宣告中的文字順序來執行。
 
 ### <a name="constructor-execution"></a>執行的函式
 
@@ -3858,7 +3858,7 @@ class B: A
 }
 ```
 當`new B()`用來建立的`B`實例時，會產生下列輸出：
-```
+```console
 x = 1, y = 0
 ```
 
@@ -3975,7 +3975,7 @@ class Message
 
 ### <a name="private-constructors"></a>私用函式
 
-當類別`T`只宣告私用實例的函式時，不可能在的程式`T`文字之外的類別衍生自`T`或直接建立的`T`實例。 因此，如果類別只包含靜態成員，而不想要具現化，則加入空的私用實例的函式將會導致無法具現化。 例如：
+當類別`T`只宣告私用實例的函式時，不可能在的程式`T`文字之外的類別衍生自`T`或直接建立的`T`實例。 因此，如果類別只包含靜態成員，而不想要具現化，則加入空的私用實例的函式將會導致無法具現化。 例如:
 ```csharp
 public class Trig
 {
@@ -4034,11 +4034,11 @@ static_constructor_body
     ;
 ```
 
-*Static_constructor_declaration*可以包含一組*屬性*（ `extern` [屬性](attributes.md)）和修飾詞（[外部方法](classes.md#external-methods)）。
+*Static_constructor_declaration*可以包含一組*屬性*（[屬性](attributes.md)）和 @no__t 3 修飾詞（[外部方法](classes.md#external-methods)）。
 
 *Static_constructor_declaration*的*識別碼*必須命名用來宣告靜態函式的類別。 如果指定了任何其他名稱，就會發生編譯時期錯誤。
 
-當靜態的「函式`extern`宣告」包含修飾詞時，靜態的「函式」稱為「***外部靜態***」（external）函數。 因為外部靜態的「函式宣告」不提供實際的實值，所以其*static_constructor_body*由分號組成。 針對所有其他的靜態函式宣告， *static_constructor_body*包含一個*區塊*，指定要執行的語句以初始化類別。 這會完全對應至具有`void`傳回型別（[方法主體](classes.md#method-body)）之靜態方法的 method_body。
+當靜態的「函式`extern`宣告」包含修飾詞時，靜態的「函式」稱為「***外部靜態***」（external）函數。 因為外部靜態的「函式宣告」不提供實際的實值，所以其*static_constructor_body*由分號組成。 針對所有其他的靜態函式宣告， *static_constructor_body*包含一個*區塊*，指定要執行的語句以初始化類別。 這會完全對應至具有 @no__t 1 傳回型別（[方法主體](classes.md#method-body)）之靜態方法的*method_body* 。
 
 靜態的函式不會繼承，也不能直接呼叫。
 
@@ -4084,7 +4084,7 @@ class B
 }
 ```
 必須產生輸出：
-```
+```console
 Init A
 A.F
 Init B
@@ -4119,7 +4119,7 @@ class B
 }
 ```
 產生下列輸出
-```
+```console
 X = 1, Y = 2
 ```
 
@@ -4157,7 +4157,7 @@ destructor_body
 
 *Destructor_declaration*的*識別碼*必須命名為宣告函式的類別。 如果指定了任何其他名稱，就會發生編譯時期錯誤。
 
-當析構函數宣告包含`extern`修飾詞時，會將此析構函數稱為***外部的析構函***式。 因為外部的析構函式宣告不提供實際的實值，所以其*destructor_body*由分號組成。 對於所有其他的析構函數， *destructor_body*包含一個*區塊*，其指定要執行的語句，以便銷毀類別的實例。 *Destructor_body*會完全對應至具有 `void`傳回型別（[方法主體](classes.md#method-body)）之實例方法的 method_body。
+當析構函數宣告包含`extern`修飾詞時，會將此析構函數稱為***外部的析構函***式。 因為外部的析構函式宣告不提供實際的實值，所以其*destructor_body*由分號組成。 對於所有其他的析構函數， *destructor_body*包含一個*區塊*，其指定要執行的語句，以便銷毀類別的實例。 *Destructor_body*會完全對應至實例方法的*method_body* ，並具有 @no__t 2 傳回型別（[方法主體](classes.md#method-body)）。
 
 不會繼承析構函數。 因此，類別沒有任何可在該類別中宣告的析構函數。
 
@@ -4723,7 +4723,7 @@ class Tree<T>: IEnumerable<T>
 
 非同步函式的型式參數清單若要指定任何`ref`或`out`參數，就會發生編譯時期錯誤。
 
-非同步方法的*return_type*必須是`void`或工作***類型***。 工作類型為， `System.Threading.Tasks.Task`而類型則是`System.Threading.Tasks.Task<T>`由所構成。 為了簡潔起見，在本章中，這些類型分別會當做`Task`和`Task<T>`來參考。 傳回工作類型的非同步方法稱為「工作傳回」（task）。
+非同步方法的*return_type*必須是 `void` 或工作***類型***。 工作類型為， `System.Threading.Tasks.Task`而類型則是`System.Threading.Tasks.Task<T>`由所構成。 為了簡潔起見，在本章中，這些類型分別會當做`Task`和`Task<T>`來參考。 傳回工作類型的非同步方法稱為「工作傳回」（task）。
 
 工作類型的確切定義是已定義的執行，但從語言的觀點來看，工作類型的狀態為 [不完整]、[成功] 或 [錯誤]。 錯誤的工作會記錄相關的例外狀況。 成功`Task<T>`記錄類型`T`的結果。 工作類型是可等候，因此可以是 await 運算式的運算元（[await 運算式](expressions.md#await-expressions)）。
 
