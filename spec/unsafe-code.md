@@ -14,14 +14,14 @@ ms.locfileid: "72310367"
 
 在 unsafe 程式碼中，您可以宣告和操作指標、執行指標和整數類型之間的轉換、接受變數的位址等等。 就意義而言，撰寫 unsafe C#程式碼很像是在程式中撰寫 C 程式碼。
 
-不安全的程式碼實際上是從開發人員和使用者的角度來看的「安全」功能。 不安全的程式碼必須以修飾詞清楚標示 `unsafe`，讓開發人員不會意外地使用不安全的功能，而且執行引擎可以確保不安全的程式碼無法在未受信任的環境中執行。
+不安全的程式碼實際上是從開發人員和使用者的角度來看的「安全」功能。 不安全的程式碼必須以修飾詞 `unsafe`清楚標示，讓開發人員不會意外地使用不安全的功能，而且執行引擎也可以確保不安全的程式碼無法在未受信任的環境中執行。
 
 ## <a name="unsafe-contexts"></a>Unsafe 內容
 
 不安全的C#功能僅適用于 unsafe 內容。 不安全的內容是藉由在類型或成員的宣告中包含 `unsafe` 修飾詞，或藉由採用*unsafe_statement*而引進：
 
-*  類別、結構、介面或委派的宣告可能包含 `unsafe` 修飾詞，在這種情況下，該類型宣告的整個文字範圍（包括類別、結構或介面的主體）會被視為不安全的內容。
-*  欄位、方法、屬性、事件、索引子、運算子、實例的程式化、析構函數或靜態的函式的宣告可能包含 @no__t 0 修飾詞，在這種情況下，該成員宣告的整個文字範圍會被視為不安全的內容。
+*  類別、結構、介面或委派的宣告可能包含 `unsafe` 的修飾詞，在這種情況下，該類型宣告的整個文字範圍（包括類別、結構或介面的主體）會被視為不安全的內容。
+*  欄位、方法、屬性、事件、索引子、運算子、實例的函式、析構函數或靜態的方法宣告可能包含 `unsafe` 修飾詞，在這種情況下，該成員宣告的整個文字範圍會被視為不安全的內容。
 *  *Unsafe_statement*可讓您在*區塊*內使用不安全的內容。 相關聯*區塊*的整個文字範圍會被視為不安全的內容。
 
 相關聯的文法生產如下所示。
@@ -106,7 +106,7 @@ public unsafe struct Node
 }
 ```
 
-結構宣告中指定的 `unsafe` 修飾詞會導致結構宣告的整個文字範圍成為不安全的內容。 因此，您可以將 `Left` 和 @no__t 1 欄位宣告為指標類型。 也可以撰寫上述範例
+結構宣告中指定的 `unsafe` 修飾詞會導致結構宣告的整個文字範圍成為不安全的內容。 因此，可以將 `Left` 和 `Right` 欄位宣告為指標類型。 也可以撰寫上述範例
 
 ```csharp
 public struct Node
@@ -119,7 +119,7 @@ public struct Node
 
 在這裡，欄位宣告中的 `unsafe` 修飾詞會導致這些宣告被視為不安全的內容。
 
-除了建立不安全的內容，因此允許使用指標類型，`unsafe` 修飾詞對類型或成員不會有任何影響。 在範例中
+除了建立 unsafe 內容，因此允許使用指標類型，`unsafe` 修飾詞對類型或成員不會有任何影響。 在範例中
 
 ```csharp
 public class A
@@ -139,7 +139,7 @@ public class B: A
 }
 ```
 
-`A` 中 `F` 方法上的 `unsafe` 修飾詞，只會使 `F` 的文字範圍成為不安全的內容，而不會使用語言的 unsafe 功能。 在 `B` 的 `F` 覆寫中，不需要重新指定 `unsafe` 修飾詞，除非在 `B` 中的 `F` 方法本身需要存取不安全的功能。
+在 `A` 中，`F` 方法上的 `unsafe` 修飾詞，只會使 `F` 的文字範圍成為不安全的內容，而不會使用語言的 unsafe 功能。 在 `B`中的 `F` 覆寫時，不需要重新指定 `unsafe` 修飾詞，除非 `B` 本身的 `F` 方法需要存取不安全的功能。
 
 當指標類型是方法簽章的一部分時，這種情況會略有不同
 
@@ -155,11 +155,11 @@ public class B: A
 }
 ```
 
-在這裡，因為 `F` 的簽章包含指標類型，所以只能在不安全的內容中寫入。 不過，不安全的內容可以藉由讓整個類別不安全（如 `A` 中的情況），或在方法宣告中包含 `unsafe` 修飾詞來引進，如同 `B` 中的情況。
+在這裡，因為 `F`的簽章包含指標類型，所以只能在不安全的內容中寫入。 不過，不安全的內容可以藉由讓整個類別不安全（如 `A`中的情況），或在方法宣告中包含 `unsafe` 修飾詞來引進，如同 `B`中的情況。
 
 ## <a name="pointer-types"></a>指標類型
 
-在不安全的內容中，*類型*（[類型](types.md)）可能是*pointer_type* ，也可以是*value_type*或*reference_type*。 不過， *pointer_type*也可用於不安全內容外的 @no__t 1 運算式（[匿名物件建立運算式](expressions.md#anonymous-object-creation-expressions)），因為這種用法並不安全。
+在不安全的內容中，*類型*（[類型](types.md)）可以是*pointer_type* ，也可以是*value_type*或*reference_type*。 不過， *pointer_type*也可以用於不安全內容外部的 `typeof` 運算式（[匿名物件建立運算式](expressions.md#anonymous-object-creation-expressions)），因為這種用法並不安全。
 
 ```antlr
 type_unsafe
@@ -186,10 +186,10 @@ unmanaged_type
 
 *Unmanaged_type*是不是*reference_type*或結構化類型的任何類型，而且不包含任何嵌套層級的*reference_type*或結構化類型欄位。 換句話說， *unmanaged_type*是下列其中一項：
 
-*  `sbyte`、`byte`、`short`、`ushort`、`int`、`uint`、`long`、`ulong`、`char`、`float`、0、1 或 2。
+*  `sbyte`、`byte`、`short`、`ushort`、`int`、`uint`、`long`、`ulong`、`char`、`float`、`double`、`decimal`或 `bool`。
 *  任何*enum_type*。
 *  任何*pointer_type*。
-*  任何不是結構化型別且僅包含*unmanaged_type*之欄位的使用者定義*struct_type* 。
+*  任何不是結構化型別，且僅包含*unmanaged_type*s 欄位的使用者定義*struct_type* 。
 
 混合使用指標和參考的直覺規則是，參考（物件）的物件可以包含指標，但不允許指標的物件包含參考。
 
@@ -197,33 +197,33 @@ unmanaged_type
 
 | __範例__ | __描述__                               |
 |-------------|-----------------------------------------------|
-| `byte*`     | @No__t 的指標-0                             |
-| `char*`     | @No__t 的指標-0                             |
-| `int**`     | 指標指向 `int`                   |
-| `int*[]`    | @No__t-0 的一維指標陣列 |
+| `byte*`     | `byte` 的指標                             |
+| `char*`     | `char` 的指標                             |
+| `int**`     | 指向 `int` 指標的指標                   |
+| `int*[]`    | 要 `int` 之指標的一維陣列 |
 | `void*`     | 未知類型的指標                       |
 
 若為指定的執行，所有指標類型都必須具有相同的大小和表示。
 
-不同于 C C++和，在相同宣告中宣告多個指標時， C#在中，`*` 會與基礎類型一併寫入，而不是在每個指標名稱上當做前置詞標點符號。 例如：
+不同于 C C++和，在相同宣告中宣告多個指標時， C#在中，`*` 會與基礎類型一併寫入，而不是在每個指標名稱上當做前置詞標點符號。 例如
 
 ```csharp
 int* pi, pj;    // NOT as int *pi, *pj;
 ```
 
-類型為 `T*` 的指標值表示 `T` 類型的變數位址。 指標間接運算子 `*` （[指標間接](unsafe-code.md#pointer-indirection)取值）可用來存取這個變數。 例如，假設 `int*` 類型的變數 `P`，則運算式 `*P` 表示在 `P` 中所包含的位址上找到的 `int` 變數。
+具有類型 `T*` 的指標值表示 `T`類型之變數的位址。 指標間接運算子 `*` （[指標間接](unsafe-code.md#pointer-indirection)取值）可以用來存取這個變數。 例如，假設 `int*`類型的變數 `P`，運算式 `*P` 表示在 `P`所包含的位址找到的 `int` 變數。
 
-就像物件參考一樣，指標可能會 `null`。 將間接運算子套用至 @no__t 0 指標會導致實作為定義的行為。 值為 `null` 的指標是以全位-零表示。
+就像物件參考一樣，指標也可以 `null`。 將間接運算子套用至 `null` 指標會產生實作為定義的行為。 值 `null` 的指標是以全位-零表示。
 
-@No__t-0 類型代表未知類型的指標。 因為參考型別未知，所以間接運算子不能套用至類型 `void*` 的指標，也不能對這類指標執行任何算數運算。 不過，類型 `void*` 的指標可以轉換成任何其他指標類型（反之亦然）。
+`void*` 類型代表未知類型的指標。 因為引用型別不明，所以間接運算子不能套用至型別 `void*`的指標，也不能對這類指標執行任何算數運算。 不過，`void*` 類型的指標可以轉換成任何其他指標類型（反之亦然）。
 
-指標類型是不同類別的類型。 不同于參考型別和實數值型別，指標類型不會繼承自 `object`，而且指標類型和 `object` 之間不會有任何轉換。 特別的是，指標不支援裝箱和取消裝箱（[裝箱和取消](types.md#boxing-and-unboxing)裝箱）。 不過，在不同的指標類型之間，以及指標類型與整數類型之間允許轉換。 這會在[指標轉換](unsafe-code.md#pointer-conversions)中說明。
+指標類型是不同類別的類型。 不同于參考型別和實值型別，指標型別不會繼承自 `object`，而且指標型別和 `object`之間不會有任何轉換。 特別的是，指標不支援裝箱和取消裝箱（[裝箱和取消](types.md#boxing-and-unboxing)裝箱）。 不過，在不同的指標類型之間，以及指標類型與整數類型之間允許轉換。 這會在[指標轉換](unsafe-code.md#pointer-conversions)中說明。
 
-*Pointer_type*不能當做類型引數（結構化[類型](types.md#constructed-types)）使用，而且類型推斷（[類型推斷](expressions.md#type-inference)）會在泛型方法呼叫上失敗，而此呼叫會將類型引數推斷為指標類型。
+*Pointer_type*不能當做類型引數（結構化[類型](types.md#constructed-types)）使用，而且在會將類型引數推斷為指標類型的泛型方法呼叫上，型別推斷（[型別推斷](expressions.md#type-inference)）會失敗。
 
-*Pointer_type*可以當做 volatile 欄位（[volatile 欄位](classes.md#volatile-fields)）的類型使用。
+*Pointer_type*可用來做為 volatile 欄位（[volatile 欄位](classes.md#volatile-fields)）的類型。
 
-雖然指標可以做為 `ref` 或 @no__t 1 參數傳遞，但這麼做可能會造成未定義的行為，因為指標可能會設定為指向在呼叫的方法傳回時不再存在的區域變數，或其用來指向的固定物件。不再是固定的。 例如:
+雖然指標可以當做 `ref` 或 `out` 參數傳遞，但這麼做可能會導致未定義的行為，因為指標可能會設定為指向在呼叫的方法傳回時不存在的區域變數，或其所使用的固定物件已不再是固定的。 例如：
 
 ```csharp
 using System;
@@ -257,7 +257,7 @@ class Test
 }
 ```
 
-方法可以傳回某種類型的值，而該類型可以是指標。 例如，當給定的連續 `int` 的序列、該序列的元素計數，以及其他 `int` 值的指標時，如果發生相符，下列方法會傳回該序列中該值的位址。否則，它會傳回 `null`：
+方法可以傳回某種類型的值，而該類型可以是指標。 例如，當指定連續的 `int`序列指標、該序列的元素計數和其他 `int` 值時，如果相符，則下列方法會傳回該序列中該值的位址。否則，它會傳回 `null`：
 
 ```csharp
 unsafe static int* Find(int* pi, int size, int value) {
@@ -272,33 +272,33 @@ unsafe static int* Find(int* pi, int size, int value) {
 
 在不安全的內容中，有數個結構可用於操作指標：
 
-*  @No__t-0 運算子可用來執行指標間接取值（[指標間接](unsafe-code.md#pointer-indirection)取值）。
-*  @No__t-0 運算子可用來透過指標（[指標成員存取](unsafe-code.md#pointer-member-access)）來存取結構的成員。
-*  @No__t-0 運算子可用來為指標（[指標元素存取](unsafe-code.md#pointer-element-access)）編制索引。
-*  @No__t-0 運算子可用來取得變數的位址（[即位址運算子](unsafe-code.md#the-address-of-operator)）。
-*  @No__t-0 和 @no__t 1 運算子可用來遞增和遞減指標（[指標遞增和遞減](unsafe-code.md#pointer-increment-and-decrement)）。
-*  @No__t-0 和 @no__t 1 運算子可用來執行指標算術（[指標算術](unsafe-code.md#pointer-arithmetic)）。
-*  @No__t-0、`!=`、@no__t 2、`>`、`<=` 和 @no__t 5 運算子可用來比較指標（[指標比較](unsafe-code.md#pointer-comparison)）。
-*  @No__t-0 運算子可用來從呼叫堆疊配置記憶體（[固定大小緩衝區](unsafe-code.md#fixed-size-buffers)）。
-*  您可以使用 `fixed` 語句來暫時修正變數，以便取得其位址（[fixed 語句](unsafe-code.md#the-fixed-statement)）。
+*  `*` 運算子可用來執行指標間接取值（[指標間接](unsafe-code.md#pointer-indirection)取值）。
+*  `->` 運算子可用來透過指標（[指標成員存取](unsafe-code.md#pointer-member-access)）來存取結構的成員。
+*  `[]` 運算子可用來為指標（[指標元素存取](unsafe-code.md#pointer-element-access)）編制索引。
+*  `&` 運算子可用來取得變數的位址（[即位址運算子](unsafe-code.md#the-address-of-operator)）。
+*  `++` 和 `--` 運算子可用來遞增和遞減指標（[指標遞增和遞減](unsafe-code.md#pointer-increment-and-decrement)）。
+*  `+` 和 `-` 運算子可用來執行指標算術（[指標算術](unsafe-code.md#pointer-arithmetic)）。
+*  `==`、`!=`、`<`、`>`、`<=`和 `=>` 運算子可用來比較指標（[指標比較](unsafe-code.md#pointer-comparison)）。
+*  `stackalloc` 運算子可用來從呼叫堆疊配置記憶體（[固定大小緩衝區](unsafe-code.md#fixed-size-buffers)）。
+*  `fixed` 語句可以用來暫時修正變數，以便取得其位址（[fixed 語句](unsafe-code.md#the-fixed-statement)）。
 
 ## <a name="fixed-and-moveable-variables"></a>固定和可移動變數
 
-Address 運算子（「位址」[運算子](unsafe-code.md#the-address-of-operator)）和 @no__t 1 語句（[fixed 語句](unsafe-code.md#the-fixed-statement)）會將變數分成兩個類別：已***修正變數***和***可移動的變數***。
+Address 運算子（「位址」[運算子](unsafe-code.md#the-address-of-operator)）和 `fixed` 語句（[固定語句](unsafe-code.md#the-fixed-statement)）會將變數分成兩個類別：***固定的變數***和***可移動的變數***。
 
 固定的變數位於不受垃圾收集行程操作影響的儲存位置。 （固定變數的範例包括區域變數、值參數，以及透過引用指標所建立的變數）。另一方面，可移動變數位於可能會由垃圾收集行程重新配置或處置的儲存位置中。 （可移動變數的範例包括物件中的欄位和陣列的元素）。
 
-@No__t-0 運算子（[通訊運算子](unsafe-code.md#the-address-of-operator)）允許取得固定變數的位址，而不受限制。 不過，因為可移動變數可能會由垃圾收集行程重新配置或處置，所以可移動變數的位址只能使用 `fixed` 語句（[fixed 語句](unsafe-code.md#the-fixed-statement)）取得，而且該位址只會針對@no__t 2 語句的持續時間。
+`&` 運算子（[通訊運算子](unsafe-code.md#the-address-of-operator)）允許取得固定變數的位址，而不受限制。 不過，由於可移動變數可能會由垃圾收集行程重新配置或處置，因此只能使用 `fixed` 語句（[fixed 語句](unsafe-code.md#the-fixed-statement)）來取得可移動變數的位址，而該位址只會在該 `fixed` 語句的持續時間內保持有效。
 
 具體而言，固定的變數是下列其中一項：
 
 *  由參考區域變數或值參數的*simple_name* （[簡單名稱](expressions.md#simple-names)）所產生的變數，除非該變數是由匿名函數所捕捉。
-*  由 `V.I` 格式的*member_access* （[成員存取](expressions.md#member-access)）所產生的變數，其中 `V` 是*struct_type*的固定變數。
-*  從*pointer_indirection_expression* （[指標間接](unsafe-code.md#pointer-indirection)取值）形成的變數，其格式為 `*P`、格式為 `P->I` 的*pointer_member_access* （[指標成員存取](unsafe-code.md#pointer-member-access)），或*pointer_element_access* （[指標元素存取](unsafe-code.md#pointer-element-access)）的格式為 `P[E]`。
+*  由 `V.I`格式的*member_access* （[成員存取](expressions.md#member-access)）所產生的變數，其中 `V` 是*struct_type*的固定變數。
+*  由表單 `*P`的*pointer_indirection_expression* （[指標間接](unsafe-code.md#pointer-indirection)取值）、表單 `P->I`的*pointer_member_access* （[指標成員存取](unsafe-code.md#pointer-member-access)），或表單 pointer_element_access 的 *`P[E]`* （[指標專案存取](unsafe-code.md#pointer-element-access)）所產生的變數。
 
 所有其他變數都會分類為可移動變數。
 
-請注意，靜態欄位會分類為可移動變數。 另請注意，即使為參數提供的引數是固定的變數，@no__t 0 或 @no__t 1 參數也會分類為可移動變數。 最後，請注意，透過取值指標所產生的變數一律會分類為固定的變數。
+請注意，靜態欄位會分類為可移動變數。 也請注意，即使為參數提供的引數是固定的變數，`ref` 或 `out` 參數也會分類為可移動變數。 最後，請注意，透過取值指標所產生的變數一律會分類為固定的變數。
 
 ## <a name="pointer-conversions"></a>指標轉換
 
@@ -310,8 +310,8 @@ Address 運算子（「位址」[運算子](unsafe-code.md#the-address-of-operat
 此外，在不安全的內容中，可用的明確轉換（[明確轉換](conversions.md#explicit-conversions)）集合會擴充以包含下列明確指標轉換：
 
 *  從任何*pointer_type*到任何其他*pointer_type*。
-*  從 `sbyte`，`byte`，`short`，`ushort`，`int`，`uint`，`long`，或 `ulong` 到任何*pointer_type*。
-*  從任何*pointer_type*到 `sbyte`，`byte`，`short`，`ushort`，`int`，`uint`，`long` 或 `ulong`。
+*  從 `sbyte`、`byte`、`short`、`ushort`、`int`、`uint`、`long`或 `ulong` 到任何*pointer_type*。
+*  從任何*pointer_type*到 `sbyte`、`byte`、`short`、`ushort`、`int`、`uint`、`long`或 `ulong`。
 
 最後，在不安全的內容中，標準隱含轉換（[標準隱含轉換](conversions.md#standard-implicit-conversions)）的集合包含下列指標轉換：
 
@@ -319,7 +319,7 @@ Address 運算子（「位址」[運算子](unsafe-code.md#the-address-of-operat
 
 兩個指標類型之間的轉換永遠不會變更實際的指標值。 換句話說，從一個指標類型轉換成另一個，並不會影響指標所提供的基礎位址。
 
-當其中一個指標類型轉換成另一個時，如果產生的指標未正確對齊所指的類型，則如果已取值，則行為會是未定義的。 一般來說，「正確對齊」這個概念是可轉移的：如果類型的指標 `A` 已正確對齊型別的指標 `B`，而後者則是正確對齊型別 `C` 的指標，則 `A` 類型的指標會正確對齊類型的指標 `C`。
+當其中一個指標類型轉換成另一個時，如果產生的指標未正確對齊所指的類型，則如果已取值，則行為會是未定義的。 一般來說，「正確對齊」這個概念是可轉移的：如果型別 `A` 的指標正確對齊型別 `B`的指標，而這又會正確對齊型別 `C`的指標，則類型 `A` 的指標會正確對齊 `C`類型的指標。
 
 請考慮下列情況，其中具有一個類型的變數是透過不同類型的指標來存取：
 
@@ -353,24 +353,24 @@ class Test
 
 當然，產生的輸出取決於 endian。
 
-指標和整數之間的對應是執行定義的。 不過，在具有線性位址空間的 32 * 和64位 CPU 架構上，從整數類資料類型來回轉換的行為，通常會與這些整數類型之間的 `uint` 或 @no__t 1 值的轉換完全相同。
+指標和整數之間的對應是執行定義的。 不過，在具有線性位址空間的 32 * 和64位 CPU 架構上，從整數類資料類型來回轉換的行為，通常會與這些整數類型之間的 `uint` 或 `ulong` 值的轉換完全相同。
 
 ### <a name="pointer-arrays"></a>指標陣列
 
 在不安全的內容中，可以構造指標陣列。 只有一些適用于其他陣列類型的轉換可以在指標陣列上使用：
 
-*  隱含參考轉換（[隱含參考](conversions.md#implicit-reference-conversions)轉換）從任何*array_type*到 `System.Array`，而它所執行的介面也適用于指標陣列。 不過，嘗試透過 `System.Array` 或其所執行的介面來存取陣列專案，將會在執行時間導致例外狀況，因為指標類型無法轉換成 `object`。
-*  從一維陣列類型的隱含和明確參考轉換（[隱含參考轉換](conversions.md#implicit-reference-conversions)、[明確參考](conversions.md#explicit-reference-conversions)轉換） `S[]` 到 `System.Collections.Generic.IList<T>`，而且其泛型基底介面永遠不會套用至指標陣列，由於指標類型不能當做類型引數使用，而且不會從指標類型轉換成非指標類型。
-*  從 `System.Array` 的明確參考轉換（[明確參考轉換](conversions.md#explicit-reference-conversions)）以及它對任何*array_type*所實作用的介面，都會套用至指標陣列。
-*  從 `System.Collections.Generic.IList<S>` 及其基底介面到一維陣列類型的明確參考轉換（[明確參考轉換](conversions.md#explicit-reference-conversions)） `T[]` 永遠不會套用至指標陣列，因為指標類型不能當做類型引數使用，而且有不會從指標類型轉換成非指標類型。
+*  從任何*array_type*到 `System.Array` 的隱含參考轉換（[隱含參考轉換](conversions.md#implicit-reference-conversions)）以及它所執行的介面也適用于指標陣列。 不過，嘗試透過 `System.Array` 或其所執行的介面來存取陣列專案，將會在執行時間導致例外狀況，因為指標類型無法轉換成 `object`。
+*  從一維陣列類型的隱含和明確參考轉換（[隱含參考轉換](conversions.md#implicit-reference-conversions)、[明確參考](conversions.md#explicit-reference-conversions)轉換） `S[]` 至 `System.Collections.Generic.IList<T>`，而其泛型基底介面永遠不會套用至指標陣列，因為指標類型不能當做類型引數使用，而且不會從指標類型轉換成非指標類型。
+*  從 `System.Array` 的明確參考轉換（[明確參考轉換](conversions.md#explicit-reference-conversions)）以及它對任何*array_type*所執行的介面都適用于指標陣列。
+*  從 `System.Collections.Generic.IList<S>` 及其基底介面到一維陣列類型的明確參考轉換（[明確參考轉換](conversions.md#explicit-reference-conversions)） `T[]` 永遠不會套用至指標陣列，因為指標類型不能當做類型引數使用，而且不會從指標類型轉換成非指標類型。
 
-這些限制表示在[foreach 語句](statements.md#the-foreach-statement)中所描述的陣列上，@no__t 0 語句的展開無法套用至指標陣列。 相反地，表單的 foreach 語句
+這些限制表示[foreach 語句](statements.md#the-foreach-statement)中所述陣列的 `foreach` 語句擴充不能套用至指標陣列。 相反地，表單的 foreach 語句
 
 ```csharp
 foreach (V v in x) embedded_statement
 ```
 
-其中 `x` 的類型是格式為 `T[,,...,]` 的陣列類型，而 `N` 是維度的數目減1，而 `T` 或 `V` 是指標類型，則會使用 nested for-迴圈展開，如下所示：
+其中，`x` 的類型為表單 `T[,,...,]`的陣列類型，而 `N` 是維度的數目減1，`T` 或 `V` 是指標類型，則會使用 nested for-迴圈展開，如下所示：
 
 ```csharp
 {
@@ -385,13 +385,13 @@ foreach (V v in x) embedded_statement
 }
 ```
 
-@No__t-0、`i0`、`i1`、...、`iN` 的變數無法在 `x` 或*embedded_statement*或程式的任何其他原始程式碼中看見或存取。 變數 `v` 在內嵌語句中是唯讀的。 如果沒有從 `T` （元素類型）到 `V` 的明確轉換（[指標轉換](unsafe-code.md#pointer-conversions)），就會產生錯誤，而且不會採取任何進一步的步驟。 如果 `x` 的值 `null`，則會在執行時間擲回 `System.NullReferenceException`。
+`a`、`i0`、`i1`、...、`iN` 的變數無法在 `x` 或程式的*embedded_statement*或任何其他原始程式碼中看見或存取。 變數 `v` 在內嵌語句中是唯讀的。 如果沒有從 `T` （專案類型）到 `V`的明確轉換（[指標轉換](unsafe-code.md#pointer-conversions)），就會產生錯誤，而且不會採取任何進一步的步驟。 如果 `x` 具有 `null`值，則會在執行時間擲回 `System.NullReferenceException`。
 
 ## <a name="pointers-in-expressions"></a>運算式中的指標
 
-在不安全的內容中，運算式可能會產生指標類型的結果，但在不安全的內容之外，運算式必須是指標類型才會發生編譯時期錯誤。 具體而言，在不安全的內容外部，如果有任何*simple_name* （[簡單名稱](expressions.md#simple-names)）、 *member_access* （[成員存取](expressions.md#member-access)）、 *invocation_expression* （[調用運算式](expressions.md#invocation-expressions)）或 *，就會發生編譯時期錯誤。element_access* （[元素存取](expressions.md#element-access)）是指標類型。
+在不安全的內容中，運算式可能會產生指標類型的結果，但在不安全的內容之外，運算式必須是指標類型才會發生編譯時期錯誤。 具體而言，在不安全的內容外部，如果任何*simple_name* （[簡單名稱](expressions.md#simple-names)）、 *member_access* （[成員存取](expressions.md#member-access)）、 *invocation_expression* （[調用運算式](expressions.md#invocation-expressions)）或*element_access* （專案[存取](expressions.md#element-access)）都是指標類型，就會發生編譯時期錯誤。
 
-在不安全的內容中， *primary_no_array_creation_expression* （[主要運算式](expressions.md#primary-expressions)）和*unary_expression* （[一元運算子](expressions.md#unary-operators)）的生產會允許下列其他的結構：
+在不安全的內容中， *primary_no_array_creation_expression* （[主要運算式](expressions.md#primary-expressions)）和*unary_expression* （[一元運算子](expressions.md#unary-operators)）的生產會允許下列額外的結構：
 
 ```antlr
 primary_no_array_creation_expression_unsafe
@@ -410,7 +410,7 @@ unary_expression_unsafe
 
 ### <a name="pointer-indirection"></a>指標間接取值
 
-*Pointer_indirection_expression*包含星號（`*`），後面接著*unary_expression*。
+*Pointer_indirection_expression*由後面接著*unary_expression*的星號（`*`）所組成。
 
 ```antlr
 pointer_indirection_expression
@@ -418,17 +418,17 @@ pointer_indirection_expression
     ;
 ```
 
-一元 `*` 運算子代表指標間接取值，用來取得指標指向的變數。 評估 `*P` 的結果，其中 `P` 是指標類型的運算式 `T*`，是 `T` 類型的變數。 將一元 `*` 運算子套用至類型 `void*` 的運算式或不是指標類型的運算式時，就會發生編譯時期錯誤。
+一元 `*` 運算子代表指標間接取值，用來取得指標指向的變數。 評估 `*P`的結果，其中 `P` 是指標類型 `T*`的運算式，是 `T`類型的變數。 將一元 `*` 運算子套用至類型 `void*` 或不是指標類型的運算式時，會發生編譯時期錯誤。
 
-將一元 `*` 運算子套用至 @no__t 1 指標的效果是由實作為定義的。 特別是，不保證此作業會擲回 `System.NullReferenceException`。
+將一元 `*` 運算子套用至 `null` 指標的效果，是由實作為定義的。 特別是，不保證此作業會擲回 `System.NullReferenceException`。
 
-如果將不正確值指派給指標，則不會定義一元 `*` 運算子的行為。 在一元 `*` 運算子取值指標的無效值中，會有一個位址不適當地對應到所指向的類型（請參閱[指標轉換](unsafe-code.md#pointer-conversions)中的範例），以及其存留期結束後的變數位址。
+如果將不正確值指派給指標，一元 `*` 運算子的行為會是未定義的。 在用來對指標進行取值的無效值中，一元 `*` 運算子會有不適當地對齊所指向類型的位址（請參閱[指標轉換](unsafe-code.md#pointer-conversions)中的範例），以及其存留期結束後的變數位址。
 
-基於明確指派分析的目的，評估格式為 `*P` 的運算式所產生的變數會被視為一開始指派（[最初指派的變數](variables.md#initially-assigned-variables)）。
+基於明確指派分析的目的，評估格式的運算式所產生的變數 `*P` 會被視為一開始指派（一[開始指派的變數](variables.md#initially-assigned-variables)）。
 
 ### <a name="pointer-member-access"></a>指標成員存取
 
-*Pointer_member_access*是由*primary_expression*所組成，後面接著 "`->`" 權杖，後面接著一個*識別碼*和一個選擇性的*type_argument_list*。
+*Pointer_member_access*由*primary_expression*組成，後面接著 "`->`" token，後面接著一個*識別碼*和一個選擇性的*type_argument_list*。
 
 ```antlr
 pointer_member_access
@@ -436,9 +436,9 @@ pointer_member_access
     ;
 ```
 
-在表單 `P->I` 的指標成員存取中，`P` 必須是 `void*` 以外指標類型的運算式，而且 `I` 必須代表 `P` 點之類型的可存取成員。
+在表單 `P->I`的指標成員存取中，`P` 必須是 `void*`以外的指標類型運算式，而且 `I` 必須代表 `P` 點之類型的可存取成員。
 
-@No__t-0 格式的指標成員存取，會完全依照 `(*P).I` 進行評估。 如需指標間接運算子（`*`）的說明，請參閱[指標間接](unsafe-code.md#pointer-indirection)取值。 如需成員存取運算子（`.`）的說明，請參閱[成員存取](expressions.md#member-access)。
+表單 `P->I` 的指標成員存取權會完全依照 `(*P).I`進行評估。 如需指標間接運算子（`*`）的說明，請參閱[指標間接](unsafe-code.md#pointer-indirection)取值。 如需成員存取運算子（`.`）的說明，請參閱[成員存取](expressions.md#member-access)。
 
 在範例中
 
@@ -469,7 +469,7 @@ class Test
 }
 ```
 
-`->` 運算子是用來存取欄位，並透過指標叫用結構的方法。 因為 `P->I` 的作業會精確地等同于 `(*P).I`，所以已撰寫 @no__t 2 方法：
+`->` 運算子是用來存取欄位，並透過指標叫用結構的方法。 由於作業 `P->I` 相當於 `(*P).I`，因此 `Main` 方法也可能已寫入：
 
 ```csharp
 class Test
@@ -488,7 +488,7 @@ class Test
 
 ### <a name="pointer-element-access"></a>指標元素存取
 
-*Pointer_element_access*包含*primary_no_array_creation_expression* ，後面接著以 "`[`" 和 "`]`" 括住的運算式。
+*Pointer_element_access*由*primary_no_array_creation_expression*後面接著以 "`[`" 和 "`]`" 括住的運算式所組成。
 
 ```antlr
 pointer_element_access
@@ -496,9 +496,9 @@ pointer_element_access
     ;
 ```
 
-在 `P[E]` 格式的指標專案存取中，`P` 必須是 `void*` 以外指標類型的運算式，而且 `E` 必須是可以隱含轉換成 `int`、`uint`、`long` 或 `ulong` 的運算式。
+在 `P[E]`表單的指標專案存取中，`P` 必須是 `void*`以外的指標類型運算式，而且 `E` 必須是可以隱含地轉換成 `int`、`uint`、`long`或 `ulong`的運算式。
 
-@No__t-0 格式的指標專案存取，會完全依照 `*(P + E)` 進行評估。 如需指標間接運算子（`*`）的說明，請參閱[指標間接](unsafe-code.md#pointer-indirection)取值。 如需指標加號運算子（`+`）的說明，請參閱[指標算術](unsafe-code.md#pointer-arithmetic)。
+表單 `P[E]` 的指標專案存取權會完全依照 `*(P + E)`進行評估。 如需指標間接運算子（`*`）的說明，請參閱[指標間接](unsafe-code.md#pointer-indirection)取值。 如需指標加號運算子（`+`）的說明，請參閱[指標算術](unsafe-code.md#pointer-arithmetic)。
 
 在範例中
 
@@ -514,7 +514,7 @@ class Test
 }
 ```
 
-指標專案存取是用來初始化 `for` 迴圈中的字元緩衝區。 由於作業 `P[E]` 完全等同于 `*(P + E)`，因此，此範例也可能已撰寫：
+指標專案存取是用來初始化 `for` 迴圈中的字元緩衝區。 由於作業 `P[E]` 相當於 `*(P + E)`，因此此範例也可能已撰寫：
 
 ```csharp
 class Test
@@ -532,7 +532,7 @@ class Test
 
 ### <a name="the-address-of-operator"></a>Address 運算子
 
-*Addressof_expression*是由後面接著*unary_expression*的連字號（`&`）所組成。
+*Addressof_expression*由後面接著*unary_expression*的連字號（`&`）所組成。
 
 ```antlr
 addressof_expression
@@ -540,9 +540,9 @@ addressof_expression
     ;
 ```
 
-假設有一個運算式 `E`，這種類型 `T`，並分類為固定變數（[固定和可移動的變數](unsafe-code.md#fixed-and-moveable-variables)），則結構 `&E` 會計算 `E` 所提供的變數位址。 結果的類型為 `T*`，並分類為值。 如果 `E` 分類為唯讀區域變數，或如果 `E` 表示可移動的變數，則會發生編譯時期錯誤，如果 `E` 未分類為變數。 在最後一個案例中，固定的語句（[fixed 語句](unsafe-code.md#the-fixed-statement)）可以用來暫時「修正」變數，再取得其位址。 如[成員存取](expressions.md#member-access)中所述，在定義 @no__t 1 欄位的結構或類別之外，在實例的參數或靜態的函式以外，該欄位會被視為值，而不是變數。 因此，無法取得其位址。 同樣地，也無法取得常數的位址。
+假設有一個運算式 `E` 這種類型 `T` 並分類為固定的變數（[固定和可移動的變數](unsafe-code.md#fixed-and-moveable-variables)），則結構 `&E` 會計算 `E`所指定之變數的位址。 結果的類型是 `T*` 且分類為值。 如果 `E` 未分類為變數、如果 `E` 分類為唯讀區域變數，或 `E` 表示可移動變數，就會發生編譯時期錯誤。 在最後一個案例中，固定的語句（[fixed 語句](unsafe-code.md#the-fixed-statement)）可以用來暫時「修正」變數，再取得其位址。 如[成員存取](expressions.md#member-access)中所述，在定義 `readonly` 欄位的結構或類別之外，在實例的參數或靜態的函式以外，該欄位會被視為值，而不是變數。 因此，無法取得其位址。 同樣地，也無法取得常數的位址。
 
-@No__t-0 運算子不需要明確指派其引數，但在 `&` 作業之後，套用運算子的變數會被視為在作業發生所在的執行路徑中明確指派。 程式設計人員必須負責確保在此情況下，確實會進行正確的變數初始化。
+`&` 運算子不需要明確指派其引數，但在 `&` 作業之後，會將套用運算子的變數視為在作業發生所在的執行路徑中明確指派。 程式設計人員必須負責確保在此情況下，確實會進行正確的變數初始化。
 
 在範例中
 
@@ -562,26 +562,26 @@ class Test
 }
 ```
 
-`i` 會被視為依照用來初始化 `p` 的 `&i` 作業進行明確指派。 作用中 `*p` 的指派會初始化 `i`，但是加入此初始化是程式設計人員的責任，如果移除指派，則不會發生編譯時期錯誤。
+`i` 會被視為依照用來初始化 `p`的 `&i` 作業進行明確指派。 `*p` 效果的指派會初始化 `i`，但包含此初始化是程式設計人員的責任，如果已移除指派，則不會發生編譯時期錯誤。
 
-@No__t-0 運算子的明確指派規則存在，因此可以避免區域變數的重複初始化。 例如，許多外部 Api 都會採用 API 所填入之結構的指標。 對這類 Api 的呼叫通常會傳遞本機結構變數的位址，而且若沒有此規則，就需要重複的結構變數初始化。
+`&` 運算子的明確指派規則存在，因此可以避免區域變數的重複初始化。 例如，許多外部 Api 都會採用 API 所填入之結構的指標。 對這類 Api 的呼叫通常會傳遞本機結構變數的位址，而且若沒有此規則，就需要重複的結構變數初始化。
 
 ### <a name="pointer-increment-and-decrement"></a>指標遞增和遞減
 
-在不安全的內容中，`++` 和 @no__t 1 運算子（後置[遞增和遞減運算子](expressions.md#postfix-increment-and-decrement-operators)和[前置遞增和遞減運算子](expressions.md#prefix-increment-and-decrement-operators)）可以套用至所有類型的指標變數，但不包括 `void*`。 因此，對於每個指標類型 `T*`，會隱含地定義下列運算子：
+在不安全的內容中，`++` 和 `--` 運算子（後置[遞增和遞減運算子](expressions.md#postfix-increment-and-decrement-operators)和[前置遞增和遞減運算子](expressions.md#prefix-increment-and-decrement-operators)）可以套用至所有類型的指標變數，但不包括 `void*`。 因此，對於 `T*`的每個指標類型，會以隱含方式定義下列運算子：
 
 ```csharp
 T* operator ++(T* x);
 T* operator --(T* x);
 ```
 
-運算子會分別產生與 `x + 1` 和 `x - 1` （[指標算術](unsafe-code.md#pointer-arithmetic)）相同的結果。 換句話說，針對類型 `T*` 的指標變數，`++` 運算子會將 `sizeof(T)` 新增至變數中包含的位址，而 `--` 運算子會從變數中包含的位址減去 `sizeof(T)`。
+運算子會分別產生與 `x + 1` 和 `x - 1`（[指標算術](unsafe-code.md#pointer-arithmetic)）相同的結果。 換句話說，針對類型為 `T*`的指標變數，`++` 運算子會將 `sizeof(T)` 加入至變數中包含的位址，而 `--` 運算子會從變數中包含的位址減去 `sizeof(T)`。
 
 如果指標遞增或遞減運算溢出指標類型的定義域，則結果會是實作為定義，但是不會產生任何例外狀況。
 
 ### <a name="pointer-arithmetic"></a>指標算術
 
-在不安全的內容中，`+` 和 @no__t 1 運算子（[加法運算子](expressions.md#addition-operator)和[減法運算子](expressions.md#subtraction-operator)）可以套用至所有指標類型的值，但 `void*` 除外。 因此，對於每個指標類型 `T*`，會隱含地定義下列運算子：
+在不安全的內容中，`+` 和 `-` 運算子（[加法運算子](expressions.md#addition-operator)和[減法運算子](expressions.md#subtraction-operator)）可以套用至所有指標類型的值，但不包括 `void*`。 因此，對於 `T*`的每個指標類型，會以隱含方式定義下列運算子：
 
 ```csharp
 T* operator +(T* x, int y);
@@ -602,11 +602,11 @@ T* operator -(T* x, ulong y);
 long operator -(T* x, T* y);
 ```
 
-假設有一個運算式 `P` 的指標型別 `T*` 和一個運算式 @no__t `int`，`uint`，`long` 或 `ulong`，則運算式 `P + N` 和 `N + P` 會計算 `T*` 類型的指標值，而結果是將 @no__t 新增至位址提供者為 1。 同樣地，運算式 `P - N` 會計算 `T*` 類型的指標值，這是從 `P` 所指定的位址減去 `N * sizeof(T)` 所產生的。
+假設指標類型的運算式 `P` `T*` 和 `int`、`uint`、`long`或 `ulong`類型的運算式 `N`，運算式 `P + N` 和 `N + P` 會計算類型 `T*` 的指標值，而結果是將 `N * sizeof(T)` 加入 `P`所指定的位址。 同樣地，運算式 `P - N` 會計算類型 `T*` 的指標值，這是從 `P`所指定的位址減去 `N * sizeof(T)` 所產生的。
 
-假設有兩個運算式（`P` 和 `Q`）的指標類型 `T*`，運算式 `P - Q` 會計算 `P` 和 `Q` 所指定的位址之間的差異，然後將該差異除以 `sizeof(T)`。 結果的類型一律為 `long`。 實際上，`P - Q` 會計算為 `((long)(P) - (long)(Q)) / sizeof(T)`。
+假設有兩個運算式，`P` 和 `Q``T*`指標類型，則運算式 `P - Q` 會計算 `P` 和 `Q` 所指定的位址之間的差異，然後將該差異除以 `sizeof(T)`。 結果的類型一律為 `long`。 實際上，`P - Q` 會計算為 `((long)(P) - (long)(Q)) / sizeof(T)`。
 
-例如:
+例如：
 
 ```csharp
 using System;
@@ -636,7 +636,7 @@ q - p = 14
 
 ### <a name="pointer-comparison"></a>指標比較
 
-在不安全的內容中，`==`、`!=`、`<`、`>`、`<=` 和 @no__t 5 運算子（[關聯式和類型測試運算子](expressions.md#relational-and-type-testing-operators)）可以套用至所有指標類型的值。 指標比較運算子如下：
+在不安全的內容中，`==`、`!=`、`<`、`>`、`<=`和 `=>` 運算子（[關聯式和類型測試運算子](expressions.md#relational-and-type-testing-operators)）可以套用至所有指標類型的值。 指標比較運算子如下：
 
 ```csharp
 bool operator ==(void* x, void* y);
@@ -651,7 +651,7 @@ bool operator >=(void* x, void* y);
 
 ### <a name="the-sizeof-operator"></a>Sizeof 運算子
 
-`sizeof` 運算子會返回指定型別變數所佔用的位元組總數。 指定為 `sizeof` 之運算元的類型必須是*unmanaged_type* （[指標類型](unsafe-code.md#pointer-types)）。
+`sizeof` 運算子會返回指定型別變數所佔用的位元組總數。 指定為要 `sizeof` 之運算元的類型必須是*unmanaged_type* （[指標類型](unsafe-code.md#pointer-types)）。
 
 ```antlr
 sizeof_expression
@@ -659,7 +659,7 @@ sizeof_expression
     ;
 ```
 
-@No__t-0 運算子的結果是 `int` 類型的值。 針對某些預先定義的類型，`sizeof` 運算子會產生常數值，如下表所示。
+`sizeof` 運算子的結果是 `int`類型的值。 針對某些預先定義的類型，`sizeof` 運算子會產生常數值，如下表所示。
 
 
 | __運算式__   | __結果__ |
@@ -677,7 +677,7 @@ sizeof_expression
 | `sizeof(double)` | `8`        |
 | `sizeof(bool)`   | `1`        |
 
-對於所有其他類型，`sizeof` 運算子的結果會定義為實作為值，而不是常數。
+針對所有其他類型，`sizeof` 運算子的結果會定義為實作為值，而不是常數。
 
 成員封裝到結構中的順序未指定。
 
@@ -687,7 +687,7 @@ sizeof_expression
 
 ## <a name="the-fixed-statement"></a>Fixed 語句
 
-在不安全的內容中， *embedded_statement* （[語句](statements.md)）生產會允許額外的結構，也就是 `fixed` 語句，這是用來「修正」可移動變數，使其位址在語句的持續時間內保持不變.
+在不安全的內容中， *embedded_statement* （[語句](statements.md)）生產會允許額外的結構，也就是 `fixed` 語句，這是用來「修正」可移動的變數，使其位址在語句的持續時間內保持不變。
 
 ```antlr
 fixed_statement
@@ -708,18 +708,18 @@ fixed_pointer_initializer
     ;
 ```
 
-每個*fixed_pointer_declarator*都會宣告給定*pointer_type*的區域變數，並使用對應的*fixed_pointer_initializer*所計算的位址來初始化該本機變數。 在 `fixed` 語句中宣告的區域變數，可以在該變數宣告的右邊發生的任何*fixed_pointer_initializer*中，以及在 @no__t 3 語句的*embedded_statement*中存取。 由 @no__t 0 的語句所宣告的區域變數會被視為唯讀。 如果內嵌語句嘗試修改這個本機變數（透過指派或 `++` 和 @no__t 1 運算子），或將它當做 `ref` 或 `out` 參數傳遞，就會發生編譯時期錯誤。
+每個*fixed_pointer_declarator*都會宣告給定*pointer_type*的區域變數，並使用對應*fixed_pointer_initializer*所計算的位址來初始化該本機變數。 在 `fixed` 語句中宣告的區域變數，可以在該變數的宣告右邊和 `fixed` 語句的*embedded_statement*中發生的任何*fixed_pointer_initializer*中存取。 `fixed` 語句所宣告的區域變數會被視為唯讀。 如果內嵌的語句嘗試修改這個本機變數（透過指派或 `++` 和 `--` 運算子），或將它當做 `ref` 或 `out` 參數傳遞，就會發生編譯時期錯誤。
 
 *Fixed_pointer_initializer*可以是下列其中一項：
 
-*  Token "`&`" 後面接著*variable_reference* （[判斷明確指派的精確規則](variables.md#precise-rules-for-determining-definite-assignment)） `T` 的非受控類型的可移動變數（[固定和可移動變數](unsafe-code.md#fixed-and-moveable-variables)），前提是 `T*` 的類型為可隱含轉換為 `fixed` 語句中提供的指標類型。 在此情況下，初始化運算式會計算給定變數的位址，並保證在 `fixed` 語句期間，變數會保留在固定位址。
-*  *Array_type*的運算式，其中包含非受控類型的專案 `T`，前提是類型 `T*` 可以隱含地轉換成 `fixed` 語句中提供的指標類型。 在此情況下，初始化運算式會計算陣列中第一個元素的位址，而整個陣列保證會在 `fixed` 語句期間保持固定位址。 如果陣列運算式為 null，或者陣列有零個元素，則初始化運算式會將位址計算為等於零。
-*  類型為 `string` 的運算式，但前提是類型 `char*` 可以隱含地轉換成 `fixed` 語句中提供的指標類型。 在此情況下，初始化運算式會計算字串中第一個字元的位址，而在 `fixed` 語句期間，整個字串保證會保留在固定位址。 如果字串運算式為 null，則 `fixed` 語句的行為會定義為「執行中」。
-*  *Simple_name*或*member_access* ，參考可移動變數的固定大小緩衝區成員，前提是固定大小緩衝區成員的類型可以隱含地轉換成在 `fixed` 語句中指定的指標類型。 在此情況下，初始化運算式會計算固定大小緩衝區之第一個元素的指標（[運算式中的固定大小緩衝區](unsafe-code.md#fixed-size-buffers-in-expressions)），而固定大小的緩衝區保證會在 `fixed` 語句期間保留在固定位址。
+*  如果類型 `T*` 會隱含地轉換成 `fixed` 語句中指定的指標類型，則 token "`&`" 後面接著*variable_reference* （[判斷明確指派的精確規則](variables.md#precise-rules-for-determining-definite-assignment)）到非受控類型 `T`的可移動變數（[固定和可移動變數](unsafe-code.md#fixed-and-moveable-variables)）。 在此情況下，初始化運算式會計算給定變數的位址，並保證在 `fixed` 語句期間，變數會保留在固定位址。
+*  具有非受控類型之元素的*array_type*運算式 `T`，但前提是類型 `T*` 會隱含地轉換成 `fixed` 語句中指定的指標類型。 在此情況下，初始化運算式會計算陣列中第一個元素的位址，而整個陣列保證會在 `fixed` 語句的持續時間內維持固定位址。 如果陣列運算式為 null，或者陣列有零個元素，則初始化運算式會將位址計算為等於零。
+*  `string`類型的運算式，但前提是類型 `char*` 可以隱含地轉換成 `fixed` 語句中指定的指標類型。 在此情況下，初始化運算式會計算字串中第一個字元的位址，而在 `fixed` 語句期間，整個字串保證會保留在固定位址。 如果字串運算式是 null，則會定義 `fixed` 語句的行為。
+*  參考可移動變數之固定大小緩衝區成員的*simple_name*或*member_access* ，前提是固定大小緩衝區成員的類型可以隱含地轉換成在 `fixed` 語句中指定的指標類型。 在此情況下，初始化運算式會計算固定大小緩衝區之第一個元素的指標（[運算式中的固定大小緩衝區](unsafe-code.md#fixed-size-buffers-in-expressions)），而固定大小的緩衝區保證會在 `fixed` 語句期間維持固定位址。
 
-對於*fixed_pointer_initializer*所計算的每個位址，`fixed` 語句可確保在 @no__t 2 語句期間，垃圾收集行程不會重新配置或處置位址所參考的變數。 例如，如果*fixed_pointer_initializer*所計算的位址參考了物件的欄位或陣列實例的元素，則 @no__t 1 語句可保證包含的物件實例在執行期間不會重新置放或處置語句的存留期。
+針對*fixed_pointer_initializer*所計算的每個位址，`fixed` 語句可確保在 `fixed` 語句期間，垃圾收集行程不會重新配置或處置位址所參考的變數。 例如，如果*fixed_pointer_initializer*所計算的位址參考了物件的欄位或陣列實例的元素，則 `fixed` 語句可保證在語句的存留期間，不會重新置放或處置包含的物件實例。
 
-程式設計人員必須負責確保 @no__t 0 語句所建立的指標不會在執行這些語句之後存留下來。 例如，當由 @no__t 0 的語句所建立的指標傳遞給外部 Api 時，程式設計人員必須負責確保 Api 不會保留這些指標的任何記憶體。
+程式設計人員必須負責確保 `fixed` 語句所建立的指標不會在執行這些語句之後存留下來。 例如，當 `fixed` 語句所建立的指標傳遞給外部 Api 時，程式設計人員必須負責確保 Api 不會保留這些指標的任何記憶體。
 
 固定物件可能會造成堆積的片段（因為無法移動）。 基於這個理由，只有在絕對必要時才應該修正物件，而且只會在最短的時間內完成。
 
@@ -748,11 +748,11 @@ class Test
 }
 ```
 
-示範 `fixed` 語句的數種用法。 第一個語句會修正並取得靜態欄位的位址，第二個語句會修正並取得實例欄位的位址，而第三個語句會修正並取得陣列元素的位址。 在每個案例中，使用一般的 `&` 運算子就會發生錯誤，因為變數全都分類為可移動變數。
+示範 `fixed` 語句的數種用法。 第一個語句會修正並取得靜態欄位的位址，第二個語句會修正並取得實例欄位的位址，而第三個語句會修正並取得陣列元素的位址。 在每個案例中，都是使用一般 `&` 運算子的錯誤，因為變數全都分類為可移動變數。
 
 上述範例中的第四個 `fixed` 語句，會產生與第三個類似的結果。
 
-這個 `fixed` 語句的範例會使用 `string`：
+此 `fixed` 語句的範例會使用 `string`：
 
 ```csharp
 class Test
@@ -773,9 +773,9 @@ class Test
 }
 ```
 
-在一維陣列的 unsafe 內容陣列元素中，會以遞增的索引順序儲存，從索引 `0` 開始，並以索引 `Length - 1` 結束。 若為多維陣列，會儲存陣列元素，以便先增加最右邊維度的索引，然後再將下一個左維度放在左側。 在 `fixed` 語句中，取得 `p` 的指標至陣列實例 `a`，指標值範圍從 `p` 到 `p + a.Length - 1` 表示陣列中元素的位址。 同樣地，範圍從 `p[0]` 到 `p[a.Length - 1]` 的變數則代表實際的陣列元素。 假設陣列的儲存方式，我們可以將任何維度的陣列視為線性。
+在一維陣列的 unsafe 內容陣列元素中，會以遞增的索引順序儲存，從索引 `0` 開始，並以索引 `Length - 1`結束。 若為多維陣列，會儲存陣列元素，以便先增加最右邊維度的索引，然後再將下一個左維度放在左側。 在 `fixed` 語句中，若要取得陣列實例 `a`的指標 `p`，指標值範圍從 `p` 到 `p + a.Length - 1` 代表陣列中元素的位址。 同樣地，從 `p[0]` 到 `p[a.Length - 1]` 的變數，都代表實際的陣列元素。 假設陣列的儲存方式，我們可以將任何維度的陣列視為線性。
 
-例如:
+例如：
 
 ```csharp
 using System;
@@ -865,11 +865,11 @@ class Test
 
 fixed 語句用來修正結構的固定大小緩衝區，使其位址可以當做指標使用。
 
-藉由修正字串實例所產生的 @no__t 0 值，一律會指向以 null 結束的字串。 在取得指標 `p` 到字串實例 `s` 的 fixed 語句中，指標值的範圍從 `p` 到 `p + s.Length - 1` 代表字串中的字元位址，而指標值 `p + s.Length` 一律指向 null 字元（值為 `'\0'`）的字元。
+藉由修正字串實例所產生的 `char*` 值，一律會指向以 null 結束的字串。 在可取得字串實例 `s`指標 `p` 的 fixed 語句中，指標值的範圍從 `p` 到 `p + s.Length - 1` 代表字串中的字元位址，而指標值 `p + s.Length` 一律指向 null 字元（值為 `'\0'`的字元）。
 
 透過固定指標修改 managed 類型的物件，可能會導致未定義的行為。 例如，因為字串是不可變的，所以程式設計人員必須負責確保固定字串的指標所參考的字元不會修改。
 
-呼叫需要 "C 樣式" 字串的外部 Api 時，自動 null 終止的字串會特別方便。 不過，請注意，字串實例允許包含 null 字元。 如果有這類 null 字元，當視為以 null 終止的 `char*` 時，字串會顯示為截斷。
+呼叫需要 "C 樣式" 字串的外部 Api 時，自動 null 終止的字串會特別方便。 不過，請注意，字串實例允許包含 null 字元。 如果有這類 null 字元，當視為以 null 終止的 `char*`時，字串會顯示為截斷。
 
 ## <a name="fixed-size-buffers"></a>固定大小的緩衝區
 
@@ -906,17 +906,17 @@ fixed_size_buffer_declarator
     ;
 ```
 
-固定大小的緩衝區宣告可能包括一組屬性（[屬性](attributes.md)）、一個 @no__t 的修飾[詞（修飾](classes.md#modifiers)詞）、四個存取修飾詞（[型別參數和條件約束](classes.md#type-parameters-and-constraints)）的有效組合，以及一個 `unsafe` 個修飾詞（[Unsafe內容）。](unsafe-code.md#unsafe-contexts) 屬性和修飾詞適用于固定大小緩衝區宣告所宣告的所有成員。 在固定大小的緩衝區宣告中多次出現相同的修飾詞時，就會發生錯誤。
+固定大小的緩衝區宣告可能包括一組屬性（[屬性](attributes.md)）、一個 `new` 修飾[詞（修飾](classes.md#modifiers)詞）、四個存取修飾詞（型別[參數和條件約束](classes.md#type-parameters-and-constraints)）的有效組合，以及一個 `unsafe` 修飾詞（[Unsafe](unsafe-code.md#unsafe-contexts)內容）。 屬性和修飾詞適用于固定大小緩衝區宣告所宣告的所有成員。 在固定大小的緩衝區宣告中多次出現相同的修飾詞時，就會發生錯誤。
 
 固定大小的緩衝區宣告不允許包含 `static` 修飾詞。
 
-固定大小緩衝區宣告的緩衝區元素類型會指定宣告所引進之緩衝區的元素類型。 Buffer 元素類型必須是其中一個預先定義的類型 `sbyte`、`byte`、`short`、`ushort`、`int`、`uint`、`long`、`ulong`、`char`、`float`、0 或 1。
+固定大小緩衝區宣告的緩衝區元素類型會指定宣告所引進之緩衝區的元素類型。 Buffer 元素類型必須是其中一個預先定義的類型 `sbyte`、`byte`、`short`、`ushort`、`int`、`uint`、`long`、`ulong`、`char`、`float`、`double`或 `bool`。
 
-Buffer 元素類型後面接著固定大小的緩衝區宣告子清單，其中每個宣告子都會引進新的成員。 固定大小的緩衝區宣告子包含命名成員的識別碼，後面接著以 `[` 和 @no__t 1 標記括住的常數運算式。 常數運算式代表該固定大小緩衝區宣告子所引進之成員中的元素數目。 常數運算式的類型必須可以隱含地轉換成類型 `int`，而且值必須是非零的正整數。
+Buffer 元素類型後面接著固定大小的緩衝區宣告子清單，其中每個宣告子都會引進新的成員。 固定大小的緩衝區宣告子包含命名成員的識別碼，後面接著以 `[` 和 `]` 標記括住的常數運算式。 常數運算式代表該固定大小緩衝區宣告子所引進之成員中的元素數目。 常數運算式的類型必須可以隱含地轉換成類型 `int`，且此值必須為非零的正整數。
 
 固定大小緩衝區的元素一定會在記憶體中依序排列。
 
-宣告多個固定大小緩衝區的固定大小緩衝區宣告相當於具有相同屬性和元素類型的單一固定大小緩衝區宣告的多個宣告。 例如：
+宣告多個固定大小緩衝區的固定大小緩衝區宣告相當於具有相同屬性和元素類型的單一固定大小緩衝區宣告的多個宣告。 例如
 
 ```csharp
 unsafe struct A
@@ -942,14 +942,14 @@ unsafe struct A
 
 您可以使用*simple_name* （[型別推斷](expressions.md#type-inference)）或*member_access* （動態多載[解析的編譯時間檢查](expressions.md#compile-time-checking-of-dynamic-overload-resolution)），在運算式中參考固定大小的緩衝區。
 
-當固定大小的緩衝區成員當做簡單名稱來參考時，其效果會與表單 `this.I` 的成員存取相同，其中 `I` 是固定大小的緩衝區成員。
+當固定大小的緩衝區成員當做簡單名稱參考時，其效果會與表單 `this.I`的成員存取相同，其中 `I` 是固定大小的緩衝區成員。
 
-在表單 `E.I` 的成員存取中，如果 `E` 是結構類型，而且該結構類型中的成員查閱 `I` 識別固定大小成員，則會評估 `E.I`，其分類方式如下：
+在表單 `E.I`的成員存取中，如果 `E` 是結構型別，而且該結構型別中 `I` 的成員查閱識別固定大小的成員，則 `E.I` 會依照下列方式評估分類：
 
 *  如果不安全的內容中出現運算式 `E.I`，就會發生編譯時期錯誤。
-*  如果 `E` 分類為值，則會發生編譯時期錯誤。
-*  否則，如果 `E` 是可移動變數（[固定和可移動的](unsafe-code.md#fixed-and-moveable-variables)變數），而且運算式 `E.I` 不是*fixed_pointer_initializer* （[fixed 語句](unsafe-code.md#the-fixed-statement)），就會發生編譯時期錯誤。
-*  否則，`E` 會參考固定的變數，而運算式的結果會是在 `E` 中，`I` 之固定大小緩衝區成員的第一個元素的指標。 結果的類型為 `S*`，其中 `S` 是 `I` 的元素類型，且分類為值。
+*  如果 `E` 分類為值，就會發生編譯時期錯誤。
+*  否則，如果 `E` 是可移動變數（[固定和可移動](unsafe-code.md#fixed-and-moveable-variables)變數），而且運算式 `E.I` 不是*fixed_pointer_initializer* （[fixed 語句](unsafe-code.md#the-fixed-statement)），則會發生編譯時期錯誤。
+*  否則，`E` 會參考固定的變數，而運算式的結果是 `E`中固定大小緩衝區成員 `I` 的第一個元素的指標。 結果的類型為 `S*`，其中 `S` 是 `I`的元素類型，且分類為值。
 
 您可以使用第一個元素的指標作業來存取固定大小緩衝區的後續元素。 不同于陣列的存取權，對固定大小緩衝區的元素存取是不安全的作業，而且不會進行範圍檢查。
 
@@ -984,7 +984,7 @@ class Test
 
 固定大小緩衝區不受限於明確的指派檢查（[明確指派](variables.md#definite-assignment)），而且會忽略固定大小的緩衝區成員，以用於結構類型變數的明確指派檢查。
 
-當固定大小緩衝區成員的最外層包含結構變數為靜態變數、類別實例的執行個體變數或陣列元素時，固定大小緩衝區的元素會自動初始化為其預設值（預設值）[值](variables.md#default-values)）。 在所有其他情況下，固定大小緩衝區的初始內容是未定義的。
+當固定大小緩衝區成員的最外層包含 struct 變數為靜態變數、類別實例的執行個體變數或陣列元素時，固定大小緩衝區的元素會自動初始化為其預設值（[預設值](variables.md#default-values)）。 在所有其他情況下，固定大小緩衝區的初始內容是未定義的。
 
 ## <a name="stack-allocation"></a>堆疊配置
 
@@ -1000,15 +1000,15 @@ stackalloc_initializer
     ;
 ```
 
-*Unmanaged_type*會指出將儲存在新配置位置的專案類型，而*運算式*會指出這些專案的數目。 結合在一起，即可指定所需的配置大小。 因為堆疊配置的大小不能為負數，所以會發生編譯時期錯誤，將專案數目指定為評估為負值的*constant_expression* 。
+*Unmanaged_type*表示將儲存在新配置位置的專案類型，而*運算式*則表示這些專案的數目。 結合在一起，即可指定所需的配置大小。 因為堆疊配置的大小不能為負數，所以會發生編譯時期錯誤，將專案數目指定為評估為負值的*constant_expression* 。
 
-格式為 `stackalloc T[E]` 的堆疊配置初始化運算式需要 `T` 為非受控類型（[指標類型](unsafe-code.md#pointer-types)），而 `E` 則為類型 `int` 的運算式。 結構會從呼叫堆疊配置 `E * sizeof(T)` 個位元組，並將類型 `T*` 的指標傳回至新配置的區塊。 如果 `E` 是負值，則行為是未定義的。 如果 `E` 為零，則不會進行任何配置，而傳回的指標會定義為執行。 如果沒有足夠的記憶體可配置指定大小的區塊，則會擲回 @no__t 0。
+`stackalloc T[E]` 格式的堆疊配置初始化運算式需要 `T` 為非受控類型（[指標類型](unsafe-code.md#pointer-types)），而且 `E` 為 `int`類型的運算式。 結構會從呼叫堆疊配置 `E * sizeof(T)` 個位元組，並將 `T*`類型的指標傳回至新配置的區塊。 如果 `E` 是負值，則行為是未定義的。 如果 `E` 為零，則不會進行任何配置，而且傳回的指標會定義為執行。 如果沒有足夠的記憶體可配置指定大小的區塊，則會擲回 `System.StackOverflowException`。
 
 新配置記憶體的內容尚未被定義。
 
-@No__t-0 或 @no__t 1 區塊（[try 語句](statements.md#the-try-statement)）中不允許堆疊配置初始化運算式。
+`catch` 或 `finally` 區塊（[try 語句](statements.md#the-try-statement)）中不允許堆疊配置初始化運算式。
 
-沒有任何方法可以明確釋放使用 `stackalloc` 所配置的記憶體。 在函式成員執行期間建立的所有堆疊配置記憶體區塊，會在該函式成員傳回時自動捨棄。 這會對應到 `alloca` 函式，這是通常在 C 和C++實作為中找到的延伸模組。
+沒有任何方法可以明確釋放使用 `stackalloc`所配置的記憶體。 在函式成員執行期間建立的所有堆疊配置記憶體區塊，會在該函式成員傳回時自動捨棄。 這會對應至 `alloca` 函式，這是通常在 C 和C++實作用中找到的延伸模組。
 
 在範例中
 
@@ -1038,11 +1038,11 @@ class Test
 }
 ```
 
-`IntToString` 方法中會使用 @no__t 0 初始化運算式，在堆疊上配置16個字元的緩衝區。 當方法傳回時，會自動捨棄緩衝區。
+在 `IntToString` 方法中，會使用 `stackalloc` 初始化運算式，在堆疊上配置16個字元的緩衝區。 當方法傳回時，會自動捨棄緩衝區。
 
 ## <a name="dynamic-memory-allocation"></a>動態記憶體配置
 
-除了 `stackalloc` 運算子以外， C#不會提供任何預先定義的結構來管理非垃圾收集的記憶體。 這類服務通常是透過支援類別庫來提供，或直接從基礎作業系統匯入。 例如，下列的 `Memory` 類別說明如何從下列來源C#存取基礎作業系統的堆積功能：
+除了 `stackalloc` 運算子以外， C#不會提供任何預先定義的結構來管理非垃圾收集的記憶體。 這類服務通常是透過支援類別庫來提供，或直接從基礎作業系統匯入。 例如，下面的 `Memory` 類別說明如何從下列來源C#存取基礎作業系統的堆積功能：
 
 ```csharp
 using System;
@@ -1149,4 +1149,4 @@ class Test
 }
 ```
 
-此範例會透過 `Memory.Alloc` 配置256位元組的記憶體，並將值從0增加到255的記憶體區塊初始化。 然後，它會配置256元素位元組陣列，並使用 `Memory.Copy` 將記憶體區塊的內容複寫到位元組陣列。 最後，記憶體區塊會使用 `Memory.Free` 來釋放，而位元組陣列的內容則會在主控台上輸出。
+此範例會透過 `Memory.Alloc` 配置256位元組的記憶體，並將值從0增加到255的記憶體區塊初始化。 然後，它會配置256元素位元組陣列，並使用 `Memory.Copy` 將記憶體區塊的內容複寫到位元組陣列。 最後，記憶體區塊會使用 `Memory.Free` 釋放，而位元組陣列的內容則會在主控台上輸出。
