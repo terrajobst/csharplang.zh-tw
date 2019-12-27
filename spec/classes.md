@@ -4244,8 +4244,8 @@ class A
 
 Iterator 會產生一系列的值，這些都是相同的型別。 這個型別稱為 iterator 的***yield 型***別。
 
-*  傳回 `IEnumerator` 或 `IEnumerable` 之反覆運算器的產生類型 `object`。
-*  傳回 `IEnumerator<T>` 或 `IEnumerable<T>` 之反覆運算器的產生類型 `T`。
+*  傳回 `IEnumerator` 或 `IEnumerable` 的反覆運算器產生類型為 `object`。
+*  傳回 `IEnumerator<T>` 或 `IEnumerable<T>` 的反覆運算器產生類型為 `T`。
 
 ### <a name="enumerator-objects"></a>列舉值物件
 
