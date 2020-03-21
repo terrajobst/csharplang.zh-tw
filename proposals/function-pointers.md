@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: d9080202f9413f8beb80db222d47f5fc082ae641
-ms.sourcegitcommit: f3170512e7a3193efbcea52ec330648375e36915
+ms.openlocfilehash: 8bf3a18dc42e225e64bd3ccda2106aed89b421ed
+ms.sourcegitcommit: 9aa177443b83116fe1be2ab28e2c7291947fe32d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/11/2020
-ms.locfileid: "79485501"
+ms.lasthandoff: 03/21/2020
+ms.locfileid: "80108385"
 ---
 # <a name="function-pointers"></a>函式指標
 
@@ -174,7 +174,8 @@ unsafe class Util {
 在不安全的內容中，從目標是方法群組 `E` 到相容函式指標型別的隱含轉換存在 `F` 如果 `E` 包含至少一個適用于其一般格式的方法，並使用 `F`的參數類型和修飾詞所建立的引數清單，如下所述。
 - 選取的單一方法 `M` 對應至表單 `E(A)` 的方法調用，並具有下列修改：
    - 引數清單 `A` 是運算式的清單，每一個都會分類為一個變數，並使用對應的_正式\_參數_的類型和修飾詞（`ref`、`out`或 `in`）\_`D`清單。
-   - 候選方法只是那些僅適用于其一般格式的方法，而不是適用于其擴充形式的方法。
+   - 候選方法只是適用于其一般格式的方法，而不是適用于其擴充形式的方法。
+   - 候選方法只是靜態的方法。
 - 如果方法調用的演算法產生錯誤，則會發生編譯時期錯誤。 否則，此演算法會產生一個最佳方法，`M` 具有與 `F` 相同數目的參數，並將轉換視為存在。
 - 選取的方法 `M` 必須與函式指標類型 `F`相容（如上面所定義）。 否則，會發生編譯時期錯誤。
 - 轉換的結果是 `F`類型的函式指標。

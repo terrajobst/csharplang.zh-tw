@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 4e2a536bab00859b003e8d967cb1927a99a9fa21
-ms.sourcegitcommit: 94a3d151c438d34ede1d99de9eb4ebdc07ba4699
+ms.openlocfilehash: 38740069a2e105f920fa275c443f4560055e2901
+ms.sourcegitcommit: 9aa177443b83116fe1be2ab28e2c7291947fe32d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/25/2019
-ms.locfileid: "79484535"
+ms.lasthandoff: 03/21/2020
+ms.locfileid: "80108362"
 ---
 
 # <a name="target-typed-new-expressions"></a>目標型別 `new` 運算式
@@ -28,14 +28,17 @@ Dictionary<string, List<int>> field = new() {
     { "item1", new() { 1, 2, 3 } }
 };
 ```
+
 當可以從使用方式推斷時，允許省略類型。
 ```cs
 XmlReader.Create(reader, new() { IgnoreWhitespace = true });
 ```
+
 將物件具現化，而不將型別拼出。
 ```cs
 private readonly static object s_syncObj = new();
 ```
+
 ## <a name="detailed-design"></a>詳細設計
 [design]: #detailed-design
 
@@ -46,14 +49,15 @@ object_creation_expression
     | 'new' type object_or_collection_initializer
     ;
 ```
+
 目標具類型的 `new` 可以轉換成任何類型。 因此，它不會影響多載解析。 這主要是為了避免無法預期的重大變更。
 
 在決定型別之後，將會系結引數清單和初始化運算式運算式。
 
 運算式的型別是從目標型別推斷而來，必須是下列其中一項：
 
-- **任何結構類型**
-- **任何參考型別**
+- **任何結構類型**（包括元組類型）
+- **任何參考型別**（包括委派類型）
 - 具有函數或 `struct` 條件約束的**任何類型參數**
 
 但有下列例外狀況：
@@ -61,9 +65,11 @@ object_creation_expression
 - **列舉類型：** 並非所有列舉類型都包含常數零，因此最好使用明確列舉成員。
 - **介面類別型：** 這是一項小規模功能，最好是明確提及該類型。
 - **陣列類型：** 陣列需要特殊的語法來提供長度。
-- **結構預設**的函式：此規則會排除所有基本型別和大部分的實值型別。 如果您想要使用這類類型的預設值，您可以改為撰寫 `default`。
+- **動態：** 我們不允許 `new dynamic()`，因此不允許以 `dynamic` 作為目標型別的 `new()`。
 
 也會排除*object_creation_expression*中不允許的所有其他類型，例如指標類型。
+
+當目標型別是可為 null 的實值型別時，目標型別 `new` 將會轉換成基礎型別，而不是可為 null 的型別。
 
 > **開啟問題：** 我們是否允許委派和元組作為目標型別？
 
@@ -75,35 +81,37 @@ Action a = new(() => {}); // "new" is redundant
 (int a, int b) t = new(); // ruled out by "use of struct default constructor"
 Action a = new(); // no constructor found
 
-var x = new() == (1, 2); // ruled out by "use of struct default constructor"
-var x = new(1, 2) == (1, 2) // "new" is redundant
-```
+### Miscellaneous
 
+`throw new()` is disallowed.
 
-> **開啟問題：** 我們是否允許以 `Exception` 的 `throw new()` 做為目標型別？
+Target-typed `new` is not allowed with binary operators.
 
-我們目前已 `throw null`，但不 `throw default` （雖然會有相同的效果）。 另一方面，`throw new()` 可以做為 `throw new Exception(...)`的縮寫。 請注意，目前的規格已允許此檔案。 `Exception` 是參考型別，而 throw 語句的規格指出運算式會轉換成 `Exception`。
+It is disallowed when there is no type to target: unary operators, collection of a `foreach`, in a `using`, in a deconstruction, in an `await` expression, as an anonymous type property (`new { Prop = new() }`), in a `lock` statement, in a `sizeof`, in a `fixed` statement, in a member access (`new().field`), in a dynamically dispatched operation (`someDynamic.Method(new())`), in a LINQ query, as the operand of the `is` operator, as the left operand of the `??` operator,  ...
 
-> **開啟問題：** 我們是否允許使用目標型別的 `new` 搭配使用者定義的比較和算術運算子？
+It is also disallowed as a `ref`.
 
-為了進行比較，`default` 只支援相等（使用者定義和內建）運算子。 同時支援 `new()` 的其他運算子也是有意義的嗎？
-
-## <a name="drawbacks"></a>缺點
+## Drawbacks
 [drawbacks]: #drawbacks
 
-無。
+There were some concerns with target-typed `new` creating new categories of breaking changes, but we already have that with `null` and `default`, and that has not been a significant problem.
 
-## <a name="alternatives"></a>替代方案
+## Alternatives
 [alternatives]: #alternatives
 
-大部分關於類型在欄位初始化中無法重複的抱怨，都是關於類型*引數*，而不是類型本身，我們可以只推斷類型引數，例如 `new Dictionary(...)` （或類似），並從引數或集合初始化運算式在本機推斷類型引數。
+Most of complaints about types being too long to duplicate in field initialization is about *type arguments* not the type itself, we could infer only type arguments like `new Dictionary(...)` (or similar) and infer type arguments locally from arguments or the collection initializer.
 
-## <a name="questions"></a>問題
+## Questions
 [questions]: #questions
 
-- 是否應該禁止運算式樹狀架構中的使用方式？ 不要
-- 功能如何與 `dynamic` 引數互動？ （無特殊處理）
-- IntelliSense 應該如何與 `new()`搭配使用？ （只有在只有單一目標型別時）
-## <a name="design-meetings"></a>設計會議
+- Should we forbid usages in expression trees? (no)
+- How the feature interacts with `dynamic` arguments? (no special treatment)
+- How IntelliSense should work with `new()`? (only when there is a single target-type)
+
+## Design meetings
 
 - [LDM-2017-10-18](https://github.com/dotnet/csharplang/blob/master/meetings/2017/LDM-2017-10-18.md#100)
+- [LDM-2018-05-21](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-05-21.md)
+- [LDM-2018-06-25](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-06-25.md)
+- [LDM-2018-08-22](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-08-22.md#target-typed-new)
+- [LDM-2018-10-17](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-10-17.md)
