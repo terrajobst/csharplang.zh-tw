@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: d6519ff57b4a98c4eec8ccbf310303432ac3255e
-ms.sourcegitcommit: 65ea1e6dc02853e37e7f2088e2b6cc08d01d1044
+ms.openlocfilehash: 50f2bd2d0a84064cfe35fe65b9e5c59c052d19ac
+ms.sourcegitcommit: 1dbb8e82bed5012a58a3a035bf2c3737ed570d07
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2019
-ms.locfileid: "79485025"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80122941"
 ---
 # <a name="ranges"></a>範圍
 
@@ -100,7 +100,7 @@ C#沒有語法方式可存取集合的「範圍」或「配量」。 使用者�
 
 語言將會引進新的範圍運算子 `x..y`。 它是可接受兩個運算式的二元中置運算子。 可以省略任一運算元（以下範例），而且必須可以轉換成 `System.Index`。 它會降低為適當的 `System.Range` factory 方法呼叫。
 
--我們會將C# *multiplicative_expression*的文法規則取代為下列內容（以引進新的優先順序層級）：
+我們會以C#下列內容取代*multiplicative_expression*的文法規則（以引進新的優先順序層級）：
 
 ```antlr
 range_expression
@@ -149,7 +149,7 @@ var multiDimensional = list[1..2, ..]   // list[Range.Create(1, 2), Range.All]
 
 如果類型具有名為 `Length` 的屬性，或具有可存取 getter 的 `Count` 和 `int`的傳回型別，則該型別為***計算***。 語言可以利用這個屬性，將類型 `Index` 的運算式轉換成運算式所在點的 `int`，而不需要使用類型 `Index`。 如果 `Length` 和 `Count` 都存在，將會偏好 `Length`。 為了簡單起見，提案會使用名稱 `Length` 來代表 `Count` 或 `Length`。
 
-針對這類類型，語言將會像是 `T this[Index index]` 形式的索引成員，其中 `T` 是以 `int` 為基礎之索引子的傳回類型，包括任何 `ref` 樣式注釋。 新成員將會有相同的 `get` 和 `set` 成員，其存取範圍與 `int` 索引子相符。 
+針對這類類型，語言將會像是 `T this[Index index]` 形式的索引子成員，其中 `T` 是以 `int` 為基礎之索引子的傳回類型，包括任何 `ref` 樣式注釋。 新成員將會有相同的 `get` 和 `set` 成員，其存取範圍與 `int` 索引子相符。 
 
 新的索引子將會藉由將類型 `Index` 的引數轉換成 `int`，併發出對 `int` 為基礎之索引子的呼叫來執行。 為了方便討論，讓我們使用 `receiver[expr]`的範例。 `int` 的 `expr` 轉換會如下所示：
 
@@ -205,11 +205,11 @@ class SideEffect {
 - 類型具有名為 `Slice` 的可存取成員，其具有 `int`類型的兩個參數。
 - 型別沒有實例索引子，它會採用單一 `Range` 做為第一個參數。 `Range` 必須是唯一的參數，否則其餘的參數必須是選擇性的。
 
-針對這類類型，語言將會系結，就好像有表單的索引成員 `T this[Range range]` 其中 `T` 是 `Slice` 方法的傳回型別，包括任何 `ref` 樣式注釋。 新成員也會有與 `Slice`相符的存取範圍。 
+針對這類類型，語言會系結，就好像有一個 `T this[Range range]` 形式的索引子成員，其中 `T` 是 `Slice` 方法的傳回型別，包括任何 `ref` 樣式注釋。 新成員也會有與 `Slice`相符的存取範圍。 
 
 當以 `Range` 為基礎的索引子系結至名為 `receiver`的運算式時，會將 `Range` 運算式轉換成兩個值，然後傳遞至 `Slice` 方法，藉此降低其限制。 為了方便討論，讓我們使用 `receiver[expr]`的範例。
 
-`Slice` 的第一個引數會透過下列方式轉換具型別運算式來取得：
+`Slice` 的第一個引數會透過下列方式轉換範圍類型運算式來取得：
 
 - 當 `expr` 的格式為 `expr1..expr2` （其中可以省略 `expr2`），而且 `expr1` 的類型為 `int`時，會以 `expr1`的形式發出。
 - 當 `expr` 的格式為 `^expr1..expr2` （可省略 `expr2`）時，將會以 `receiver.Length - expr1`的形式發出。
@@ -223,7 +223,7 @@ class SideEffect {
 - 當 `expr` 的格式為 `expr1..` （可省略 `expr1`）時，將會以 `receiver.Length - start`的形式發出。
 - 否則，將會以 `expr.End.GetOffset(receiver.Length) - start`的形式發出。
 
-`receiver`、`Length` 和 `expr` 運算式會適當地溢出，以確保任何副作用只會執行一次。 例如：
+`receiver`、`Length`和 `expr` 運算式會適當地溢出，以確保任何副作用只會執行一次。 例如：
 
 ``` csharp
 class Collection {
