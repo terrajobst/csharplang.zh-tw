@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 38740069a2e105f920fa275c443f4560055e2901
-ms.sourcegitcommit: 9aa177443b83116fe1be2ab28e2c7291947fe32d
+ms.openlocfilehash: 07b4afe4a3fcbf10c978f05e642dfd8a47d53ea5
+ms.sourcegitcommit: 194a043db72b9244f8db45db326cc82de6cec965
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/21/2020
-ms.locfileid: "80108362"
+ms.lasthandoff: 03/24/2020
+ms.locfileid: "80217199"
 ---
 
 # <a name="target-typed-new-expressions"></a>目標型別 `new` 運算式
@@ -80,35 +80,36 @@ Action a = new(() => {}); // "new" is redundant
 
 (int a, int b) t = new(); // ruled out by "use of struct default constructor"
 Action a = new(); // no constructor found
+```
 
-### Miscellaneous
+### <a name="miscellaneous"></a>其他
 
-`throw new()` is disallowed.
+不允許 `throw new()`。
 
-Target-typed `new` is not allowed with binary operators.
+二元運算子不允許使用目標具類型的 `new`。
 
-It is disallowed when there is no type to target: unary operators, collection of a `foreach`, in a `using`, in a deconstruction, in an `await` expression, as an anonymous type property (`new { Prop = new() }`), in a `lock` statement, in a `sizeof`, in a `fixed` statement, in a member access (`new().field`), in a dynamically dispatched operation (`someDynamic.Method(new())`), in a LINQ query, as the operand of the `is` operator, as the left operand of the `??` operator,  ...
+當沒有要設為目標的類型時，不允許使用：一元運算子、`foreach`的集合在 `using`中，在 `await` 運算式的解構中，以匿名型別屬性（`new { Prop = new() }`），在 `lock` 語句中，在 `sizeof`的成員存取（`fixed`）的`new().field`語句中，以動態分派的作業（`someDynamic.Method(new())`）表示 `is` 運算子的運算元，做為 `??` 運算子的左運算元。,  ...
 
-It is also disallowed as a `ref`.
+也不允許做為 `ref`。
 
-## Drawbacks
+## <a name="drawbacks"></a>缺點
 [drawbacks]: #drawbacks
 
-There were some concerns with target-typed `new` creating new categories of breaking changes, but we already have that with `null` and `default`, and that has not been a significant problem.
+有一些關於目標型別的問題 `new` 建立新的重大變更分類，但我們已經有 `null` 和 `default`的問題，而且這一點也不是重大的問題。
 
-## Alternatives
+## <a name="alternatives"></a>替代方案
 [alternatives]: #alternatives
 
-Most of complaints about types being too long to duplicate in field initialization is about *type arguments* not the type itself, we could infer only type arguments like `new Dictionary(...)` (or similar) and infer type arguments locally from arguments or the collection initializer.
+大部分關於類型在欄位初始化中無法重複的抱怨，都是關於類型*引數*，而不是類型本身，我們可以只推斷類型引數，例如 `new Dictionary(...)` （或類似），並從引數或集合初始化運算式在本機推斷類型引數。
 
-## Questions
+## <a name="questions"></a>問題
 [questions]: #questions
 
-- Should we forbid usages in expression trees? (no)
-- How the feature interacts with `dynamic` arguments? (no special treatment)
-- How IntelliSense should work with `new()`? (only when there is a single target-type)
+- 是否應該禁止運算式樹狀架構中的使用方式？ 不要
+- 功能如何與 `dynamic` 引數互動？ （無特殊處理）
+- IntelliSense 應該如何與 `new()`搭配使用？ （只有在只有單一目標型別時）
 
-## Design meetings
+## <a name="design-meetings"></a>設計會議
 
 - [LDM-2017-10-18](https://github.com/dotnet/csharplang/blob/master/meetings/2017/LDM-2017-10-18.md#100)
 - [LDM-2018-05-21](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-05-21.md)
