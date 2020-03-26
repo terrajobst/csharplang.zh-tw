@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 07b4afe4a3fcbf10c978f05e642dfd8a47d53ea5
-ms.sourcegitcommit: 194a043db72b9244f8db45db326cc82de6cec965
+ms.openlocfilehash: f000dda7eeb1c4f17c26f94c326a12a9d0014288
+ms.sourcegitcommit: 1e1c7c72b156e2fbc54d6d6ac8d21bca9934d8d2
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "80217199"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80281966"
 ---
 
 # <a name="target-typed-new-expressions"></a>目標型別 `new` 運算式
@@ -39,37 +39,27 @@ XmlReader.Create(reader, new() { IgnoreWhitespace = true });
 private readonly static object s_syncObj = new();
 ```
 
-## <a name="detailed-design"></a>詳細設計
+## <a name="specification"></a>規格
 [design]: #detailed-design
 
-當有括弧時，會修改*object_creation_expression*語法，讓*類型*成為選擇性。 這是解決*anonymous_object_creation_expression*不明確的必要工作。
+*Object_creation_expression*的新語法表單*target_typed_new*接受，其中*類型*是選擇性的。
+
 ```antlr
 object_creation_expression
-    : 'new' type? '(' argument_list? ')' object_or_collection_initializer?
+    : 'new' type '(' argument_list? ')' object_or_collection_initializer?
     | 'new' type object_or_collection_initializer
+    | target_typed_new
+    ;
+target_typed_new
+    : 'new' '(' argument_list? ')' object_or_collection_initializer?
     ;
 ```
 
-目標具類型的 `new` 可以轉換成任何類型。 因此，它不會影響多載解析。 這主要是為了避免無法預期的重大變更。
+*Target_typed_new*運算式沒有類型。 不過，有一個新的*物件建立轉換*是從運算式隱含轉換，這是從*target_typed_new*到每個型別。
 
-在決定型別之後，將會系結引數清單和初始化運算式運算式。
+假設有目標型別 `T`，如果 `T` 是 `System.Nullable`的實例，則類型 `T0` 會 `T`的基礎類型。 否則會 `T``T0`。 轉換成類型 `T` 之*target_typed_new*運算式的意義，與指定 `T0` 做為類型之對應*object_creation_expression*的意義相同。
 
-運算式的型別是從目標型別推斷而來，必須是下列其中一項：
-
-- **任何結構類型**（包括元組類型）
-- **任何參考型別**（包括委派類型）
-- 具有函數或 `struct` 條件約束的**任何類型參數**
-
-但有下列例外狀況：
-
-- **列舉類型：** 並非所有列舉類型都包含常數零，因此最好使用明確列舉成員。
-- **介面類別型：** 這是一項小規模功能，最好是明確提及該類型。
-- **陣列類型：** 陣列需要特殊的語法來提供長度。
-- **動態：** 我們不允許 `new dynamic()`，因此不允許以 `dynamic` 作為目標型別的 `new()`。
-
-也會排除*object_creation_expression*中不允許的所有其他類型，例如指標類型。
-
-當目標型別是可為 null 的實值型別時，目標型別 `new` 將會轉換成基礎型別，而不是可為 null 的型別。
+如果*target_typed_new*當做一元或二元運算子的運算元使用，或如果使用它而不受*物件建立轉換*，則為編譯時期錯誤。
 
 > **開啟問題：** 我們是否允許委派和元組作為目標型別？
 
@@ -78,19 +68,25 @@ object_creation_expression
 (int a, int b) t = new(1, 2); // "new" is redundant
 Action a = new(() => {}); // "new" is redundant
 
-(int a, int b) t = new(); // ruled out by "use of struct default constructor"
+(int a, int b) t = new(); // OK; same as (0, 0)
 Action a = new(); // no constructor found
 ```
 
 ### <a name="miscellaneous"></a>其他
 
-不允許 `throw new()`。
+以下是規格的結果：
 
-二元運算子不允許使用目標具類型的 `new`。
-
-當沒有要設為目標的類型時，不允許使用：一元運算子、`foreach`的集合在 `using`中，在 `await` 運算式的解構中，以匿名型別屬性（`new { Prop = new() }`），在 `lock` 語句中，在 `sizeof`的成員存取（`fixed`）的`new().field`語句中，以動態分派的作業（`someDynamic.Method(new())`）表示 `is` 運算子的運算元，做為 `??` 運算子的左運算元。,  ...
-
-也不允許做為 `ref`。
+- 允許 `throw new()` （目標型別為 `System.Exception`）
+- 二元運算子不允許使用目標具類型的 `new`。
+- 當沒有要設為目標的類型時，不允許使用：一元運算子、`foreach`的集合在 `using`中，在 `await` 運算式的解構中，以匿名型別屬性（`new { Prop = new() }`），在 `lock` 語句中，在 `sizeof`的成員存取（`fixed`）的`new().field`語句中，以動態分派的作業（`someDynamic.Method(new())`）表示 `is` 運算子的運算元，做為 `??` 運算子的左運算元。,  ...
+- 也不允許做為 `ref`。
+- 下列種類的類型不允許做為轉換的目標
+  - **列舉類型：** `new()` 將可運作（因為 `new Enum()` 會提供預設值），但 `new(1)` 將無法運作，因為列舉類型沒有任何方法。
+  - **介面類別型：** 這適用于 COM 類型的對應建立運算式。
+  - **陣列類型：** 陣列需要特殊的語法來提供長度。    
+  - **動態：** 我們不允許 `new dynamic()`，因此不允許以 `dynamic` 作為目標型別的 `new()`。
+  - **元組：** 這些與使用基礎類型建立物件的意義相同。
+  - 也會排除*object_creation_expression*中不允許的所有其他類型，例如指標類型。   
 
 ## <a name="drawbacks"></a>缺點
 [drawbacks]: #drawbacks
@@ -116,3 +112,4 @@ Action a = new(); // no constructor found
 - [LDM-2018-06-25](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-06-25.md)
 - [LDM-2018-08-22](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-08-22.md#target-typed-new)
 - [LDM-2018-10-17](https://github.com/dotnet/csharplang/blob/master/meetings/2018/LDM-2018-10-17.md)
+- [LDM-2020-03-25](https://github.com/dotnet/csharplang/blob/master/meetings/2020/LDM-2020-03-25.md)

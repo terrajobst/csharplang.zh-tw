@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: b9697fc1d772ba59ed3b1de339a5a3d4eb24b1bd
-ms.sourcegitcommit: 36b028f4d6e88bd7d4a843c6d384d1b63cc73334
+ms.openlocfilehash: 54ae4ffabde6dca49b7e6bfb626d65837eabc8f5
+ms.sourcegitcommit: 1e1c7c72b156e2fbc54d6d6ac8d21bca9934d8d2
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/19/2020
-ms.locfileid: "79485221"
+ms.lasthandoff: 03/26/2020
+ms.locfileid: "80281940"
 ---
 # <a name="simple-programs"></a>簡單的程式
 
@@ -50,18 +50,16 @@ compilation_unit
     ;
 ```
 
-除了一個*compilation_unit* *語句*s 都必須是區域函式宣告。 
+只允許一個*compilation_unit*有*語句*s。 
 
 範例：
 
 ``` c#
-// File 1 - any statements
-if (args.Length == 0
-    || !int.TryParse(args[0], out int n)
+if (System.Environment.CommandLine.Length == 0
+    || !int.TryParse(System.Environment.CommandLine, out int n)
     || n < 0) return;
 Console.WriteLine(Fib(n).curr);
 
-// File 2 - only local functions
 (int curr, int prev) Fib(int i)
 {
     if (i == 0) return (1, 0);
@@ -79,18 +77,14 @@ static class Program
 {
     static async Task Main()
     {
-        // File 1 statements
-        // File 2 local functions
-        // ...
+        // statements
     }
 }
 ```
 
 請注意，名稱「程式」和「主要」僅供說明之用，編譯器所使用的實際名稱是相依的，而且型別和方法都不能由原始程式碼參考。
 
-方法會指定為程式的進入點。 根據慣例，明確宣告的方法可視為會忽略進入點候選項目。 當發生這種情況時，就會回報警告。 指定 `-main:<type>` 編譯器參數是錯誤的。
-
-如果任何一個編譯單位具有區域函式宣告以外的語句，則會先發生來自該編譯單位的語句。 這會使某個檔案中的區域函式合法，以參考另一個檔案中的區域變數。 來自其他編譯單位的語句貢獻（全部都是區域函式）順序未定義。
+方法會指定為程式的進入點。 根據慣例，明確宣告的方法可視為會忽略進入點候選項目。 當發生這種情況時，就會回報警告。 當有最上層的語句時，指定 `-main:<type>` 編譯器參數是錯誤的。
 
 在一般非同步進入點方法內的語句中，最上層語句允許非同步作業。 不過，它們不是必要的，如果省略 `await` 運算式和其他非同步作業，就不會產生任何警告。 相反地，產生的進入點方法的簽章相當於 
 ``` c#
@@ -104,13 +98,11 @@ static class $Program
 {
     static void $Main()
     {
-        // Statements from File 1
-        if (args.Length == 0
-            || !int.TryParse(args[0], out int n)
+        if (System.Environment.CommandLine.Length == 0
+            || !int.TryParse(System.Environment.CommandLine, out int n)
             || n < 0) return;
         Console.WriteLine(Fib(n).curr);
         
-        // Local functions from File 2
         (int curr, int prev) Fib(int i)
         {
             if (i == 0) return (1, 0);
@@ -123,7 +115,6 @@ static class $Program
 
 在此同時，範例如下所示：
 ``` c#
-// File 1
 await System.Threading.Tasks.Task.Delay(1000);
 System.Console.WriteLine("Hi!");
 ```
@@ -134,7 +125,6 @@ static class $Program
 {
     static async Task $Main()
     {
-        // Statements from File 1
         await System.Threading.Tasks.Task.Delay(1000);
         System.Console.WriteLine("Hi!");
     }
@@ -143,7 +133,7 @@ static class $Program
 
 ### <a name="scope-of-top-level-local-variables-and-local-functions"></a>最上層區域變數和區域函式的範圍
 
-即使最上層區域變數和函式已「包裝」到產生的進入點方法中，這些變數和函式仍應在整個程式的範圍內。
+即使最上層區域變數和函式已「包裝」到產生的進入點方法中，在每個編譯單位中，這些變數還是應該在整個程式的範圍內。
 基於簡單名稱評估的目的，一旦達到全域命名空間：
 - 首先，嘗試評估產生的進入點方法中的名稱，而且只有在此嘗試失敗時才會進行 
 - 全域命名空間宣告內的 "regular" 評估會執行。 
